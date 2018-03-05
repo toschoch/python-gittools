@@ -1,0 +1,10 @@
+#reposervers:
+#  aarau:
+#    type: Bonobo
+#    url:  http://scmserver:8080
+#    newrepo:
+#      Group: PythonPackages
+#      Administrators: ["Tobias Schoch"]
+#    login:
+#      Username: <username>
+#      Password: <password>
