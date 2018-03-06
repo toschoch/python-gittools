@@ -11,7 +11,12 @@ from .reposerver import get_repo_server, repository_servers_cfg
 
 @click.group()
 def gittool():
-    """ this script sets up the git remote r """
+    """ CLI tool to setup git remote repositories. """
+
+@gittool.command()
+def list():
+    for name, cfg in repository_servers_cfg().items():
+        print("{}\t{}".format(name, cfg.get('url','...')))
 
 @gittool.command()
 @click.option('--tag/--no-tag', default=True)
