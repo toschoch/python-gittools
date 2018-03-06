@@ -10,9 +10,6 @@ A collection of tools to connect to predefined git remote servers and create rem
 
 Change-Log
 ----------
-##### 0.0.2
-* working cli for init and create remote on Bonobo Server
-
 ##### 0.0.1
 * initial version
 
