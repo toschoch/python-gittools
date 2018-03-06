@@ -10,6 +10,12 @@ A collection of tools to connect to predefined git remote servers and create rem
 
 Change-Log
 ----------
+##### 0.0.3
+* fixed small bugs
+* git url set in usage section of readme
+* added Gogs support
+* add list command
+
 ##### 0.0.2
 * fixed tests, reads info for remote repo from README.md
 * add tag command
