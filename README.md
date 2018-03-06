@@ -11,6 +11,12 @@ A collection of tools to connect to predefined git remote servers and create rem
 Change-Log
 ----------
 ##### 0.0.2
+* fixed tests, reads info for remote repo from README.md
+* add tag command
+* "update README.md for tag v0.0.2"
+* working cli for init and create remote on Bonobo Server
+
+##### 0.0.2
 * working cli for init and create remote on Bonobo Server
 
 ##### 0.0.1
