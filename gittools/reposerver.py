@@ -7,6 +7,7 @@ import logging
 import six
 import bs4
 import requests
+import gogs_client
 import urllib.parse
 from .config import cfg
 
@@ -27,26 +28,60 @@ def get_repo_server(name):
     srv = srv_type(**srv_cfg)
     return srv
 
+class Repo(object):
+
+    def __init__(self, name, id, giturl):
+
+        self.id = id
+        self.name = name
+        self.giturl = giturl
+
+
+class Gogs(object):
+
+    def __init__(self, name, url, **kwargs):
+
+        self.name = name
+        self.url = urllib.parse.urlparse(url)
+
+        self.login_info = {}
+        self.repo_info = {}
+
+        self.repo_info.update(kwargs.get('newrepo', {}))
+        self.login_info.update(kwargs.get('login', {}))
+
+        self.username = self.login_info['Username']
+        self.password = self.login_info['Password']
+
+        self.token = gogs_client.Token("gittools")
+
+        self.api = gogs_client.GogsApi(self.url.geturl())
+        self.auth = gogs_client.UsernamePassword(self.username, self.password)
+
+    def create_repository(self, name, description, **info):
+        repo_info = self.repo_info.copy()
+        repo_info.update(info)
+        repo = self.api.create_repo(self.auth, name=name, description=description, **repo_info)
+        return Repo(repo.name, repo.id, repo.ssh_url)
+
+    def delete_repository(self, name):
+        self.api.delete_repo(self.auth, self.username, name)
+
+
 class Bonobo(object):
-
-    class Repo(object):
-        hash = None
-        name = None
-        giturl = None
-        user = None
-        password = None
-
-    repo_info = {
-        "Group": "PythonPackages"
-    }
-
-    login_info = {}
 
     def __init__(self, name, url, **kwargs):
         self.name = name
         self.url = urllib.parse.urlparse(url)
+
+        self.login_info = {}
+        self.repo_info = {}
+
         self.repo_info.update(kwargs.get('newrepo',{}))
         self.login_info.update(kwargs.get('login',{}))
+
+        self.username = self.login_info['Username']
+        self.password = self.login_info['Password']
 
     def create_repository(self, name, description, **info):
 
@@ -109,13 +144,7 @@ class Bonobo(object):
             bs = bs4.BeautifulSoup(r.content, "html.parser")
             tag = bs.find("span", {'class': "personal-url-text"})
 
-            repo = self.Repo()
-            repo.hash = repo_detail_link.split('/')[-1]
-            repo.name = repo_info['Name']
-            repo.giturl = tag.text
-            repo.user = login_info['Username']
-            repo.password = login_info['Password']
-
             log.info("successfully created repository!")
 
-        return repo
+        return Repo(repo_info['Name'], repo_detail_link.split('/')[-1], tag.text)
+

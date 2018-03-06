@@ -4,6 +4,7 @@
 # author:  TOS
 
 import click
+import sys
 import subprocess
 from .readme import description, package_name, add_changelog_version, filename
 from .reposerver import get_repo_server, repository_servers_cfg
@@ -32,19 +33,23 @@ def init(tag):
 @click.argument('repo', type=click.Choice(repository_servers_cfg().keys()))
 def setup(repo):
 
-    git_user = subprocess.check_output(['git', 'config', '--get', 'user.name']).decode('utf-8').strip('\n')
-
     srv = get_repo_server(repo)
-    remote_repo = srv.create_repository(package_name(), description(), Administrators=[git_user])
+    remote_repo = srv.create_repository(package_name(), description())
 
-    giturl = remote_repo.giturl.split('@')
-    giturl[0] = '{}:{}'.format(giturl[0],remote_repo.password)
-    giturl = '@'.join(giturl)
+    subprocess.call(['git', 'remote', 'add', repo, remote_repo.giturl])
 
-    subprocess.call(['git', 'remote', 'add', repo, giturl])
+    # make initial commit and push (set upstream) and send password if needed
+    proc = subprocess.Popen(['git', 'push', '--set-upstream', repo],
+                            stdin=subprocess.PIPE,
+                            stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE)
 
-    # make initial commit and push (set upstream)
-    subprocess.call(['git', 'push', '--set-upstream', repo])
+    proc.stdin.write('{}\n'.format(srv.password))
+    proc.stdin.flush()
+
+    stdout, stderr = proc.communicate()
+    print(stdout)
+    print(stderr,file=sys.stderr)
 
 
 @gittool.command()

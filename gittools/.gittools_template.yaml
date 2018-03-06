@@ -8,3 +8,11 @@
 #    login:
 #      Username: <username>
 #      Password: <password>
+#  gogs:
+#    type: Gogs
+#    url:  https://try.gogs.io/
+#    newrepo:
+#           private:  False
+#    login:
+#      Username: <username>
+#      Password: <password>

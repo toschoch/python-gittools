@@ -42,3 +42,19 @@ def test_bonobo_requests():
         p = s.post('http://scmserver:8080/Home/LogOn', data=payload)
         # print the html returned or something more intelligent to see if it's a successful login page.
         assert (p.text.find('500 Server Error')<0)
+
+
+def test_gogs():
+
+    import gogs_client
+    auth = gogs_client.UsernamePassword("tshock", "hockey010310")
+
+    api = gogs_client.GogsApi("https://try.gogs.io/")
+
+    if not api.repo_exists(auth, "tshock", "testrepo"):
+        api.create_repo(auth, name='testrepo', description='this is a test repo', private=True)
+
+    repo = api.get_repo(auth, 'tshock', 'testrepo')
+    print(repo)
+
+    api.delete_repo(auth, 'tshock', 'testrepo')
