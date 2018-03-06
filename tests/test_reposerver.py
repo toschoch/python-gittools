@@ -1,28 +1,23 @@
 import gittools.reposerver
-import pathlib
 import requests, bs4
 
 # Sample Test passing with nose and pytest
 def test_bonobo_create():
 
-    # template = pathlib.Path(gittools.__path__[0]).joinpath('.gittools_template.yaml')
-    #
-    # gittools.reposerver.config_file = template
-
-
     cfg = gittools.reposerver.repository_servers_cfg()
 
-    srv_cfg = cfg['reposervers']['aarau']
+    srv_cfg = cfg['aarau'].copy()
     srv_cfg['name'] = 'aarau'
     srv_type = getattr(gittools.reposerver,srv_cfg.pop('type'))
 
-    srv = srv_type(**cfg['reposervers']['aarau'])
+    srv = srv_type(**srv_cfg)
     repo = srv.create_repository('testrepo3','this is a test repo')
 
 def test_config():
 
     srv = gittools.reposerver.get_repo_server('aarau')
-    print(srv)
+    # print(srv)
+    assert str(srv).startswith('<gittools.reposerver.Bonobo object at')
 
 
 def test_bonobo_requests():

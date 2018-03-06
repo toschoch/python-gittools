@@ -20,11 +20,11 @@ def repository_servers_cfg():
 def get_repo_server(name):
     cfg = repository_servers_cfg()
 
-    srv_cfg = cfg[name]
+    srv_cfg = cfg[name].copy()
     srv_cfg['name'] = name
     srv_type = globals().get(srv_cfg.pop('type'))
 
-    srv = srv_type(**cfg['reposervers'][name])
+    srv = srv_type(**srv_cfg)
     return srv
 
 class Bonobo(object):
@@ -48,13 +48,17 @@ class Bonobo(object):
         self.repo_info.update(kwargs.get('newrepo',{}))
         self.login_info.update(kwargs.get('login',{}))
 
-    def create_repository(self, name, description, **repo_info):
+    def create_repository(self, name, description, **info):
+
+        repo_info = self.repo_info.copy()
 
         repo_info['Name'] = name
         repo_info['Description'] = description
-        repo_info.update(self.repo_info)
+        repo_info.update(info)
         adminlist = repo_info.pop('Administrators')
         repo_info['PostedSelectedAdministrators'] = []
+
+        assert len(adminlist)>0
 
         # create the git repo with push requests
         log.info("create GIT repository on {}...".format(self.name))

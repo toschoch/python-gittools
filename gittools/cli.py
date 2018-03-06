@@ -27,10 +27,10 @@ def init(tag):
 @click.argument('repo', type=click.Choice(repository_servers_cfg().keys()))
 def setup(repo):
 
-    git_user = subprocess.check_output(['git', 'config', '--get', 'user.name'])
+    git_user = subprocess.check_output(['git', 'config', '--get', 'user.name']).decode('utf-8').strip('\n')
 
     srv = get_repo_server(repo)
-    remote_repo = srv.create_repository(package_name(), description(), {'Administrators': [git_user]})
+    remote_repo = srv.create_repository(package_name(), description(), Administrators=[git_user])
 
     giturl = remote_repo.giturl.split('@')
     giturl[0] = '{}:{}'.format(giturl[0],remote_repo.password)

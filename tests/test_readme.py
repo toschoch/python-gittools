@@ -18,9 +18,8 @@ def test_name():
     assert rm.package_name(here) == 'python-gittools'
 
 def test_changelog():
-    # print(rm.changelog('..'))
+    print(rm.changelog(here))
     assert rm.changelog(here) == """##### 0.0.1
-
 * initial version"""
 
 def test_addversion(tmpdir):
