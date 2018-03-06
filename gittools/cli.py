@@ -60,7 +60,7 @@ def tag(tagname, message):
 
     # commit messages
     msgs = subprocess.check_output(['git','log','--oneline','{}..@'.format(lasttag)]).decode('utf-8').splitlines()
-    msgs = list(map(lambda msg: ' '.join(msg.split(' ')[1:]), msgs))
+    msgs = [' '.join(m.split(' ')[1:]) for m in msgs]
 
     # insert into readme
     add_changelog_version(tagname.lstrip('v'), points=msgs)
