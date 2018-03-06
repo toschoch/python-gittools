@@ -6,7 +6,7 @@
 import click
 import sys
 import subprocess
-from .readme import description, package_name, add_changelog_version, filename
+from .readme import description, package_name, add_changelog_version, filename, set_placeholder
 from .reposerver import get_repo_server, repository_servers_cfg
 
 
@@ -31,25 +31,22 @@ def init(tag):
 
 @gittool.command()
 @click.argument('repo', type=click.Choice(repository_servers_cfg().keys()))
-def setup(repo):
+@click.option('--usage/--no-usage', default=False)
+def setup(repo, usage):
 
     srv = get_repo_server(repo)
     remote_repo = srv.create_repository(package_name(), description())
 
+    # add the remote
     subprocess.call(['git', 'remote', 'add', repo, remote_repo.giturl])
 
-    # make initial commit and push (set upstream) and send password if needed
-    proc = subprocess.Popen(['git', 'push', '--set-upstream', repo],
-                            stdin=subprocess.PIPE,
-                            stdout=subprocess.PIPE,
-                            stderr=subprocess.PIPE)
+    # set git urls in usage section of readme
+    if usage:
+        set_placeholder("<git-url>",remote_repo.giturl)
 
-    proc.stdin.write('{}\n'.format(srv.password))
-    proc.stdin.flush()
-
-    stdout, stderr = proc.communicate()
-    print(stdout)
-    print(stderr,file=sys.stderr)
+    #TODO: find a solution to call and pass username and pw
+    print("if prompted, use user: {}, pw: {}".format(srv.username,srv.password))
+    subprocess.call(['git', 'push', '--set-upstream', repo])
 
 
 @gittool.command()

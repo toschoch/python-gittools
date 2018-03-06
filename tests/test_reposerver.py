@@ -11,7 +11,7 @@ def test_bonobo_create():
     srv_type = getattr(gittools.reposerver,srv_cfg.pop('type'))
 
     srv = srv_type(**srv_cfg)
-    repo = srv.create_repository('testrepo3','this is a test repo')
+    # repo = srv.create_repository('testrepo3','this is a test repo')
 
 def test_config():
 
@@ -46,15 +46,21 @@ def test_bonobo_requests():
 
 def test_gogs():
 
-    import gogs_client
-    auth = gogs_client.UsernamePassword("tshock", "hockey010310")
 
-    api = gogs_client.GogsApi("https://try.gogs.io/")
+    cfg = gittools.reposerver.repository_servers_cfg()
 
-    if not api.repo_exists(auth, "tshock", "testrepo"):
-        api.create_repo(auth, name='testrepo', description='this is a test repo', private=True)
+    srv_cfg = cfg['nas'].copy()
+    srv_cfg['name'] = 'nas'
+    srv_type = getattr(gittools.reposerver, srv_cfg.pop('type'))
 
-    repo = api.get_repo(auth, 'tshock', 'testrepo')
-    print(repo)
+    srv = srv_type(**srv_cfg)
 
-    api.delete_repo(auth, 'tshock', 'testrepo')
+    print(srv.ssh)
+
+    if not srv.api.repo_exists(srv.auth, srv.username, "testrepo"):
+        repo = srv.create_repository('testrepo', 'this is a test repo')
+    else:
+        repo = srv.api.get_repo(srv.auth, srv.username, 'testrepo')
+    print(repo.giturl)
+
+    srv.delete_repository('testrepo')

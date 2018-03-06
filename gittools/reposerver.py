@@ -47,6 +47,7 @@ class Gogs(object):
         self.login_info = {}
         self.repo_info = {}
 
+        self.ssh = kwargs.get('ssh', False)
         self.repo_info.update(kwargs.get('newrepo', {}))
         self.login_info.update(kwargs.get('login', {}))
 
@@ -61,8 +62,14 @@ class Gogs(object):
     def create_repository(self, name, description, **info):
         repo_info = self.repo_info.copy()
         repo_info.update(info)
-        repo = self.api.create_repo(self.auth, name=name, description=description, **repo_info)
-        return Repo(repo.name, repo.id, repo.ssh_url)
+        if not self.api.repo_exists(self.auth, self.username, name):
+            repo = self.api.create_repo(self.auth, name=name, description=description, **repo_info)
+        else:
+            repo = self.api.get_repo(self.auth, self.username, name)
+        if self.ssh:
+            return Repo(repo.name, repo.id, repo.urls.ssh_url)
+        else:
+            return Repo(repo.name, repo.id, repo.urls.clone_url)
 
     def delete_repository(self, name):
         self.api.delete_repo(self.auth, self.username, name)

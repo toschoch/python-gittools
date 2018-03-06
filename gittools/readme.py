@@ -6,6 +6,7 @@
 import logging
 import pathlib
 import fileinput
+import re
 
 log = logging.getLogger(__name__)
 
@@ -95,3 +96,12 @@ def add_changelog_version(version, points=[], path='.'):
         i += 1
         print(line,end='')
 
+def set_placeholder(pattern, replace, path='.'):
+
+    readmefile = pathlib.Path(path).joinpath(filename)
+
+    pattern = re.compile(pattern)
+    for line in fileinput.FileInput(str(readmefile), inplace=1):
+        if re.search(pattern, line):
+            line = re.sub(pattern, replace, line)
+        print(line,end='')

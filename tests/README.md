@@ -26,7 +26,7 @@ Or clone the repo:
 
     git clone <git-url>
     python setup.py install
-    
+
 Contributing
 ------------
 
