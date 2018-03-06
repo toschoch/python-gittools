@@ -7,40 +7,20 @@ import logging
 import six
 import bs4
 import requests
-import subprocess
-import os
-import pathlib
-import yaml
 import urllib.parse
-import shutil
-import json
+from .config import cfg
+
 
 log = logging.getLogger(__name__)
 
-config_file = pathlib.Path.home().joinpath('.gittools')
 
-
-def assert_cfg():
-
-    if not config_file.exists():
-        template = pathlib.Path(__file__).parent.joinpath('.gittools_template.yaml')
-        shutil.copy2(src=template, dst=config_file)
-
-# create the config file from template if not yet existing
-assert_cfg()
-
-def configured_repository_servers():
-    if config_file.exists() and config_file.is_file():
-        with open(config_file, 'r') as fp:
-            config = yaml.load(fp)
-    else:
-        config = {}
-    return config
+def repository_servers_cfg():
+    return cfg['reposervers'].copy()
 
 def get_repo_server(name):
-    cfg = configured_repository_servers()
+    cfg = repository_servers_cfg()
 
-    srv_cfg = cfg['reposervers'][name]
+    srv_cfg = cfg[name]
     srv_cfg['name'] = name
     srv_type = globals().get(srv_cfg.pop('type'))
 

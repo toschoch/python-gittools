@@ -1,2 +1,5 @@
 six
 requests
+click
+bs4
+pyyaml

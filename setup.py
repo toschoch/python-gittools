@@ -40,7 +40,7 @@ install_requires = [x.strip() for x in all_reqs if 'git+' not in x]
 dependency_links = [x.strip() for x in all_reqs if x.startswith('git+')]
 
 setup(
-    name='python-gittools',
+    name='gittools',
     version_format='{tag}.dev{commitcount}+{gitsha}',
     setup_requires=['setuptools-git-version','pytest-runner'],
     description='description [A python package that can be installed with pip.]: A collection of tools to connect to predefined git remote servers and create remote repos, define them as remotes, install local hooks, etc.',
@@ -51,7 +51,7 @@ setup(
       'Programming Language :: Python :: 3',
     ],
     entry_points={'console_scripts': [
-        'gittools = gittools.cli:gittools'
+        'gittool = gittools.cli:gittool'
     ]},
     keywords='',
     packages=find_packages(exclude=['docs', 'tests*']),

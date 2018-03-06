@@ -5,35 +5,65 @@
 
 import click
 import subprocess
-from .reposerver import configured_repository_servers, get_repo_server
-
-
-
+from .readme import description, package_name, add_changelog_version, filename
+from .reposerver import get_repo_server, repository_servers_cfg
 
 
 @click.group()
-def gittools():
+def gittool():
     """ this script sets up the git remote r """
 
-@gittools.command()
-def init():
+@gittool.command()
+@click.option('--tag/--no-tag', default=True)
+def init(tag):
     subprocess.call(['git', 'init'])
     subprocess.call(['git', 'add', '.gitignore'])
     subprocess.call(['git','commit', '-m','"initial commit"'])
-    subprocess.call(['git','tag','v0.0.1'])
+    if tag:
+        subprocess.call(['git','tag','v0.0.1'])
 
 
-@gittools.command()
-@click.argument('repo')
+@gittool.command()
+@click.argument('repo', type=click.Choice(repository_servers_cfg().keys()))
 def setup(repo):
+
+    git_user = subprocess.check_output(['git', 'config', '--get', 'user.name'])
+
     srv = get_repo_server(repo)
-    remote_repo = srv.create_repository('testrepo3', 'this is a test repo')
+    remote_repo = srv.create_repository(package_name(), description(), {'Administrators': [git_user]})
 
     giturl = remote_repo.giturl.split('@')
     giturl[0] = '{}:{}'.format(giturl[0],remote_repo.password)
     giturl = '@'.join(giturl)
 
-    subprocess.call(['git', 'remote', 'add', 'origin', giturl])
+    subprocess.call(['git', 'remote', 'add', repo, giturl])
 
     # make initial commit and push (set upstream)
-    subprocess.call(['git', 'push', '--set-upstream', 'origin'])
+    subprocess.call(['git', 'push', '--set-upstream', repo])
+
+
+@gittool.command()
+@click.argument('tagname', type=str)
+@click.option('-m', '--message',  multiple=True)
+def tag(tagname, message):
+
+    # get all tags
+    tags = subprocess.check_output(['git', 'describe', '--tags', '--abbrev=0', '@^']).decode('utf-8').splitlines()
+    lasttag = tags[0]
+
+    # commit messages
+    msgs = subprocess.check_output(['git','log','--oneline','{}..@'.format(lasttag)]).decode('utf-8').splitlines()
+    msgs = list(map(lambda msg: ' '.join(msg.split(' ')[1:]), msgs))
+
+    # insert into readme
+    add_changelog_version(tagname.lstrip('v'), points=msgs)
+
+    # add readme, and commit
+    subprocess.call(['git', 'add', filename])
+    subprocess.call(['git', 'commit','-m', 'update {} for tag {}'.format(filename, tagname)])
+
+    # create the tag
+    if message == "":
+        subprocess.call(['git', 'tag', tagname])
+    else:
+        subprocess.call(['git', 'tag', tagname, '-m', '{}'.format("\n".join(message))])

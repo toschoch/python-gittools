@@ -10,7 +10,7 @@ def test_bonobo_create():
     # gittools.reposerver.config_file = template
 
 
-    cfg = gittools.reposerver.configured_repository_servers()
+    cfg = gittools.reposerver.repository_servers_cfg()
 
     srv_cfg = cfg['reposervers']['aarau']
     srv_cfg['name'] = 'aarau'
