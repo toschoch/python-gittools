@@ -64,3 +64,24 @@ def test_gogs():
     print(repo.giturl)
 
     srv.delete_repository('testrepo')
+
+
+def test_github():
+
+    cfg = gittools.reposerver.repository_servers_cfg()
+
+    srv_cfg = cfg['github'].copy()
+    srv_cfg['name'] = 'github'
+    srv_type = getattr(gittools.reposerver, srv_cfg.pop('type'))
+
+    srv = srv_type(**srv_cfg)
+
+    print(srv.ssh)
+
+    if not srv.repository_exists('testrepo'):
+        repo = srv.create_repository('testrepo', 'this is a test repo')
+    else:
+        repo = srv.get_repository('testrepo')
+    print(repo.giturl)
+
+    srv.delete_repository('testrepo')
