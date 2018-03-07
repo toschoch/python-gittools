@@ -5,6 +5,8 @@
 
 import click
 import subprocess
+import os
+from contextlib import contextmanager
 from .readme import description, package_name, add_changelog_version, filename as readme, set_placeholder, versions
 from .reposerver import get_repo_server, repository_servers_cfg, RepoServer
 
@@ -22,20 +24,21 @@ def get_tags():
             raise ValueError(reason)
     return tags
 
-
+@contextmanager
 def git_commit_only(pattern, message):
     """ commit only the files according to pattern, stashes the stage. """
-    subprocess.call(['git', 'stash'])
-    subprocess.call(['git', 'add', pattern])
-    subprocess.call(['git', 'commit', '-m', message])
-    subprocess.call(['git', 'stash','pop'])
-
+    null = open(os.devnull, 'w')
+    subprocess.call(['git', 'stash'], stdout=null)
+    yield
+    subprocess.call(['git', 'add', pattern], stdout=null)
+    subprocess.call(['git', 'commit', '-m', message], stdout=null)
+    subprocess.call(['git', 'stash','pop'], stdout=null)
+    null.close()
 
 def update_readme(url):
     # update readme
-    set_placeholder("<git-url>", url)
-    # add
-    git_commit_only(readme, "update readme")
+    with git_commit_only(readme, "update readme"):
+        set_placeholder("<git-url>", url)
 
 def add(remote, url, main_remote=True):
     """ add remote repository to git remotes """
@@ -56,8 +59,10 @@ def push(srv: RepoServer, main_remote=True):
     #TODO: find a solution to call and pass username and pw
     click.echo("if prompted, use user: {}, pw: {}".format(srv.username,srv.password))
     if main_remote:
-        subprocess.call(['git', 'push', '--tags', '--set-upstream', srv.name])
+        subprocess.call(['git', 'push', '--set-upstream', srv.name])
+        subprocess.call(['git', 'push', '--tags', srv.name])
     else:
+        subprocess.call(['git', 'push', srv.name])
         subprocess.call(['git', 'push', '--tags', srv.name])
 
 @click.group()
@@ -67,7 +72,7 @@ def gittool():
 @gittool.command()
 def list():
     """ list the configured remote repository servers. """
-    remotes = repository_servers_cfg().items()
+    remotes = repository_servers_cfg()
     if len(remotes) > 0:
         click.echo("following remote repository servers are configured:")
     for name, cfg in remotes.items():
@@ -89,9 +94,9 @@ def init():
         subprocess.call(['git','tag',readme_tags[0]])
 
 @gittool.command()
-@click.argument('remote', help='remote repository server name. [{}]'.format(', '.join(repository_servers_cfg().keys())))
+@click.argument('remote')
 def default(remote):
-    """ sets the remote server as default remote and updates the readme. """
+    """ sets the remote server REMOTE as default remote and updates the readme. """
 
     srv = get_repo_server(remote)
     repo = srv.get_repository(package_name())
@@ -101,11 +106,11 @@ def default(remote):
 
 
 @gittool.command()
-@click.argument('remote', help='remote repository server name. [{}]'.format(', '.join(repository_servers_cfg().keys())))
+@click.argument('remote')
 @click.option('--setup/--no-setup', default=True, help="setup as remote repository after creation")
 @click.option('--default/--no-default', default=True, help="define as default remote repository, if setup")
 def create(remote, setup, default):
-    """ creates a remote git repository on the selected repository server. """
+    """ creates a remote git repository on the selected repository server REMOTE. """
     srv = get_repo_server(remote)
     repo = srv.create_repository(package_name(), description())
 
@@ -117,7 +122,7 @@ def create(remote, setup, default):
 
 
 @gittool.command()
-@click.argument('remote', help='remote repository server name. [{}]'.format(', '.join(repository_servers_cfg().keys())))
+@click.argument('remote')
 @click.option('--default/--no-default', default=True, help="define as default remote repository")
 def setup(remote, default):
     """ setup the remote repository on the server as git remote. """
@@ -132,10 +137,10 @@ def setup(remote, default):
 
 
 @gittool.command()
-@click.argument('tagname', type=str, help='name of the version to be created')
+@click.argument('tagname', type=str)
 @click.option('-m', '--message',  multiple=True, help='optional message for annotated tags')
 def tag(tagname, message):
-    """ updates the version changelog in readme and creates the tag. """
+    """ creates the tag TAGNAME and updates the version changelog in readme. """
     # get all tags
     tags = get_tags()
     lasttag = tags[0]
@@ -145,10 +150,8 @@ def tag(tagname, message):
     msgs = [' '.join(m.split(' ')[1:]) for m in msgs]
 
     # insert into readme
-    add_changelog_version(tagname.lstrip('v'), points=msgs)
-
-    # add readme, and commit
-    git_commit_only(readme, 'update {} for tag {}'.format(readme, tagname))
+    with git_commit_only(readme, 'update {} for tag {}'.format(readme, tagname)):
+        add_changelog_version(tagname.lstrip('v'), points=msgs)
 
     # create the tag
     if message == "":

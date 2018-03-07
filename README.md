@@ -30,12 +30,12 @@ Installation / Usage
 
 To install use pip:
 
-    pip install https://try.gogs.io/tshock/python-gittools.git
+    pip install <git-url>
 
 
 Or clone the repo:
 
-    git clone https://try.gogs.io/tshock/python-gittools.git
+    git clone <git-url>
     python setup.py install
     
 Contributing
