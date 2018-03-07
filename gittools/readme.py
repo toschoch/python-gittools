@@ -36,6 +36,10 @@ def project_name(path='.'):
 
     return name
 
+def versions(path='.'):
+    vs = [l.strip('# ') for l in changelog(path).splitlines() if l.strip().startswith('#')]
+    vs = list(map(lambda v: "v{}".format(v) if not v.startswith('v') else v, vs))
+    return vs
 
 def package_name(path='.'):
     return "python-{}".format(project_name(path).lower().replace(' ', ''))

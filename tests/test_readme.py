@@ -31,6 +31,8 @@ def test_changelog():
     assert rm.changelog(here) == """##### 0.0.1
 * initial version"""
 
+    assert str(rm.versions(here)) == "['v0.0.1']"
+
 def test_setgiturl(readmedir):
     rm.set_placeholder('<git-url>','http://gitserver:8080',path=readmedir)
     with open(readmedir.joinpath('README.md'),'r') as fp:
