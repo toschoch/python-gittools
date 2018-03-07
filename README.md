@@ -39,12 +39,12 @@ Installation / Usage
 
 To install use pip:
 
-    pip install <git-url>
+    pip install ssh://git@nas:4022/Tobi/python-gittools.git
 
 
 Or clone the repo:
 
-    git clone <git-url>
+    git clone ssh://git@nas:4022/Tobi/python-gittools.git
     python setup.py install
     
 Contributing
