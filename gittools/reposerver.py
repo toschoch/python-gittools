@@ -40,7 +40,7 @@ class RepoServer(object):
     def delete_repository(self, name):
         raise NotImplementedError()
 
-    def get_repository(self, name):
+    def get_repository(self, name) -> Repo:
         raise NotImplementedError()
 
     def repository_exists(self, name):

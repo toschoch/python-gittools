@@ -31,16 +31,24 @@ def git_commit_only(pattern, message):
     subprocess.call(['git', 'stash','pop'])
 
 
-def add(srv : RepoServer, repo : RepoServer.Repo, main_remote=True):
+def update_readme(url):
+    # update readme
+    set_placeholder("<git-url>", url)
+    # add
+    git_commit_only(readme, "update readme")
+
+def add(remote, url, main_remote=True):
     """ add remote repository to git remotes """
-    subprocess.call(['git', 'remote', 'add', srv.name, repo.giturl])
+    subprocess.call(['git', 'remote', 'add', remote, url])
 
     # set git urls in usage section of readme
     if main_remote:
-        # update readme
-        set_placeholder("<git-url>",repo.giturl)
-        # add
-        git_commit_only(readme, "update readme")
+        update_readme(url)
+
+def track(remote):
+    """ sets the current branch to track the same branch on the remote. """
+    branch = subprocess.check_output(['git', 'branch']).decode('utf-8').lstrip('* ').rstrip('\n ')
+    subprocess.check_output(['git','branch','-u','{}/{}'.format(remote, branch)])
 
 def push(srv: RepoServer, main_remote=True):
     """ pushes to the repository server """
@@ -82,6 +90,18 @@ def init():
 
 @gittool.command()
 @click.argument('remote', help='remote repository server name. [{}]'.format(', '.join(repository_servers_cfg().keys())))
+def default(remote):
+    """ sets the remote server as default remote and updates the readme. """
+
+    srv = get_repo_server(remote)
+    repo = srv.get_repository(package_name())
+
+    update_readme(repo.giturl)
+    track(remote)
+
+
+@gittool.command()
+@click.argument('remote', help='remote repository server name. [{}]'.format(', '.join(repository_servers_cfg().keys())))
 @click.option('--setup/--no-setup', default=True, help="setup as remote repository after creation")
 @click.option('--default/--no-default', default=True, help="define as default remote repository, if setup")
 def create(remote, setup, default):
@@ -90,7 +110,10 @@ def create(remote, setup, default):
     repo = srv.create_repository(package_name(), description())
 
     if setup:
-        add(srv, repo, default)
+        # add
+        add(srv.name, repo.giturl, default)
+        # push to server
+        push(srv, default)
 
 
 @gittool.command()
@@ -102,7 +125,10 @@ def setup(remote, default):
     repo = srv.get_repository(package_name())
 
     # add as remote repo
-    add(srv, repo, default)
+    add(srv.name, repo.giturl, default)
+
+    # push to server
+    push(srv, default)
 
 
 @gittool.command()
