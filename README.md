@@ -10,6 +10,15 @@ A collection of tools to connect to predefined git remote servers and create rem
 
 Change-Log
 ----------
+##### 0.0.4
+* added github support
+* fixed small bugs
+* update readme
+* added default command
+* improved help
+* add create command
+* initialzie local git repo and tag according to versions in readme
+
 ##### 0.0.3
 * fixed small bugs
 * git url set in usage section of readme
