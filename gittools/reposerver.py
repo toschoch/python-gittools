@@ -18,7 +18,36 @@ log = logging.getLogger(__name__)
 def repository_servers_cfg():
     return cfg['reposervers'].copy()
 
-def get_repo_server(name):
+class RepoServer(object):
+
+    class Repo(object):
+
+        def __init__(self, name, id, giturl):
+
+            self.id = id
+            self.name = name
+            self.giturl = giturl
+
+    def __init__(self, name, url, **kwargs):
+        self.username = None
+        self.password = None
+        self.name = None
+        raise NotImplementedError()
+
+    def create_repository(self, name, description, **info):
+        raise NotImplementedError()
+
+    def delete_repository(self, name):
+        raise NotImplementedError()
+
+    def get_repository(self, name):
+        raise NotImplementedError()
+
+    def repository_exists(self, name):
+        raise NotImplementedError()
+
+
+def get_repo_server(name) -> RepoServer:
     cfg = repository_servers_cfg()
 
     srv_cfg = cfg[name].copy()
@@ -28,16 +57,8 @@ def get_repo_server(name):
     srv = srv_type(**srv_cfg)
     return srv
 
-class Repo(object):
 
-    def __init__(self, name, id, giturl):
-
-        self.id = id
-        self.name = name
-        self.giturl = giturl
-
-
-class Gogs(object):
+class Gogs(RepoServer):
 
     def __init__(self, name, url, **kwargs):
 
@@ -67,15 +88,25 @@ class Gogs(object):
         else:
             repo = self.api.get_repo(self.auth, self.username, name)
         if self.ssh:
-            return Repo(repo.name, repo.id, repo.urls.ssh_url)
+            return self.Repo(repo.name, repo.id, repo.urls.ssh_url)
         else:
-            return Repo(repo.name, repo.id, repo.urls.clone_url)
+            return self.Repo(repo.name, repo.id, repo.urls.clone_url)
+
+    def repository_exists(self, name):
+        return self.api.repo_exists(self.auth, self.username, name)
+
+    def get_repository(self, name):
+        repo = self.api.get_repo(self.auth, self.username, name)
+        if self.ssh:
+            return self.Repo(repo.name, repo.id, repo.urls.ssh_url)
+        else:
+            return self.Repo(repo.name, repo.id, repo.urls.clone_url)
 
     def delete_repository(self, name):
         self.api.delete_repo(self.auth, self.username, name)
 
 
-class Bonobo(object):
+class Bonobo(RepoServer):
 
     def __init__(self, name, url, **kwargs):
         self.name = name
@@ -153,5 +184,5 @@ class Bonobo(object):
 
             log.info("successfully created repository!")
 
-        return Repo(repo_info['Name'], repo_detail_link.split('/')[-1], tag.text)
+        return self.Repo(repo_info['Name'], repo_detail_link.split('/')[-1], tag.text)
 

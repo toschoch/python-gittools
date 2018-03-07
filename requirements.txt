@@ -3,3 +3,4 @@ requests
 click
 bs4
 pyyaml
+gogs_client
