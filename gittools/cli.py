@@ -6,9 +6,23 @@
 import click
 import subprocess
 import os
+import pathlib
 from contextlib import contextmanager
-from .readme import description, package_name, add_changelog_version, filename as readme, set_placeholder, versions
+from .readme import description, package_name as rm_name, add_changelog_version, filename as readme, set_placeholder, versions
 from .reposerver import get_repo_server, repository_servers_cfg, RepoServer
+
+def package_name(path='.'):
+    """ tries to guess the package name on the readme if any, or the directory name. """
+    # title = rm_name(path)
+    p = pathlib.Path(path)
+    dir_name = p.parent.name
+    return dir_name
+    # subidr = p.joinpath(title)
+    #
+    # if dir_name.endswith(title) and subidr.exists() and subidr.is_dir():
+    #     # then its most likely a python package
+    #     return dir_name
+
 
 
 def get_tags():

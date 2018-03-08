@@ -42,7 +42,7 @@ def versions(path='.'):
     return vs
 
 def package_name(path='.'):
-    return "python-{}".format(project_name(path).lower().replace(' ', ''))
+    return project_name(path).lower().replace(' ', '')
 
 
 def description(path='.'):
@@ -63,7 +63,9 @@ def description(path='.'):
     return descr
 
 def _changelog_indices(lines):
+
     for i, line in enumerate(lines):
+        j = i+1
         if line.strip().replace('-','').lower()=='changelog':
             for j, line in enumerate(lines[i+2:]):
                 if line.strip().startswith('---'):

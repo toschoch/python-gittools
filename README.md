@@ -11,13 +11,11 @@ A collection of tools to connect to predefined git remote servers and create rem
 Change-Log
 ----------
 ##### 0.0.4
-* added github support
-* fixed small bugs
-* update readme
-* added default command
+* add github support
+* add default command
 * improved help
 * add create command
-* initialzie local git repo and tag according to versions in readme
+* initialize local git repo and tag according to versions in readme
 
 ##### 0.0.3
 * fixed small bugs
@@ -39,12 +37,12 @@ Installation / Usage
 
 To install use pip:
 
-    pip install ssh://git@nas:4022/Tobi/python-gittools.git
+    pip install <git-url>
 
 
 Or clone the repo:
 
-    git clone ssh://git@nas:4022/Tobi/python-gittools.git
+    git clone <git-url>
     python setup.py install
     
 Contributing
