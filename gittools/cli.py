@@ -14,8 +14,8 @@ from .reposerver import get_repo_server, repository_servers_cfg, RepoServer
 def package_name(path='.'):
     """ tries to guess the package name on the readme if any, or the directory name. """
     # title = rm_name(path)
-    p = pathlib.Path(path)
-    dir_name = p.parent.name
+    p = pathlib.Path(path).absolute()
+    dir_name = p.name
     return dir_name
     # subidr = p.joinpath(title)
     #
