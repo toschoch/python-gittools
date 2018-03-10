@@ -6,6 +6,7 @@
 import click
 import stat
 import os
+import subprocess
 import pathlib
 
 here = pathlib.Path(__file__).parent
@@ -15,16 +16,18 @@ def install():
     """ install things as encapsulated python scripts or git hooks """
 
 @install.command()
-@click.argument('name')
+@click.argument('cmd')
 @click.argument('dst',type=click.Path(exists=True))
-def script(cmd, dst):
+@click.option('--env',type=str, help="name of the capsulating conda environment")
+def script(cmd, dst, env=None):
     """ installs the command CMD (assumes a python console script) encapsulated into DST """
 
-    with open(here.joinpath('console_scripts/encaps_cmd_template.sh'),'r') as fp:
+    with open(r'/home/tobi/PycharmProjects/python-gittools/gittools/console_scripts/encaps_cmd_template.sh','r') as fp:
         bash_script = fp.read()
 
     # set env and command
-    env = cmd
+    if env is None:
+        env = cmd
     bash_script = bash_script.format(command=cmd, env=env)
 
     dst = pathlib.Path(dst).joinpath(cmd)
