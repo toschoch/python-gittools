@@ -10,14 +10,14 @@ import requests
 import gogs_client
 import github
 import urllib.parse
-from .config import cfg
+from .config import get_cfg
 
 
 log = logging.getLogger(__name__)
 
 
 def repository_servers_cfg():
-    return cfg['reposervers'].copy()
+    return get_cfg()['reposervers'].copy()
 
 class RepoServer(object):
 

@@ -24,8 +24,12 @@ def load_cfg():
     if config_file.exists() and config_file.is_file():
         with open(config_file, 'r') as fp:
             config = yaml.load(fp)
+        if config is None:
+            config = {}
     else:
         config = {}
+    if len(config) == 0:
+        print("gittool config is empty ({})!".format(config_file))
     return config
 
 # create the config file from template if not yet existing
@@ -33,3 +37,11 @@ assert_cfg()
 
 # load the configuration
 cfg = load_cfg()
+
+def get_cfg():
+    global cfg
+    return cfg
+
+def set_cfg(config):
+    global cfg
+    cfg = config.copy()
