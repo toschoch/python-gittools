@@ -10,6 +10,7 @@ import pathlib
 from contextlib import contextmanager
 from .readme import description, package_name as rm_name, add_changelog_version, filename as readme, set_placeholder, versions
 from .reposerver import get_repo_server, repository_servers_cfg, RepoServer
+from .cli_install import install
 
 def package_name(path='.'):
     """ tries to guess the package name on the readme if any, or the directory name. """
@@ -172,3 +173,6 @@ def tag(tagname, message):
         subprocess.call(['git', 'tag', tagname])
     else:
         subprocess.call(['git', 'tag', tagname, '-m', '{}'.format("\n".join(message))])
+
+# try to add command group
+gittool.add_command(install)
