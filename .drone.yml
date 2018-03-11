@@ -1,4 +1,8 @@
 pipeline:
+  clone:
+    image: plugins/git
+    tags: true
+
   build:
     image: python:3
     commands:
