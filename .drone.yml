@@ -6,9 +6,11 @@ pipeline:
   build:
     image: python:3
     commands:
-      - apt-get install git
       - python setup.py bdist_wheel
-  test:
-    image: python:alpine
-    commands:
       - python setup.py test
+  publish:
+    devpi:
+      server: http://192.168.0.40:3141/
+      index: root/public
+      username: root
+      password: 010310
