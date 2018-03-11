@@ -44,7 +44,6 @@ def versions(path='.'):
 def package_name(path='.'):
     return project_name(path).lower().replace(' ', '')
 
-
 def description(path='.'):
     lines = getlines(path)
 

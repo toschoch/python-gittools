@@ -5,25 +5,10 @@
 
 import click
 import subprocess
-import os
-import pathlib
-from contextlib import contextmanager
-from .readme import description, package_name as rm_name, add_changelog_version, filename as readme, set_placeholder, versions
-from .reposerver import get_repo_server, repository_servers_cfg, RepoServer
+from .readme import add_changelog_version, filename as readme, versions
+from .reposerver import repository_servers_cfg
 from .cli_install import install
-
-def package_name(path='.'):
-    """ tries to guess the package name on the readme if any, or the directory name. """
-    # title = rm_name(path)
-    p = pathlib.Path(path).absolute()
-    dir_name = p.name
-    return dir_name
-    # subidr = p.joinpath(title)
-    #
-    # if dir_name.endswith(title) and subidr.exists() and subidr.is_dir():
-    #     # then its most likely a python package
-    #     return dir_name
-
+from .cli_remote import remote, git_commit_only
 
 
 def get_tags():
@@ -39,50 +24,11 @@ def get_tags():
             raise ValueError(reason)
     return tags
 
-@contextmanager
-def git_commit_only(pattern, message):
-    """ commit only the files according to pattern, stashes the stage. """
-    null = open(os.devnull, 'w')
-    subprocess.call(['git', 'stash'], stdout=null)
-    yield
-    subprocess.call(['git', 'add', pattern], stdout=null)
-    subprocess.call(['git', 'commit', '-m', message], stdout=null)
-    subprocess.call(['git', 'stash','pop'], stdout=null)
-    null.close()
-
-def update_readme(url):
-    # update readme
-    with git_commit_only(readme, "update readme"):
-        set_placeholder("<git-url>", url)
-
-def add(remote, url, main_remote=True):
-    """ add remote repository to git remotes """
-    subprocess.call(['git', 'remote', 'add', remote, url])
-
-    # set git urls in usage section of readme
-    if main_remote:
-        update_readme(url)
-
-def track(remote):
-    """ sets the current branch to track the same branch on the remote. """
-    branch = subprocess.check_output(['git', 'branch']).decode('utf-8').lstrip('* ').rstrip('\n ')
-    subprocess.check_output(['git','branch','-u','{}/{}'.format(remote, branch)])
-
-def push(srv: RepoServer, main_remote=True):
-    """ pushes to the repository server """
-
-    #TODO: find a solution to call and pass username and pw
-    click.echo("if prompted, use user: {}, pw: {}".format(srv.username,srv.password))
-    if main_remote:
-        subprocess.call(['git', 'push', '--set-upstream', srv.name])
-        subprocess.call(['git', 'push', '--tags', srv.name])
-    else:
-        subprocess.call(['git', 'push', srv.name])
-        subprocess.call(['git', 'push', '--tags', srv.name])
 
 @click.group()
 def gittool():
     """ CLI tool to setup git remote repositories. """
+
 
 @gittool.command()
 def list():
@@ -107,48 +53,6 @@ def init():
     if len(readme_tags) > 0:
         # create a tag with the last version defined in readme
         subprocess.call(['git','tag',readme_tags[0]])
-
-@gittool.command()
-@click.argument('remote')
-def default(remote):
-    """ sets the remote server REMOTE as default remote and updates the readme. """
-
-    srv = get_repo_server(remote)
-    repo = srv.get_repository(package_name())
-
-    update_readme(repo.giturl)
-    track(remote)
-
-
-@gittool.command()
-@click.argument('remote')
-@click.option('--setup/--no-setup', default=True, help="setup as remote repository after creation")
-@click.option('--default/--no-default', default=True, help="define as default remote repository, if setup")
-def create(remote, setup, default):
-    """ creates a remote git repository on the selected repository server REMOTE. """
-    srv = get_repo_server(remote)
-    repo = srv.create_repository(package_name(), description())
-
-    if setup:
-        # add
-        add(srv.name, repo.giturl, default)
-        # push to server
-        push(srv, default)
-
-
-@gittool.command()
-@click.argument('remote')
-@click.option('--default/--no-default', default=True, help="define as default remote repository")
-def setup(remote, default):
-    """ setup the remote repository on the server as git remote. """
-    srv = get_repo_server(remote)
-    repo = srv.get_repository(package_name())
-
-    # add as remote repo
-    add(srv.name, repo.giturl, default)
-
-    # push to server
-    push(srv, default)
 
 
 @gittool.command()
@@ -176,3 +80,4 @@ def tag(tagname, message):
 
 # try to add command group
 gittool.add_command(install)
+gittool.add_command(remote)

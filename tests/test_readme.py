@@ -9,8 +9,6 @@ import shutil
 import pytest
 import contextlib
 
-here = pathlib.Path(__file__).parent
-
 @contextlib.contextmanager
 def change_readme_file(newname):
     old = rm.filename
@@ -19,36 +17,39 @@ def change_readme_file(newname):
     rm.filename = old
 
 @pytest.fixture(scope='function')
-def readmedir(tmpdir):
+def readmedir(tmpdir, request):
     tmpdir = pathlib.Path(tmpdir)
 
+    here = pathlib.Path(request.module.__file__).parent
     rdme = here.joinpath('README.md')
+    shutil.copy2(rdme, tmpdir)
+    rdme = here.joinpath('DA_README.md')
     shutil.copy2(rdme, tmpdir)
     return tmpdir
 
-def test_description():
+def test_description(readmedir):
     # print(rm.description('..'))
-    assert rm.description(here) == "A collection of tools to connect to predefined git remote servers and create remote repos, define them as remotes, install local hooks, etc."
+    assert rm.description(readmedir) == "A collection of tools to connect to predefined git remote servers and create remote repos, define them as remotes, install local hooks, etc."
     with change_readme_file('DA_README.md'):
         assert rm.description(
-            here) == "A collection of tools to connect to predefined git remote servers and create remote repos, define them as remotes, install local hooks, etc."
+            readmedir) == "A collection of tools to connect to predefined git remote servers and create remote repos, define them as remotes, install local hooks, etc."
 
-def test_name():
-    assert rm.project_name(here) == 'Git Tools'
-    assert rm.package_name(here) == 'python-gittools'
+def test_name(readmedir):
+    assert rm.project_name(readmedir) == 'Git Tools'
+    assert rm.package_name(readmedir) == 'gittools'
     with change_readme_file('DA_README.md'):
-        assert rm.project_name(here) == 'Git Tools'
-        assert rm.package_name(here) == 'python-gittools'
+        assert rm.project_name(readmedir) == 'Git Tools'
+        assert rm.package_name(readmedir) == 'gittools'
 
-def test_changelog():
-    print(rm.changelog(here))
-    assert rm.changelog(here) == """##### 0.0.1
+def test_changelog(readmedir):
+    print(rm.changelog(readmedir))
+    assert rm.changelog(readmedir) == """##### 0.0.1
 * initial version"""
 
-    assert str(rm.versions(here)) == "['v0.0.1']"
+    assert str(rm.versions(readmedir)) == "['v0.0.1']"
     with change_readme_file('DA_README.md'):
-        assert str(rm.versions(here)) == "[]"
-        assert rm.changelog(here) == ""
+        assert str(rm.versions(readmedir)) == "[]"
+        assert rm.changelog(readmedir) == ""
 
 def test_setgiturl(readmedir):
     rm.set_placeholder('<git-url>','http://gitserver:8080',path=readmedir)
