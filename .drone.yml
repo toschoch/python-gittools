@@ -1,6 +1,9 @@
 pipeline:
   build:
-    image: python:3
+    image: python:alpine
     commands:
       - python setup.py bdist_wheel
+  test:
+    image: python:alpine
+    commands:
       - python setup.py test
