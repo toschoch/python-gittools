@@ -13,6 +13,6 @@ pipeline:
     image: python:3
     devpi:
       server: http://192.168.0.40:3141/
-      index: root/public
-      username: root
-      password: 010310
+      index: dietzi/stable
+      username: dietzi
+      password: dietzi010310
