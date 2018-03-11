@@ -1,6 +1,6 @@
 pipeline:
   build:
-    image: python:alpine
+    image: python:3
     commands:
       - apt-get install git
       - python setup.py bdist_wheel
