@@ -8,9 +8,10 @@ pipeline:
     commands:
       - python setup.py bdist_wheel
       - python setup.py test
-  publish:
-    devpi:
-      server: http://192.168.0.40:3141/
-      index: root/public
-      username: root
-      password: 010310
+
+publish:
+  devpi:
+    server: http://192.168.0.40:3141/
+    index: root/public
+    username: root
+    password: 010310
