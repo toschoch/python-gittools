@@ -2,6 +2,7 @@ pipeline:
   build:
     image: python:alpine
     commands:
+      - apt-get install git
       - python setup.py bdist_wheel
   test:
     image: python:alpine
