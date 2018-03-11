@@ -10,7 +10,9 @@ pipeline:
       - python setup.py test
 
   publish:
-    image: plugins/drone-devpi
+    image: python:3
+    commands:
+      - python setup.py bdist_wheel
     devpi:
       server: http://192.168.0.40:3141/
       index: root/public
