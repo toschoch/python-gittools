@@ -33,6 +33,13 @@ def gittool():
 
 
 @gittool.command()
+def version():
+    """ returns the version of gittool """
+    import pkg_resources
+    ver = pkg_resources.get_distribution('gittools').version
+    click.echo(ver)
+
+@gittool.command()
 def init():
     """ initialize local git repo and creates an initial version. """
 
