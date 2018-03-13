@@ -10,6 +10,12 @@ A collection of tools to connect to predefined git remote servers and create rem
 
 Change-Log
 ----------
+##### 0.0.5
+* added version command
+* added install script command for windows and unix
+* rearranged commands into a remote group
+* added cli tests
+* fixed compatibility for data-science projects
 ##### 0.0.4
 * add github support
 * add default command
@@ -37,20 +43,32 @@ Installation / Usage
 
 To install use pip:
 
-    pip install <git-url>
+```
+pip install <git-url>
+```
 
 
 Or clone the repo:
 
-    git clone <git-url>
-    python setup.py install
-    
-Contributing
-------------
-
-TBD
+```
+git clone <git-url>
+python setup.py install
+```
 
 Example
 -------
+
+```
+gittool version
+```
+
+install a script from the current active conda environment
+
+```
+gittool install script <script>
+```
+
+Contributing
+------------
 
 TBD
