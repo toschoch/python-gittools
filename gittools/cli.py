@@ -6,9 +6,8 @@
 import click
 import subprocess
 from .readme import add_changelog_version, filename as readme, versions
-from .reposerver import repository_servers_cfg
 from .cli_install import install
-from .cli_remote import remote, git_commit_only
+from .cli_remote import remote, git_commit_only, git_exception
 
 
 def get_tags():
@@ -22,6 +21,9 @@ def get_tags():
             tags = []
         else:
             raise ValueError(reason)
+    except FileNotFoundError:
+        raise git_exception
+
     return tags
 
 
@@ -31,19 +33,11 @@ def gittool():
 
 
 @gittool.command()
-def list():
-    """ list the configured remote repository servers. """
-    remotes = repository_servers_cfg()
-    if len(remotes) > 0:
-        click.echo("following remote repository servers are configured:")
-    for name, cfg in remotes.items():
-        click.echo("{}\t{}".format(name, cfg.get('url','...')))
-
-@gittool.command()
 def init():
     """ initialize local git repo and creates an initial version. """
 
-    subprocess.call(['git', 'init'])
+    if subprocess.call(['git', 'init']) != 0:
+        raise git_exception
     subprocess.call(['git', 'add', '.gitignore'])
     subprocess.call(['git','commit', '-m','"initial commit"'])
 
@@ -57,7 +51,7 @@ def init():
 
 @gittool.command()
 @click.argument('tagname', type=str)
-@click.option('-m', '--message',  multiple=True, help='optional message for annotated tags')
+@click.option('-m', '--message', help='optional message for annotated tags')
 def tag(tagname, message):
     """ creates the tag TAGNAME and updates the version changelog in readme. """
     # get all tags
@@ -73,7 +67,7 @@ def tag(tagname, message):
         add_changelog_version(tagname.lstrip('v'), points=msgs)
 
     # create the tag
-    if message == "":
+    if message is None:
         subprocess.call(['git', 'tag', tagname])
     else:
         subprocess.call(['git', 'tag', tagname, '-m', '{}'.format("\n".join(message))])

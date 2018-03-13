@@ -16,3 +16,5 @@
 #    login:
 #      Username: <username>
 #      Password: <password>
+#scripts:
+#   directory: ~/bin
