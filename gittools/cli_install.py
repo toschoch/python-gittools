@@ -40,14 +40,16 @@ def active_conda_env():
     return active, envs[active]
 
 
-def create_script(cmd, dst, env_name, env_path, template):
+def create_script(cmd, dst, env_name, env_path, template, suffix=True):
 
     script = pkg_resources.resource_string('gittools','template_scripts/{}'.format(template)).decode('utf-8')
     _, ext = os.path.splitext(template)
 
     script = script.format(command=cmd, env_name=env_name, env_path=env_path)
 
-    dst = pathlib.Path(dst).joinpath(cmd).with_suffix(ext)
+    dst = pathlib.Path(dst).joinpath(cmd)
+    if suffix:
+        dst = dst.with_suffix(ext)
 
     with open(dst,'w+') as fp:
         fp.write(script)
@@ -77,15 +79,15 @@ def script(cmd, dst=None, env=None):
         except KeyError as e:
             raise click.UsageError("configuration has no {} section! Specify with --dst option".format(str(e)))
 
-    if platform.platform() == 'linux':
-        dst = create_script(cmd, dst, env_name=env, env_path=env_dir, template='encaps_cmd_template_bash.sh')
+    if platform.system().lower() == 'linux':
+        dst = create_script(cmd, dst, env_name=env, env_path=env_dir, template='encaps_cmd_template_bash.sh', suffix=False)
 
         st = os.stat(dst)
         os.chmod(dst, st.st_mode | stat.S_IEXEC)
 
         click.echo('UNIX script successfully created! (in {})'.format(dst))
 
-    elif platform.platform().lower().startswith('windows'):
+    elif platform.system().lower() == 'windows':
 
         dst = create_script(cmd, dst, env_name=env, env_path=env_dir, template='encaps_cmd_template_win.bat')
 
