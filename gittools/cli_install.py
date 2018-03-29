@@ -92,3 +92,26 @@ def script(cmd, dst=None, env=None):
         click.echo('WINDOWS script successfully created! (in {})'.format(dst))
 
     click.echo("now you can use '{}' in your console without activating the environment...".format(cmd))
+
+
+@install.command()
+@click.option('--dst',type=click.Path(exists=True), help='optional specification of the target directory')
+@click.option('--env',type=str, help="optional specification of the conda environment")
+def commithook(dst=None, env=None):
+    """ installs the git commit hook for automatically update the requirements files """
+
+    if platform.platform() == 'linux':
+        dst = create_script(cmd, dst, env_name=env, env_path=env_dir, template='encaps_cmd_template_bash.sh')
+
+        st = os.stat(dst)
+        os.chmod(dst, st.st_mode | stat.S_IEXEC)
+
+        click.echo('UNIX script successfully created! (in {})'.format(dst))
+
+    elif platform.platform().lower().startswith('windows'):
+
+        dst = create_script(cmd, dst, env_name=env, env_path=env_dir, template='encaps_cmd_template_win.bat')
+
+        click.echo('WINDOWS script successfully created! (in {})'.format(dst))
+
+    click.echo("now you can use '{}' in your console without activating the environment...".format(cmd))
