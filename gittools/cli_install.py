@@ -9,6 +9,7 @@ import stat
 import os
 import platform
 import pathlib
+import shutil
 import re
 import pkg_resources
 
@@ -56,6 +57,25 @@ def create_script(cmd, dst, env_name, env_path, template, suffix=True):
 
     return dst
 
+def create_hook(dst, env_name, env_path, template, suffix, script_suffix):
+    hook = pkg_resources.resource_filename('gittools','git_hooks/{}_{}'.format(template, suffix))
+    script = pkg_resources.resource_string('gittools','git_hooks/{}_{}.{}'.format(template, suffix, script_suffix)).decode('utf-8')
+
+    script = script.format(env_name=env_name, env_path=env_path)
+
+    # copy modified script
+    dst_dir = pathlib.Path(dst)
+    dst = dst_dir.joinpath('{}.{}'.format(template, script_suffix))
+    with open(dst,'w+') as fp:
+        fp.write(script)
+
+    # copy corresponding hook
+    dst = dst_dir.joinpath(template)
+    shutil.copy(hook, dst)
+
+    return dst
+
+
 @click.group()
 def install():
     """ install things as encapsulated python scripts or git hooks """
@@ -99,21 +119,39 @@ def script(cmd, dst=None, env=None):
 @install.command()
 @click.option('--dst',type=click.Path(exists=True), help='optional specification of the target directory')
 @click.option('--env',type=str, help="optional specification of the conda environment")
-def commithook(dst=None, env=None):
+def hook(dst=None, env=None):
     """ installs the git commit hook for automatically update the requirements files """
 
+    if dst is None:
+        dst = pathlib.Path()
+
+    git_dir = dst.joinpath('.git')
+    if not git_dir.exists():
+        click.echo("This directory is not a Git repository!")
+        return -1
+    git_dir = git_dir.joinpath('hooks')
+    # assure there is a git hooks dir
+    git_dir.mkdir(exist_ok=True)
+
+    if env is None:
+        env, env_dir = active_conda_env()
+    else:
+        env_dir = conda_envs()[env]
+
     if platform.platform() == 'linux':
-        dst = create_script(cmd, dst, env_name=env, env_path=env_dir, template='encaps_cmd_template_bash.sh')
-
-        st = os.stat(dst)
-        os.chmod(dst, st.st_mode | stat.S_IEXEC)
-
-        click.echo('UNIX script successfully created! (in {})'.format(dst))
+        click.echo("Not yet implemented for UNIX systems!")
+        return  -1
+        # dst = create_script(cmd, dst, env_name=env, env_path=env_dir, template='encaps_cmd_template_bash.sh')
+        #
+        # st = os.stat(dst)
+        # os.chmod(dst, st.st_mode | stat.S_IEXEC)
+        #
+        # click.echo('UNIX script successfully created! (in {})'.format(dst))
 
     elif platform.platform().lower().startswith('windows'):
 
-        dst = create_script(cmd, dst, env_name=env, env_path=env_dir, template='encaps_cmd_template_win.bat')
+        dst = create_hook(git_dir, env_name=env, env_path=env_dir, template='pre-commit', suffix='win', script_suffix='cmd')
 
-        click.echo('WINDOWS script successfully created! (in {})'.format(dst))
+        click.echo("WINDOWS git hooks successfully installed for environment '{}'!".format(env))
 
-    click.echo("now you can use '{}' in your console without activating the environment...".format(cmd))
+    click.echo("now before every commit the requirements files are updated with '{}' package status...".format(env))
