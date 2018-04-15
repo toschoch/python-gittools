@@ -3,22 +3,32 @@ pipeline:
     image: plugins/git
     tags: true
 
-  build:
+  test:
     image: python:3
     commands:
       - python setup.py test
+
+  build:
+    image: python 3
       - python setup.py bdist_wheel
       - python setup.py sdist
       - python setup.py sdist --formats=zip
 
-  publish:
+  staging:
     image: shocki/drone-devpi
-    pull: true
+    server: http://192.168.0.40:3141/
+    index: dietzi/staging
+    username: dietzi
+    password: dietzi
+    when:
+      branch: master
+
+  release:
+    image: shocki/drone-devpi
     server: http://192.168.0.40:3141/
     index: dietzi/stable
     username: dietzi
     password: dietzi
-
     when:
       event: tag
-      branch: master
+      status: success
