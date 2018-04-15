@@ -1,6 +1,7 @@
 include README.md
 include requirements.txt
 include conda_reqs.txt
+include gittools/.gittools_template.yaml
 recursive-include gittools/template_scripts *
 recursive-include gittools/git_hooks *
 recursive-include tests

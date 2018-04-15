@@ -10,6 +10,13 @@ A collection of tools to connect to predefined git remote servers and create rem
 
 Change-Log
 ----------
+##### 0.0.6
+* added command for install git hook (windows)
+* fixed missing template file
+* Merge branch 'master' of ssh://dietzi.ddns.net:4022/Tobi/python-gittools
+* some not yet working draft of install hooks
+* fixed install script command under UNIX
+
 ##### 0.0.5
 * added version command
 * added install script command for windows and unix
