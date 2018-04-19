@@ -57,7 +57,13 @@ def update_readme(url):
 
 def add(remote, url, main_remote=True):
     """ add remote repository to git remotes """
-    if subprocess.call(['git', 'remote', 'add', remote, url]) != 0:
+    try:
+        if subprocess.call(['git', 'remote', 'add', remote, url]) != 0:
+            click.echo("Git repository not yet initialized. Initialize...")
+            from .cli import init
+            init()
+            
+    except FileNotFoundError:
         raise git_exception
 
     # set git urls in usage section of readme
