@@ -10,7 +10,7 @@ import os
 from contextlib import contextmanager
 
 from .reposerver import get_repo_server, repository_servers_cfg
-from .readme import set_placeholder, filename as readme
+from .readme import set_placeholder, filename as readme, description
 from .reposerver import RepoServer
 
 git_exception = EnvironmentError('gittools need Git to be installed on your machine! Install Git first...')
