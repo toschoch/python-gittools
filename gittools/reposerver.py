@@ -236,3 +236,5 @@ class Bonobo(RepoServer):
 
         return self.Repo(repo_info['Name'], repo_detail_link.split('/')[-1], tag.text)
 
+    def get_repository(self, name):
+        raise NotImplementedError("Bonobo Server currently not supports the repository lookup.")
