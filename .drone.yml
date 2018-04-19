@@ -22,6 +22,7 @@ pipeline:
     password: dietzi
     when:
       branch: master
+      status: success
 
   release:
     image: shocki/drone-devpi
