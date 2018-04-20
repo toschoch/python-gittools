@@ -55,14 +55,15 @@ def update_readme(url):
         set_placeholder("<git-url>", url)
 
 
-def add(remote, url, main_remote=True):
+@click.pass_context
+def add(ctx, remote, url, main_remote=True):
     """ add remote repository to git remotes """
     try:
         if subprocess.call(['git', 'remote', 'add', remote, url]) != 0:
             click.echo("Git repository not yet initialized. Initialize...")
             from .cli import init
-            init()
-            
+            ctx.invoke(init)
+
     except FileNotFoundError:
         raise git_exception
 
