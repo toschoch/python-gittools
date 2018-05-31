@@ -76,11 +76,11 @@ def push(srv: RepoServer, main_remote=True):
     #TODO: find a solution to call and pass username and pw
     click.echo("if prompted, use user: {}, pw: {}".format(srv.username,srv.password))
     if main_remote:
-        if subprocess.call(['git', 'push', '--set-upstream', srv.name]) != 0:
+        if subprocess.call(['git', 'push', '--set-upstream', srv.name, "master"]) != 0:
             raise git_exception
         subprocess.call(['git', 'push', '--tags', srv.name])
     else:
-        if subprocess.call(['git', 'push', srv.name]) != 0:
+        if subprocess.call(['git', 'push', srv.name, "master"]) != 0:
             raise git_exception
         subprocess.call(['git', 'push', '--tags', srv.name])
 
