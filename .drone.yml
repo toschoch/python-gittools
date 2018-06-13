@@ -9,7 +9,8 @@ pipeline:
       - python setup.py test
 
   build:
-    image: python 3
+    image: python:3
+    commands:
       - python setup.py bdist_wheel
       - python setup.py sdist
       - python setup.py sdist --formats=zip
@@ -22,6 +23,7 @@ pipeline:
     password: dietzi
     when:
       branch: master
+      status: success
 
   release:
     image: shocki/drone-devpi

@@ -76,35 +76,35 @@ class Gogs(RepoServer):
         self.username = self.login_info['Username']
         self.password = self.login_info['Password']
 
-        self.token = gogs_client.Token("gittools")
-
         self.api = gogs_client.GogsApi(self.url.geturl())
         self.auth = gogs_client.UsernamePassword(self.username, self.password)
+
+        self.token = self.api.create_token(self.auth, "gittools")
 
     def create_repository(self, name, description, **info):
         repo_info = self.repo_info.copy()
         repo_info.update(info)
-        if not self.api.repo_exists(self.auth, self.username, name):
-            repo = self.api.create_repo(self.auth, name=name, description=description, **repo_info)
+        if not self.api.repo_exists(self.token, self.username, name):
+            repo = self.api.create_repo(self.token, name=name, description=description, **repo_info)
         else:
-            repo = self.api.get_repo(self.auth, self.username, name)
+            repo = self.api.get_repo(self.token, self.username, name)
         if self.ssh:
             return self.Repo(repo.name, repo.id, repo.urls.ssh_url)
         else:
             return self.Repo(repo.name, repo.id, repo.urls.clone_url)
 
     def repository_exists(self, name):
-        return self.api.repo_exists(self.auth, self.username, name)
+        return self.api.repo_exists(self.token, self.username, name)
 
     def get_repository(self, name):
-        repo = self.api.get_repo(self.auth, self.username, name)
+        repo = self.api.get_repo(self.token, self.username, name)
         if self.ssh:
             return self.Repo(repo.name, repo.id, repo.urls.ssh_url)
         else:
             return self.Repo(repo.name, repo.id, repo.urls.clone_url)
 
     def delete_repository(self, name):
-        self.api.delete_repo(self.auth, self.username, name)
+        self.api.delete_repo(self.token, self.username, name)
 
 
 class Github(RepoServer):
