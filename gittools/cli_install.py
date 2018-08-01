@@ -71,7 +71,7 @@ def create_hook(dst, env_name, env_path, template, suffix, script_suffix=''):
         script = pkg_resources.resource_string('gittools','git_hooks/{}_{}.{}'.format(template, suffix, script_suffix)).decode('utf-8')
     else:
         script_dst = dst
-        script = pkg_resources.resource_string('gittools','git_hooks/{}_{}'.format(template, suffix))
+        script = pkg_resources.resource_string('gittools','git_hooks/{}_{}'.format(template, suffix)).decode('utf-8')
 
     # modify script
     script = script.format(env_name=env_name, env_path=env_path)
