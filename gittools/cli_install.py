@@ -147,7 +147,7 @@ def hook(dst=None, env=None):
 
     if platform.platform().lower().startswith('linux'):
 
-        dst = create_hook(git_dir, env_name=env, env_path=env_dir, template='pre-commit', suffix='bash', script_suffix='sh')
+        dst = create_hook(git_dir, env_name=env, env_path=env_dir, template='pre-commit', suffix='bash')
 
         st = os.stat(dst)
         os.chmod(dst, st.st_mode | stat.S_IEXEC)
