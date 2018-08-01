@@ -10,27 +10,26 @@ A collection of tools to connect to predefined git remote servers and create rem
 
 Change-Log
 ----------
+##### 0.1.1
+* added git commit hook (unix)
+
 ##### 0.1.0
-* Merge branch 'master' of https://github.com/toschoch/python-gittools
 * add branch name into push command
 * change gogs authentification
 * try to use context for invokint gittool init
 * fixed missing commands in drone.yml
 * fix syntax error in drone.yml
 * on success
-* Merge branch 'master' of ssh://dietzi.ddns.net:4022/Tobi/python-gittools
 * fixed remote creation if Git repo not yet initialized
 * improved error message for Bonobo Git Server
 * fixed missing import bug in remote create
 * added staging to pipeline
 * add staging devpi upload
-* Merge branch 'master' of ssh://nas:4022/Tobi/python-gittools
 * Devpi publish on drone
 
 ##### 0.0.6
 * added command for install git hook (windows)
 * fixed missing template file
-* Merge branch 'master' of ssh://dietzi.ddns.net:4022/Tobi/python-gittools
 * some not yet working draft of install hooks
 * fixed install script command under UNIX
 
