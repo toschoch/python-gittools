@@ -57,21 +57,28 @@ def create_script(cmd, dst, env_name, env_path, template, suffix=True):
 
     return dst
 
-def create_hook(dst, env_name, env_path, template, suffix, script_suffix):
+def create_hook(dst, env_name, env_path, template, suffix, script_suffix=''):
     hook = pkg_resources.resource_filename('gittools','git_hooks/{}_{}'.format(template, suffix))
-    script = pkg_resources.resource_string('gittools','git_hooks/{}_{}.{}'.format(template, suffix, script_suffix)).decode('utf-8')
 
-    script = script.format(env_name=env_name, env_path=env_path)
-
-    # copy modified script
     dst_dir = pathlib.Path(dst)
-    dst = dst_dir.joinpath('{}.{}'.format(template, script_suffix))
-    with open(dst,'w+') as fp:
-        fp.write(script)
 
     # copy corresponding hook
     dst = dst_dir.joinpath(template)
     shutil.copy(hook, dst)
+
+    if script_suffix != '':
+        script_dst = dst_dir.joinpath('{}.{}'.format(template, script_suffix))
+        script = pkg_resources.resource_string('gittools','git_hooks/{}_{}.{}'.format(template, suffix, script_suffix)).decode('utf-8')
+    else:
+        script_dst = dst
+        script = template
+
+    # modify script
+    script = script.format(env_name=env_name, env_path=env_path)
+
+    # copy modified script
+    with open(script_dst,'w+') as fp:
+        fp.write(script)
 
     return dst
 
