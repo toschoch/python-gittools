@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo Updating your requirements files with all packages installed in '{env_name}'!
+echo create pip_reqs.txt...
+{env_path}\Scripts\pip freeze > pip_reqs.txt
+echo create environment.yml...
+conda env export -n {env_name} > environment.yml
+echo done!
+git add pip_reqs.txt environment.yml

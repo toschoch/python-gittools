@@ -138,20 +138,23 @@ def hook(dst=None, env=None):
     else:
         env_dir = conda_envs()[env]
 
-    if platform.platform() == 'linux':
-        click.echo("Not yet implemented for UNIX systems!")
-        return  -1
-        # dst = create_script(cmd, dst, env_name=env, env_path=env_dir, template='encaps_cmd_template_bash.sh')
-        #
-        # st = os.stat(dst)
-        # os.chmod(dst, st.st_mode | stat.S_IEXEC)
-        #
-        # click.echo('UNIX script successfully created! (in {})'.format(dst))
+    if platform.platform().lower().startswith('linux'):
+
+        dst = create_hook(git_dir, env_name=env, env_path=env_dir, template='pre-commit', suffix='bash', script_suffix='sh')
+
+        st = os.stat(dst)
+        os.chmod(dst, st.st_mode | stat.S_IEXEC)
+
+        click.echo('UNIX script successfully created! (in {})'.format(dst))
 
     elif platform.platform().lower().startswith('windows'):
 
         dst = create_hook(git_dir, env_name=env, env_path=env_dir, template='pre-commit', suffix='win', script_suffix='cmd')
 
         click.echo("WINDOWS git hooks successfully installed for environment '{}'!".format(env))
+
+    else:
+        click.echo("Not yet implemented for '{}' systems!".format(platform.platform()))
+        return  -1
 
     click.echo("now before every commit the requirements files are updated with '{}' package status...".format(env))

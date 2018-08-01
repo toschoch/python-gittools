@@ -1,0 +1,3 @@
+#!/bin/sh
+# important that it's got the .exe on the end!
+sh ./pre-commit.sh
