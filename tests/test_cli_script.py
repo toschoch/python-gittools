@@ -3,10 +3,9 @@
 # created: 13.03.2018
 # author:  TOS
 
-import gittools.cli as cli
 import gittools.cli_install as cli_install
 from gittools import config
-from unittest.mock import MagicMock, call
+from unittest.mock import MagicMock
 import pathlib
 
 here = pathlib.Path(__file__).parent
