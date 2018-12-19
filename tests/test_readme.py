@@ -11,10 +11,10 @@ import contextlib
 
 @contextlib.contextmanager
 def change_readme_file(newname):
-    old = rm.filename
-    rm.filename = newname
+    old = rm.readme_filename
+    rm.readme_filename = newname
     yield
-    rm.filename = old
+    rm.readme_filename = old
 
 @pytest.fixture(scope='function')
 def readmedir(tmpdir, request):

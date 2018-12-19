@@ -10,11 +10,12 @@ import re
 
 log = logging.getLogger(__name__)
 
-filename = 'README.md'
+readme_filename = 'README.md'
+changelog_filename = 'README.md'
 
 def getlines(path='.'):
 
-    readmefile = pathlib.Path(path).joinpath(filename)
+    readmefile = pathlib.Path(path).joinpath(readme_filename)
     if not readmefile.exists() or not readmefile.is_file():
         raise FileNotFoundError("'{}' not found!".format(readmefile))
 
@@ -65,11 +66,12 @@ def _changelog_indices(lines):
 
     for i, line in enumerate(lines):
         j = i+1
-        if line.strip().replace('-','').lower()=='changelog':
+        if line.strip().lstrip("#").replace('-','').replace(' ','').lower()=='changelog':
             for j, line in enumerate(lines[i+2:]):
                 if line.strip().startswith('---'):
                     break
             break
+
     return i+2,i+1+j
 
 def changelog(path='.'):
@@ -83,7 +85,7 @@ def changelog(path='.'):
 
 def add_changelog_version(version, points=[], path='.'):
 
-    readmefile = pathlib.Path(path).joinpath(filename)
+    readmefile = pathlib.Path(path).joinpath(readme_filename)
     lines = getlines(path)
     I, J = _changelog_indices(lines)
 
@@ -103,7 +105,7 @@ def add_changelog_version(version, points=[], path='.'):
 
 def set_placeholder(pattern, replace, path='.'):
 
-    readmefile = pathlib.Path(path).joinpath(filename)
+    readmefile = pathlib.Path(path).joinpath(readme_filename)
 
     pattern = re.compile(pattern)
     for line in fileinput.FileInput(str(readmefile), inplace=1):

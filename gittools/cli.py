@@ -5,7 +5,7 @@
 
 import click
 import subprocess
-from .readme import add_changelog_version, filename as readme, versions
+from .readme import add_changelog_version, readme_filename as readme, versions
 from .cli_install import install
 from .cli_remote import remote, git_commit_only, git_exception
 

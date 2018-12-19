@@ -16,5 +16,14 @@
 #    login:
 #      Username: <username>
 #      Password: <password>
+#
+#    github:
+#        type: Github
+#        url:  https://github.com/
+#        login:
+#            Username: <username>
+#            Password: <password>
+#        ssh:  False
+#
 #scripts:
 #   directory: ~/bin
