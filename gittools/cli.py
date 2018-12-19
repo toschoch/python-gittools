@@ -5,7 +5,7 @@
 
 import click
 import subprocess
-from .readme import add_changelog_version, readme_filename as readme, versions
+from .readme import add_changelog_version, changelog_filename as changelog, versions
 from .cli_install import install
 from .cli_remote import remote, git_commit_only, git_exception
 
@@ -70,7 +70,7 @@ def tag(tagname, message):
     msgs = [' '.join(m.split(' ')[1:]) for m in msgs]
 
     # insert into readme
-    with git_commit_only(readme, 'update {} for tag {}'.format(readme, tagname)):
+    with git_commit_only(changelog, 'update {} for tag {}'.format(changelog, tagname)):
         add_changelog_version(tagname.lstrip('v'), points=msgs)
 
     # create the tag
