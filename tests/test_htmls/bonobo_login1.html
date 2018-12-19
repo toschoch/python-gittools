@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="/favicon.ico?v=2" type="image/x-icon" />
+    <title>Sign In :: Swit GIT Server (new)</title>
+    <link href="/Content/components/pure/pure-min.css" rel="stylesheet"/>
+<link href="/Content/components/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="/Content/components/highlight/styles/github.css" rel="stylesheet"/>
+<link href="/Content/fonts.css" rel="stylesheet"/>
+<link href="/Content/site.css" rel="stylesheet"/>
+
+    </head>
+<body class="Home LogOn">
+    <div class="main">
+        <div class="header">
+            <div class="navigation pure-menu pure-menu-open pure-menu-horizontal">
+                <a class="pure-menu-heading" href="/">Swit GIT Server (new)</a>
+
+                <ul>
+                                                                <li><a href="/Home/LogOn/00000000-0000-0000-0000-000000000000"><i class="fa fa-sign-in"></i> Sign In</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content">
+            
+
+<h1>Sign In</h1>
+
+<form action="/Home/LogOn" class="pure-form pure-form-aligned" method="post"><input name="__RequestVerificationToken" type="hidden" value="iT4Ri8gBTL02PMmr8x66s9rI8f0YqS7wUMdat_6-7MYKHiD_rZsdUa8TbrWZdwdo6JqLwYqOwDA8nuEIfOQ9yD52w4oM7cM-Ep27Y0TpeBg1" /><div class="validation-summary-valid" data-valmsg-summary="true"><span>Login was unsuccessful. Please correct the errors and try again.</span>
+<ul><li style="display:none"></li>
+</ul></div>    <fieldset>
+        <div class="pure-control-group">
+            <label for="Username">Username</label>
+            <input autofocus="" data-val="true" data-val-length="&quot;Username&quot; should be shorter than 50 characters." data-val-length-max="50" data-val-required="&quot;Username&quot; is mandatory." id="Username" name="Username" type="text" value="" /><em>*</em>
+            <span class="field-validation-valid" data-valmsg-for="Username" data-valmsg-replace="true"></span>
+        </div>
+        <div class="pure-control-group">
+            <label accesskey="p" for="Password">Password</label>
+            <input class="textInput small" data-val="true" data-val-length="&quot;Password&quot; should be shorter than 50 characters." data-val-length-max="50" data-val-required="&quot;Password&quot; is mandatory." id="Password" name="Password" type="password" /><em>*</em>
+            <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+        </div>
+        <div class="pure-control-group">
+            <label for="RememberMe">Remember me?</label>
+            <input data-val="true" data-val-required="The Remember me? field is required." id="RememberMe" name="RememberMe" type="checkbox" value="true" /><input name="RememberMe" type="hidden" value="false" />
+            <span class="field-validation-valid" data-valmsg-for="RememberMe" data-valmsg-replace="true"></span>
+        </div>
+        <input id="ReturnUrl" name="ReturnUrl" type="hidden" value="/Repository/Create" />
+        <div class="pure-controls">
+            <button type="submit" class="pure-button pure-button-primary"><i class="fa fa-sign-in"></i> Sign In</button>
+        </div>
+        <div class="pure-controls">
+            <a href="/Home/ForgotPassword">Forgot Password?</a>
+        </div>
+    </fieldset>
+</form>
+        </div>
+
+        <div class="footer">
+            <p>
+HTKA SWIT                    &middot;
+                Bonobo Git Server (6.3.0.632) &copy; 2015 <a href="http://www.chodounsky.net">Jakub Chodounský</a>
+                &middot; <a href="http://bonobogitserver.com/">Official Page</a> 
+                &middot; <a href="https://github.com/jakubgarfield/Bonobo-Git-Server">Github</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="/Scripts/jquery-1.12.4.js"></script>
+<script src="/Scripts/jquery.validate.js"></script>
+<script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="/Scripts/MicrosoftAjax.debug.js"></script>
+<script src="/Scripts/MicrosoftMvcAjax.debug.js"></script>
+<script src="/Scripts/highlight.pack.js"></script>
+<script src="/Scripts/clipboard.min.js"></script>
+
+    
+</body>
+</html>

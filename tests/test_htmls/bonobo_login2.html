@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="/favicon.ico?v=2" type="image/x-icon" />
+    <title>Repositories :: Swit GIT Server (new)</title>
+    <link href="/Content/components/pure/pure-min.css" rel="stylesheet"/>
+<link href="/Content/components/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="/Content/components/highlight/styles/github.css" rel="stylesheet"/>
+<link href="/Content/fonts.css" rel="stylesheet"/>
+<link href="/Content/site.css" rel="stylesheet"/>
+
+    </head>
+<body class="Repository Index">
+    <div class="main">
+        <div class="header">
+            <div class="navigation pure-menu pure-menu-open pure-menu-horizontal">
+                <a class="pure-menu-heading" href="/">Swit GIT Server (new)</a>
+
+                <ul>
+<select class="repositories" id="Repositories" name="Repositories" onChange="javascript:location.href=this.options[this.selectedIndex].value;"><option value="">Go to repository</option>
+<optgroup label="Android Apps">
+<option value="/Repository/Detail/7cf0ecc7-7190-484b-8b9a-c7c20a1f9bf8">android-respirator</option>
+</optgroup>
+<optgroup label="TechCamp2016">
+<option value="/Repository/Detail/d4c700c8-bfcd-47aa-9b1b-fec1bbed10d5">AnomalyDetectionInVideoStreams</option>
+</optgroup>
+<optgroup label="No Group">
+<option value="/Repository/Detail/6bef17f1-d6e7-41c4-af6a-0432af7bf7fd">ArmaSuisse-KdoRekr02</option>
+</optgroup>
+<optgroup label="DataScience">
+<option value="/Repository/Detail/d7aab399-bfd5-4e2d-8dda-ae213b4f6904">DataAnalysisTemplate</option>
+<option value="/Repository/Detail/5ef04593-2686-4380-a014-38594ae1583b">helbling-rfl</option>
+<option value="/Repository/Detail/c1b95dfe-fe52-43cf-84e4-dfb22cf17dc0">MeatOrientation</option>
+<option value="/Repository/Detail/89a0ed3c-06d1-41c1-8a37-e8b2ce87236f">Strokedetection</option>
+</optgroup>
+<optgroup label="PythonPackages">
+<option value="/Repository/Detail/9e13f306-e1b3-4db7-95fe-554f5615390a">doit-xtended</option>
+<option value="/Repository/Detail/48abb599-217c-44df-bbe7-ac0fe48149a1">python-facerec</option>
+<option value="/Repository/Detail/9271d6dd-13ef-4813-8fb5-2f466acb58d6">python-gittools</option>
+<option value="/Repository/Detail/d48607b2-918c-4657-9033-b5135466754f">python-mqttcpuload</option>
+<option value="/Repository/Detail/31d25c1c-1c84-45b6-824b-958506712f90">PythonPackageTemplate</option>
+<option value="/Repository/Detail/d2493cd7-3e43-4458-9636-fbdab28c1af5">python-tostools</option>
+</optgroup>
+<optgroup label="Kistler">
+<option value="/Repository/Detail/1fc0c573-d59e-4878-82a6-da574282aee2">mrs-ui</option>
+<option value="/Repository/Detail/a7469899-049c-4316-91b4-40b9f3cb9306">MUService</option>
+</optgroup>
+<optgroup label="TechCamp2018">
+<option value="/Repository/Detail/e5e14222-432f-4bf7-a397-6711223c39c2">nodered-threadimageflow</option>
+<option value="/Repository/Detail/e49fe61e-3ad9-4e3c-b0a8-505939d5e99d">python-threadimageprocessor</option>
+<option value="/Repository/Detail/405ecf75-e705-4aa9-8dd3-e7683f7f968c">ThreadImage_RobotControl</option>
+<option value="/Repository/Detail/dc1a41e1-d078-43a7-b672-8032118e2526">ThreadImageProcessor</option>
+</optgroup>
+<optgroup label="FootLevelers">
+<option value="/Repository/Detail/286ece0a-9028-4262-8fa1-593e0bae2bd6">QScannerCalibrationAndVerification</option>
+<option value="/Repository/Detail/d7940a0a-9aee-45e5-a0fb-db8d94b60df7">ScannerCalibrationAndVerification</option>
+<option value="/Repository/Detail/44e00bd5-4e4f-4eb3-a48e-fe250381792e">ScannerTray</option>
+</optgroup>
+<optgroup label="Techcamp2017">
+<option value="/Repository/Detail/7fc2fcab-845c-41d8-b99d-66579ff04e08">Techcamp17-deeplearning-imageclassification</option>
+<option value="/Repository/Detail/594c9b13-34b0-4f6b-a9cd-157eb2b16ede">TechCamp17-gestures_app</option>
+<option value="/Repository/Detail/4ae78256-d6f0-4484-b2ab-0bbb48c45e50">TechCamp17-gestures_model</option>
+<option value="/Repository/Detail/e530fc8d-2e8e-4af0-8b03-e62160018587">Techcamp17-Visualisierung</option>
+</optgroup>
+</select>                        <li><a href="/Repository/Index" class="repository"><i class="fa fa-hdd-o"></i> Repositories</a></li>
+                                                                <li class="separator"><a href="/Account/Edit/2ff5fc2a-df05-4a76-b58a-cf3140c93b00"><i class="fa fa-male"></i> Tobias Schoch</a></li>
+                            <li><a href="/Home/LogOff"><i class="fa fa-sign-out"></i> Sign Out</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content">
+            
+
+
+
+<div class="pure-g">
+    <div class="pure-u-2-5">
+        <h1>
+            Repositories
+        </h1>
+    </div>
+    <div class="pure-u-3-5 add">
+
+
+        <a class="pure-button pure-button-primary" href="/Repository/Index?sortGroup=DESC"><i class="fa fa-sort"></i> Sort Group</a>
+
+            <a class="pure-button pure-button-primary" href="/Repository/Create"><i class="fa fa-plus-circle"></i> Create new repository</a>
+            </div>
+</div>
+
+
+
+<form action="/Repository/Index" class="pure-form" method="post">    <p>
+        <input id="SearchString" name="SearchString" type="text" value="" />
+        <input type="submit" value="Search" class="pure-button pure-button-primary" />
+    </p>
+</form>
+<div class="pure-g">
+            <div class="pure-u-1">
+    <table class="pure-table repositories" Id="Repositories">
+    <thead>
+        <tr>
+            <th scope="col">
+            </th>
+            <th scope="col">
+<a href="/Repository/Index?sort=Name&amp;sortdir=DESC">Name</a>            </th>
+            <th scope="col">
+<a href="/Repository/Index?sort=Description&amp;sortdir=ASC">Description</a>            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/6bef17f1-d6e7-41c4-af6a-0432af7bf7fd" id="repo_6bef17f1-d6e7-41c4-af6a-0432af7bf7fd">ArmaSuisse-KdoRekr02</a></td>
+            <td class="description">Discovered in file system.</td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/ArmaSuisse-KdoRekr02.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/ArmaSuisse-KdoRekr02.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action">&nbsp;</td>
+            <td class="action">&nbsp;</td>
+        </tr>
+    </tbody>
+    </table>
+
+            </div>
+                <div class="pure-u-1">
+                    <h2 class="group">
+                        <span class="toggle" data-group="Android Apps"></span>
+                        Android Apps
+                    </h2>
+                </div>
+            <div class="pure-u-1">
+    <table class="pure-table repositories" Id="Repositories">
+    <thead>
+        <tr>
+            <th scope="col">
+            </th>
+            <th scope="col">
+<a href="/Repository/Index?sort=Name&amp;sortdir=DESC">Name</a>            </th>
+            <th scope="col">
+<a href="/Repository/Index?sort=Description&amp;sortdir=ASC">Description</a>            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/7cf0ecc7-7190-484b-8b9a-c7c20a1f9bf8" id="repo_7cf0ecc7-7190-484b-8b9a-c7c20a1f9bf8">android-respirator</a></td>
+            <td class="description">Demonstration App for Heart Rate and Breath Rate measurements with an mobile phone.</td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/android-respirator.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/android-respirator.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action"><a class="edit" href="/Repository/Edit/7cf0ecc7-7190-484b-8b9a-c7c20a1f9bf8" title="Edit"> </a></td>
+            <td class="action"><a class="delete" href="/Repository/Delete/7cf0ecc7-7190-484b-8b9a-c7c20a1f9bf8" title="Delete"> </a></td>
+        </tr>
+    </tbody>
+    </table>
+
+            </div>
+                <div class="pure-u-1">
+                    <h2 class="group">
+                        <span class="toggle" data-group="DataScience"></span>
+                        DataScience
+                    </h2>
+                </div>
+            <div class="pure-u-1">
+    <table class="pure-table repositories" Id="Repositories">
+    <thead>
+        <tr>
+            <th scope="col">
+            </th>
+            <th scope="col">
+<a href="/Repository/Index?sort=Name&amp;sortdir=DESC">Name</a>            </th>
+            <th scope="col">
+<a href="/Repository/Index?sort=Description&amp;sortdir=ASC">Description</a>            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/d7aab399-bfd5-4e2d-8dda-ae213b4f6904" id="repo_d7aab399-bfd5-4e2d-8dda-ae213b4f6904">DataAnalysisTemplate</a></td>
+            <td class="description">Folder structure and collaboration template for Helbling data analysis projects</td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/DataAnalysisTemplate.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/DataAnalysisTemplate.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action"><a class="edit" href="/Repository/Edit/d7aab399-bfd5-4e2d-8dda-ae213b4f6904" title="Edit"> </a></td>
+            <td class="action"><a class="delete" href="/Repository/Delete/d7aab399-bfd5-4e2d-8dda-ae213b4f6904" title="Delete"> </a></td>
+        </tr>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/5ef04593-2686-4380-a014-38594ae1583b" id="repo_5ef04593-2686-4380-a014-38594ae1583b">helbling-rfl</a></td>
+            <td class="description">First steps using a reinforcement learner to solve a specific simple problem</td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/helbling-rfl.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/helbling-rfl.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action"><a class="edit" href="/Repository/Edit/5ef04593-2686-4380-a014-38594ae1583b" title="Edit"> </a></td>
+            <td class="action"><a class="delete" href="/Repository/Delete/5ef04593-2686-4380-a014-38594ae1583b" title="Delete"> </a></td>
+        </tr>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/c1b95dfe-fe52-43cf-84e4-dfb22cf17dc0" id="repo_c1b95dfe-fe52-43cf-84e4-dfb22cf17dc0">MeatOrientation</a></td>
+            <td class="description">Orientation of pork bellies</td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/MeatOrientation.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/MeatOrientation.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action"><a class="edit" href="/Repository/Edit/c1b95dfe-fe52-43cf-84e4-dfb22cf17dc0" title="Edit"> </a></td>
+            <td class="action"><a class="delete" href="/Repository/Delete/c1b95dfe-fe52-43cf-84e4-dfb22cf17dc0" title="Delete"> </a></td>
+        </tr>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/89a0ed3c-06d1-41c1-8a37-e8b2ce87236f" id="repo_89a0ed3c-06d1-41c1-8a37-e8b2ce87236f">Strokedetection</a></td>
+            <td class="description">Analysis of stroke detection algorithm on the basis of clinical data</td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/Strokedetection.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/Strokedetection.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action"><a class="edit" href="/Repository/Edit/89a0ed3c-06d1-41c1-8a37-e8b2ce87236f" title="Edit"> </a></td>
+            <td class="action"><a class="delete" href="/Repository/Delete/89a0ed3c-06d1-41c1-8a37-e8b2ce87236f" title="Delete"> </a></td>
+        </tr>
+    </tbody>
+    </table>
+
+            </div>
+                <div class="pure-u-1">
+                    <h2 class="group">
+                        <span class="toggle" data-group="FootLevelers"></span>
+                        FootLevelers
+                    </h2>
+                </div>
+            <div class="pure-u-1">
+    <table class="pure-table repositories" Id="Repositories">
+    <thead>
+        <tr>
+            <th scope="col">
+            </th>
+            <th scope="col">
+<a href="/Repository/Index?sort=Name&amp;sortdir=DESC">Name</a>            </th>
+            <th scope="col">
+<a href="/Repository/Index?sort=Description&amp;sortdir=ASC">Description</a>            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/286ece0a-9028-4262-8fa1-593e0bae2bd6" id="repo_286ece0a-9028-4262-8fa1-593e0bae2bd6">QScannerCalibrationAndVerification</a></td>
+            <td class="description"></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/QScannerCalibrationAndVerification.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/QScannerCalibrationAndVerification.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action">&nbsp;</td>
+            <td class="action">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/d7940a0a-9aee-45e5-a0fb-db8d94b60df7" id="repo_d7940a0a-9aee-45e5-a0fb-db8d94b60df7">ScannerCalibrationAndVerification</a></td>
+            <td class="description"></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/ScannerCalibrationAndVerification.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/ScannerCalibrationAndVerification.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action"><a class="edit" href="/Repository/Edit/d7940a0a-9aee-45e5-a0fb-db8d94b60df7" title="Edit"> </a></td>
+            <td class="action"><a class="delete" href="/Repository/Delete/d7940a0a-9aee-45e5-a0fb-db8d94b60df7" title="Delete"> </a></td>
+        </tr>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/44e00bd5-4e4f-4eb3-a48e-fe250381792e" id="repo_44e00bd5-4e4f-4eb3-a48e-fe250381792e">ScannerTray</a></td>
+            <td class="description">Foot Levelers Orthotic Sales Channel Infrastructure</td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/ScannerTray.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/ScannerTray.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action">&nbsp;</td>
+            <td class="action">&nbsp;</td>
+        </tr>
+    </tbody>
+    </table>
+
+            </div>
+                <div class="pure-u-1">
+                    <h2 class="group">
+                        <span class="toggle" data-group="Kistler"></span>
+                        Kistler
+                    </h2>
+                </div>
+            <div class="pure-u-1">
+    <table class="pure-table repositories" Id="Repositories">
+    <thead>
+        <tr>
+            <th scope="col">
+            </th>
+            <th scope="col">
+<a href="/Repository/Index?sort=Name&amp;sortdir=DESC">Name</a>            </th>
+            <th scope="col">
+<a href="/Repository/Index?sort=Description&amp;sortdir=ASC">Description</a>            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/1fc0c573-d59e-4878-82a6-da574282aee2" id="repo_1fc0c573-d59e-4878-82a6-da574282aee2">mrs-ui</a></td>
+            <td class="description"></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/mrs-ui.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/mrs-ui.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action"><a class="edit" href="/Repository/Edit/1fc0c573-d59e-4878-82a6-da574282aee2" title="Edit"> </a></td>
+            <td class="action"><a class="delete" href="/Repository/Delete/1fc0c573-d59e-4878-82a6-da574282aee2" title="Delete"> </a></td>
+        </tr>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/a7469899-049c-4316-91b4-40b9f3cb9306" id="repo_a7469899-049c-4316-91b4-40b9f3cb9306">MUService</a></td>
+            <td class="description">Test Server Application in different languages for the measurement uncertainty service</td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/MUService.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/MUService.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action"><a class="edit" href="/Repository/Edit/a7469899-049c-4316-91b4-40b9f3cb9306" title="Edit"> </a></td>
+            <td class="action"><a class="delete" href="/Repository/Delete/a7469899-049c-4316-91b4-40b9f3cb9306" title="Delete"> </a></td>
+        </tr>
+    </tbody>
+    </table>
+
+            </div>
+                <div class="pure-u-1">
+                    <h2 class="group">
+                        <span class="toggle" data-group="PythonPackages"></span>
+                        PythonPackages
+                    </h2>
+                </div>
+            <div class="pure-u-1">
+    <table class="pure-table repositories" Id="Repositories">
+    <thead>
+        <tr>
+            <th scope="col">
+            </th>
+            <th scope="col">
+<a href="/Repository/Index?sort=Name&amp;sortdir=DESC">Name</a>            </th>
+            <th scope="col">
+<a href="/Repository/Index?sort=Description&amp;sortdir=ASC">Description</a>            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/9e13f306-e1b3-4db7-95fe-554f5615390a" id="repo_9e13f306-e1b3-4db7-95fe-554f5615390a">doit-xtended</a></td>
+            <td class="description">Extension to the automatization tool Python DoIt. This plugin features additional commands especiall ... </td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/doit-xtended.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/doit-xtended.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action"><a class="edit" href="/Repository/Edit/9e13f306-e1b3-4db7-95fe-554f5615390a" title="Edit"> </a></td>
+            <td class="action"><a class="delete" href="/Repository/Delete/9e13f306-e1b3-4db7-95fe-554f5615390a" title="Delete"> </a></td>
+        </tr>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/48abb599-217c-44df-bbe7-ac0fe48149a1" id="repo_48abb599-217c-44df-bbe7-ac0fe48149a1">python-facerec</a></td>
+            <td class="description">A python library to provide out of the box human face identification, based on dlib public models.</td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/python-facerec.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/python-facerec.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action"><a class="edit" href="/Repository/Edit/48abb599-217c-44df-bbe7-ac0fe48149a1" title="Edit"> </a></td>
+            <td class="action"><a class="delete" href="/Repository/Delete/48abb599-217c-44df-bbe7-ac0fe48149a1" title="Delete"> </a></td>
+        </tr>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/9271d6dd-13ef-4813-8fb5-2f466acb58d6" id="repo_9271d6dd-13ef-4813-8fb5-2f466acb58d6">python-gittools</a></td>
+            <td class="description">A collection of tools to connect to predefined git remote servers and create remote repos, define th ... </td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/python-gittools.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/python-gittools.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action"><a class="edit" href="/Repository/Edit/9271d6dd-13ef-4813-8fb5-2f466acb58d6" title="Edit"> </a></td>
+            <td class="action"><a class="delete" href="/Repository/Delete/9271d6dd-13ef-4813-8fb5-2f466acb58d6" title="Delete"> </a></td>
+        </tr>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/d48607b2-918c-4657-9033-b5135466754f" id="repo_d48607b2-918c-4657-9033-b5135466754f">python-mqttcpuload</a></td>
+            <td class="description">Small script that publishes the current CPU load with MQTT</td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/python-mqttcpuload.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/python-mqttcpuload.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action"><a class="edit" href="/Repository/Edit/d48607b2-918c-4657-9033-b5135466754f" title="Edit"> </a></td>
+            <td class="action"><a class="delete" href="/Repository/Delete/d48607b2-918c-4657-9033-b5135466754f" title="Delete"> </a></td>
+        </tr>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/31d25c1c-1c84-45b6-824b-958506712f90" id="repo_31d25c1c-1c84-45b6-824b-958506712f90">PythonPackageTemplate</a></td>
+            <td class="description">Cookie cutter template for the creation of a python package project</td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/PythonPackageTemplate.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/PythonPackageTemplate.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action"><a class="edit" href="/Repository/Edit/31d25c1c-1c84-45b6-824b-958506712f90" title="Edit"> </a></td>
+            <td class="action"><a class="delete" href="/Repository/Delete/31d25c1c-1c84-45b6-824b-958506712f90" title="Delete"> </a></td>
+        </tr>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/d2493cd7-3e43-4458-9636-fbdab28c1af5" id="repo_d2493cd7-3e43-4458-9636-fbdab28c1af5">python-tostools</a></td>
+            <td class="description">Collection of personal useful functions that I came across in my data analysis career.</td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/python-tostools.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/python-tostools.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action"><a class="edit" href="/Repository/Edit/d2493cd7-3e43-4458-9636-fbdab28c1af5" title="Edit"> </a></td>
+            <td class="action"><a class="delete" href="/Repository/Delete/d2493cd7-3e43-4458-9636-fbdab28c1af5" title="Delete"> </a></td>
+        </tr>
+    </tbody>
+    </table>
+
+            </div>
+                <div class="pure-u-1">
+                    <h2 class="group">
+                        <span class="toggle" data-group="TechCamp2016"></span>
+                        TechCamp2016
+                    </h2>
+                </div>
+            <div class="pure-u-1">
+    <table class="pure-table repositories" Id="Repositories">
+    <thead>
+        <tr>
+            <th scope="col">
+            </th>
+            <th scope="col">
+<a href="/Repository/Index?sort=Name&amp;sortdir=DESC">Name</a>            </th>
+            <th scope="col">
+<a href="/Repository/Index?sort=Description&amp;sortdir=ASC">Description</a>            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/d4c700c8-bfcd-47aa-9b1b-fec1bbed10d5" id="repo_d4c700c8-bfcd-47aa-9b1b-fec1bbed10d5">AnomalyDetectionInVideoStreams</a></td>
+            <td class="description"></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/AnomalyDetectionInVideoStreams.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/AnomalyDetectionInVideoStreams.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action">&nbsp;</td>
+            <td class="action">&nbsp;</td>
+        </tr>
+    </tbody>
+    </table>
+
+            </div>
+                <div class="pure-u-1">
+                    <h2 class="group">
+                        <span class="toggle" data-group="Techcamp2017"></span>
+                        Techcamp2017
+                    </h2>
+                </div>
+            <div class="pure-u-1">
+    <table class="pure-table repositories" Id="Repositories">
+    <thead>
+        <tr>
+            <th scope="col">
+            </th>
+            <th scope="col">
+<a href="/Repository/Index?sort=Name&amp;sortdir=DESC">Name</a>            </th>
+            <th scope="col">
+<a href="/Repository/Index?sort=Description&amp;sortdir=ASC">Description</a>            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/7fc2fcab-845c-41d8-b99d-66579ff04e08" id="repo_7fc2fcab-845c-41d8-b99d-66579ff04e08">Techcamp17-deeplearning-imageclassification</a></td>
+            <td class="description"></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/Techcamp17-deeplearning-imageclassification.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/Techcamp17-deeplearning-imageclassification.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action">&nbsp;</td>
+            <td class="action">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/594c9b13-34b0-4f6b-a9cd-157eb2b16ede" id="repo_594c9b13-34b0-4f6b-a9cd-157eb2b16ede">TechCamp17-gestures_app</a></td>
+            <td class="description"></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/TechCamp17-gestures_app.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/TechCamp17-gestures_app.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action">&nbsp;</td>
+            <td class="action">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/4ae78256-d6f0-4484-b2ab-0bbb48c45e50" id="repo_4ae78256-d6f0-4484-b2ab-0bbb48c45e50">TechCamp17-gestures_model</a></td>
+            <td class="description"></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/TechCamp17-gestures_model.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/TechCamp17-gestures_model.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action">&nbsp;</td>
+            <td class="action">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/e530fc8d-2e8e-4af0-8b03-e62160018587" id="repo_e530fc8d-2e8e-4af0-8b03-e62160018587">Techcamp17-Visualisierung</a></td>
+            <td class="description"></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/Techcamp17-Visualisierung.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/Techcamp17-Visualisierung.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action">&nbsp;</td>
+            <td class="action">&nbsp;</td>
+        </tr>
+    </tbody>
+    </table>
+
+            </div>
+                <div class="pure-u-1">
+                    <h2 class="group">
+                        <span class="toggle" data-group="TechCamp2018"></span>
+                        TechCamp2018
+                    </h2>
+                </div>
+            <div class="pure-u-1">
+    <table class="pure-table repositories" Id="Repositories">
+    <thead>
+        <tr>
+            <th scope="col">
+            </th>
+            <th scope="col">
+<a href="/Repository/Index?sort=Name&amp;sortdir=DESC">Name</a>            </th>
+            <th scope="col">
+<a href="/Repository/Index?sort=Description&amp;sortdir=ASC">Description</a>            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+            <th scope="col">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/e5e14222-432f-4bf7-a397-6711223c39c2" id="repo_e5e14222-432f-4bf7-a397-6711223c39c2">nodered-threadimageflow</a></td>
+            <td class="description">Test Node-Red Flow for a service converting an image to a thread image.</td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/nodered-threadimageflow.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/nodered-threadimageflow.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action"><a class="edit" href="/Repository/Edit/e5e14222-432f-4bf7-a397-6711223c39c2" title="Edit"> </a></td>
+            <td class="action"><a class="delete" href="/Repository/Delete/e5e14222-432f-4bf7-a397-6711223c39c2" title="Delete"> </a></td>
+        </tr>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/e49fe61e-3ad9-4e3c-b0a8-505939d5e99d" id="repo_e49fe61e-3ad9-4e3c-b0a8-505939d5e99d">python-threadimageprocessor</a></td>
+            <td class="description">Python cli to process an image into a sequence of nodes for the thread image.</td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/python-threadimageprocessor.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/python-threadimageprocessor.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action"><a class="edit" href="/Repository/Edit/e49fe61e-3ad9-4e3c-b0a8-505939d5e99d" title="Edit"> </a></td>
+            <td class="action"><a class="delete" href="/Repository/Delete/e49fe61e-3ad9-4e3c-b0a8-505939d5e99d" title="Delete"> </a></td>
+        </tr>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/405ecf75-e705-4aa9-8dd3-e7683f7f968c" id="repo_405ecf75-e705-4aa9-8dd3-e7683f7f968c">ThreadImage_RobotControl</a></td>
+            <td class="description">Control the P-Rob robot movement for string thread drawing</td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/ThreadImage_RobotControl.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/ThreadImage_RobotControl.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action"><a class="edit" href="/Repository/Edit/405ecf75-e705-4aa9-8dd3-e7683f7f968c" title="Edit"> </a></td>
+            <td class="action"><a class="delete" href="/Repository/Delete/405ecf75-e705-4aa9-8dd3-e7683f7f968c" title="Delete"> </a></td>
+        </tr>
+        <tr>
+            <td class="logo"></td>
+            <td><a class="RepositoryName detail" href="/Repository/Detail/dc1a41e1-d078-43a7-b672-8032118e2526" id="repo_dc1a41e1-d078-43a7-b672-8032118e2526">ThreadImageProcessor</a></td>
+            <td class="description">Analysis and exploration of an efficient algorithm to draw an arbitrary picture with a single thread ... </td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy repository URL" data-clipboard-text="http://scmserver:8080/ThreadImageProcessor.git"><i class="fa fa-copy" ></i></button></td>
+            <td class="action"><button class="pure-button pure-button-primary copy-to-clip-button" title="Copy personal repository URL" data-clipboard-text="http://tos@scmserver:8080/ThreadImageProcessor.git"><i class="fa fa-user"></i><i class="fa fa-copy"></i></button></td>
+            <td class="action"><a class="edit" href="/Repository/Edit/dc1a41e1-d078-43a7-b672-8032118e2526" title="Edit"> </a></td>
+            <td class="action"><a class="delete" href="/Repository/Delete/dc1a41e1-d078-43a7-b672-8032118e2526" title="Delete"> </a></td>
+        </tr>
+    </tbody>
+    </table>
+
+            </div>
+
+</div>
+
+
+        </div>
+
+        <div class="footer">
+            <p>
+HTKA SWIT                    &middot;
+                Bonobo Git Server (6.3.0.632) &copy; 2015 <a href="http://www.chodounsky.net">Jakub Chodounský</a>
+                &middot; <a href="http://bonobogitserver.com/">Official Page</a> 
+                &middot; <a href="https://github.com/jakubgarfield/Bonobo-Git-Server">Github</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="/Scripts/jquery-1.12.4.js"></script>
+<script src="/Scripts/jquery.validate.js"></script>
+<script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="/Scripts/MicrosoftAjax.debug.js"></script>
+<script src="/Scripts/MicrosoftMvcAjax.debug.js"></script>
+<script src="/Scripts/highlight.pack.js"></script>
+<script src="/Scripts/clipboard.min.js"></script>
+
+    
+    <script src="/Scripts/RepositoryGroupToggle.js" defer="defer"></script>
+    <script>new Clipboard('.copy-to-clip-button');</script>
+
+</body>
+</html>
