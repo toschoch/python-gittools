@@ -11,6 +11,7 @@ import contextlib
 import os
 import shutil
 import pytest
+import platform
 
 @contextlib.contextmanager
 def change_cwd(path):
@@ -77,8 +78,12 @@ root                  *  C:\ProgramData\Miniconda2
     assert result.exit_code == 0
     assert result.output.splitlines()[-1] == "now you can use 'pip' in your console without activating the environment..."
 
-    script_path = pathlib.Path(tmpdir).joinpath('pip.bat')
-    assert script_path.exists()
+    if platform.system().lower() == 'linux':
+        script_path = pathlib.Path(tmpdir).joinpath('pip')
+        assert script_path.exists()
+    elif platform.system().lower() == 'windows':
+        script_path = pathlib.Path(tmpdir).joinpath('pip.bat')
+        assert script_path.exists()
 
 def test_install_hook(gitdir):
 
@@ -105,11 +110,20 @@ root                  *  C:\ProgramData\Miniconda2
     runner = CliRunner()
     with change_cwd(gitdir):
         result = runner.invoke(cli_install.hook)
-    assert result.exit_code == 0
-    assert result.output == "WINDOWS git hooks successfully installed for environment 'root'!\nnow before every commit the requirements files are updated with 'root' package status...\n"
-    commit_hook = gitdir.joinpath('.git/hooks/pre-commit')
-    assert commit_hook.exists() and commit_hook.is_file()
-    commit_hook_win = gitdir.joinpath('.git/hooks/pre-commit.cmd')
-    commit_hook_sh = gitdir.joinpath('.git/hooks/pre-commit.sh')
-    assert (commit_hook_win.exists() and commit_hook_win.is_file()) or \
-           (commit_hook_sh.exists() and commit_hook_sh.is_file())
+
+    if platform.system().lower() == 'linux':
+
+        assert result.exit_code != 0
+        assert result.output == "Not yet implemented for UNIX systems!\n"
+
+
+    elif platform.system().lower() == 'windows':
+
+        assert result.exit_code == 0
+        assert result.output == "WINDOWS git hooks successfully installed for environment 'root'!\nnow before every commit the requirements files are updated with 'root' package status...\n"
+        commit_hook = gitdir.joinpath('.git/hooks/pre-commit')
+        assert commit_hook.exists() and commit_hook.is_file()
+        commit_hook_win = gitdir.joinpath('.git/hooks/pre-commit.cmd')
+        commit_hook_sh = gitdir.joinpath('.git/hooks/pre-commit.sh')
+        assert (commit_hook_win.exists() and commit_hook_win.is_file()) or \
+               (commit_hook_sh.exists() and commit_hook_sh.is_file())
