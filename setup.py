@@ -12,7 +12,7 @@ def read(fname):
 # Get the long description from the README file
 long_description = read('README.md')
 
-all_reqs += read('requirements.txt').splitlines()
+all_reqs = read('requirements.txt').splitlines()
 
 install_requires = [x.strip() for x in all_reqs if 'git+' not in x]
 dependency_links = [x.strip() for x in all_reqs if x.startswith('git+')]
