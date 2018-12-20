@@ -2,7 +2,6 @@ from setuptools import setup, find_packages
 from codecs import open
 from os import path
 
-
 here = path.abspath(path.dirname(__file__))
 
 def read(fname):
@@ -12,27 +11,6 @@ def read(fname):
 
 # Get the long description from the README file
 long_description = read('README.md')
-
-changelog = read('README.md').splitlines()
-for i,line in enumerate(changelog):
-    if line.startswith('Change-Log'):
-        line = changelog[i+1]
-        j = 1
-        while line.strip()=='' or line.startswith('---'):
-            j += 1
-            line = changelog[j]
-        version = line.strip('# ')
-        break
-
-
-# get the dependencies and installs
-all_reqs = []
-for line in read('conda_reqs.txt').splitlines():
-    if line.startswith('#'): continue # except only comments
-    if line.strip().endswith('conda'): continue # except lines marked as only conda
-    line = line.split('#')[0] # except comments
-    line = "==".join(line.split('=')[:2]) # except conda second version spec
-    all_reqs.append(line)
 
 all_reqs += read('requirements.txt').splitlines()
 
