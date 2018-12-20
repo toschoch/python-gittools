@@ -1,36 +1,59 @@
-pipeline:
-  clone:
-    image: plugins/git
-    tags: true
+kind: pipeline
+name: python-package
 
-  test:
-    image: python:3
+clone:
+  depth: 50
+
+steps:
+  - name: fetch
+    image: docker:git
     commands:
+      - git fetch --tags
+
+  - name: test
+    image: python:3-alpine
+    commands:
+      - apk update && apk add --no-cache git
+      - pip install --upgrade pip setuptools wheel
       - python setup.py test
 
-  build:
-    image: python:3
+  - name: build
+    image: python:3-alpine
     commands:
+      - apk update && apk add --no-cache git
+      - pip install --upgrade pip setuptools wheel
       - python setup.py bdist_wheel
-      - python setup.py sdist
       - python setup.py sdist --formats=zip
 
-  staging:
-    image: shocki/drone-devpi
-    server: http://192.168.0.40:3141/
-    index: dietzi/staging
-    username: dietzi
-    password: dietzi
-    when:
-      branch: master
-      status: success
+  - name: publish-staging
+    image: shocki/alpine-devpi-client
+    environment:
+      DEVPI_USER:
+        from_secret: devpi_user
+      DEVPI_PASS:
+        from_secret: devpi_password
+      DEVPI_SERVER:
+        from_secret: devpi_server
+    commands:
+      - devpi use $DEVPI_SERVER/$DEVPI_USER/staging
+      - devpi login $DEVPI_USER --password $DEVPI_PASS
+      - devpi upload dist/*.whl
+      - devpi upload dist/*.zip
 
-  release:
-    image: shocki/drone-devpi
-    server: http://192.168.0.40:3141/
-    index: dietzi/stable
-    username: dietzi
-    password: dietzi
+  - name: publish-stable
+    image: shocki/alpine-devpi-client
+    environment:
+      DEVPI_USER:
+        from_secret: devpi_user
+      DEVPI_PASS:
+        from_secret: devpi_password
+      DEVPI_SERVER:
+        from_secret: devpi_server
+    commands:
+      - devpi use $DEVPI_SERVER/$DEVPI_USER/stable
+      - devpi login $DEVPI_USER --password $DEVPI_PASS
+      - devpi upload dist/*.whl
+      - devpi upload dist/*.zip
     when:
-      event: tag
-      status: success
+      event:
+        - tag
