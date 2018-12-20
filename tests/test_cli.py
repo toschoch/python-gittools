@@ -8,7 +8,7 @@ import gittools.readme as rm
 from gittools import config
 from unittest.mock import MagicMock, call
 import pathlib
-from .test_readme import readmedir, readmedir_nochangelog, change_changelog_file, change_readme_file
+from tests.test_readme import readmedir, readmedir_nochangelog, change_changelog_file, change_readme_file
 
 here = pathlib.Path(__file__).parent
 
