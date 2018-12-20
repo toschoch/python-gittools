@@ -114,7 +114,7 @@ root                  *  C:\ProgramData\Miniconda2
     if platform.system().lower() == 'linux':
 
         assert result.exit_code != 0
-        assert result.output == "Not yet implemented for UNIX systems!\n"
+        assert str(result.exception) == "Not yet implemented for UNIX systems!\n"
 
 
     elif platform.system().lower() == 'windows':

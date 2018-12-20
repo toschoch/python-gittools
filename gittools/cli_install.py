@@ -128,8 +128,7 @@ def hook(dst=None, env=None):
 
     git_dir = dst.joinpath('.git')
     if not git_dir.exists():
-        click.echo("This directory is not a Git repository!")
-        return sys.exit(-1)
+        raise EnvironmentError('This directory is not a Git repository!')
     git_dir = git_dir.joinpath('hooks')
     # assure there is a git hooks dir
     git_dir.mkdir(exist_ok=True)
@@ -140,8 +139,8 @@ def hook(dst=None, env=None):
         env_dir = conda_envs()[env]
 
     if platform.platform() == 'linux':
-        click.echo("Not yet implemented for UNIX systems!")
-        return sys.exit(-1)
+
+        raise NotImplementedError("Not yet implemented for UNIX systems!") 
         # dst = create_script(cmd, dst, env_name=env, env_path=env_dir, template='encaps_cmd_template_bash.sh')
         #
         # st = os.stat(dst)
