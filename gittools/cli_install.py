@@ -7,6 +7,7 @@ import subprocess
 import click
 import stat
 import os
+import sys
 import platform
 import pathlib
 import shutil
@@ -128,7 +129,7 @@ def hook(dst=None, env=None):
     git_dir = dst.joinpath('.git')
     if not git_dir.exists():
         click.echo("This directory is not a Git repository!")
-        return -1
+        return sys.exit(-1)
     git_dir = git_dir.joinpath('hooks')
     # assure there is a git hooks dir
     git_dir.mkdir(exist_ok=True)
@@ -140,7 +141,7 @@ def hook(dst=None, env=None):
 
     if platform.platform() == 'linux':
         click.echo("Not yet implemented for UNIX systems!")
-        return  -1
+        return sys.exit(-1)
         # dst = create_script(cmd, dst, env_name=env, env_path=env_dir, template='encaps_cmd_template_bash.sh')
         #
         # st = os.stat(dst)
