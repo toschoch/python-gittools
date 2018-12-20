@@ -43,7 +43,7 @@ def test_install_script(tmpdir):
     config.set_cfg({'reposervers':{'myserver':{'type':'Github','url':'www.github.com'}}})
     runner = CliRunner()
     result = runner.invoke(cli_install.script, args=['python'])
-    assert result.exit_code == -1
+    assert result.exit_code != 0
     assert str(result.exception) == "gittools need conda to be installed on your machine! Install conda first..."
 
     subprocess.check_output = MagicMock(side_effect=[r"""# conda environments:
@@ -90,7 +90,7 @@ def test_install_hook(gitdir):
     config.set_cfg({'reposervers':{'myserver':{'type':'Github','url':'www.github.com'}}})
     runner = CliRunner()
     result = runner.invoke(cli_install.script, args=['python'])
-    assert result.exit_code == -1
+    assert result.exit_code != 0
     assert str(result.exception) == "gittools need conda to be installed on your machine! Install conda first..."
 
     subprocess.check_output = MagicMock(side_effect=[r"""# conda environments:

@@ -53,7 +53,7 @@ def test_init():
     config.set_cfg({'reposervers': {'myserver': {'type': 'Github', 'url': 'www.github.com'}}})
     runner = CliRunner()
     result = runner.invoke(cli.init)
-    assert result.exit_code < 0
+    assert result.exit_code != 0
     assert str(result.exception) == "gittools need Git to be installed on your machine! Install Git first..."
 
     subprocess.call = MagicMock(return_value=0)
@@ -76,7 +76,7 @@ def test_tag(readmedir):
     config.set_cfg({'reposervers': {'myserver': {'type': 'Github', 'url': 'www.github.com'}}})
     runner = CliRunner()
     result = runner.invoke(cli.tag,args=['v0.0.8'])
-    assert result.exit_code < 0
+    assert result.exit_code != 0
     assert str(result.exception) == "gittools need Git to be installed on your machine! Install Git first..."
 
     subprocess.call = MagicMock(return_value=0)
@@ -110,7 +110,7 @@ def test_tag_readme(readmedir_nochangelog):
     config.set_cfg({'reposervers': {'myserver': {'type': 'Github', 'url': 'www.github.com'}}})
     runner = CliRunner()
     result = runner.invoke(cli.tag,args=['v0.0.8'])
-    assert result.exit_code < 0
+    assert result.exit_code != 0
     assert str(result.exception) == "gittools need Git to be installed on your machine! Install Git first..."
 
     subprocess.call = MagicMock(return_value=0)
