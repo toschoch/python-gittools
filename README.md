@@ -10,6 +10,26 @@ A collection of tools to connect to predefined git remote servers and create rem
 
 Change-Log
 ----------
+##### 0.1.2
+* reformat code
+* added git hook install implementation for UNIX
+* merged hook creation for linux
+* raise an exception on unix systems
+* exits with the correct exit code
+* added platform dependency into install script and hook test
+* fixed expected error codes in tests
+* fixed tests for python setup.py test
+* fixed import in tests
+* remove __init__.py from tests
+* fixed error in setup.py
+* remove conda_reqs.txt from setup.py
+* update .drone.yml
+* update readme
+* added configuration tests
+* added test for git commit hook install
+* make compatible with common CHANGELOG.md
+* separate change-log support
+
 ##### 0.1.1
 * added git commit hook (unix)
 
