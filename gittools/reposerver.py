@@ -4,14 +4,14 @@
 # author:  TOS
 
 import logging
-import six
-import bs4
-import requests
-import gogs_client
-import github
 import urllib.parse
-from .config import get_cfg
 
+import bs4
+import github
+import gogs_client
+import requests
+
+from .config import get_cfg
 
 log = logging.getLogger(__name__)
 
@@ -19,12 +19,11 @@ log = logging.getLogger(__name__)
 def repository_servers_cfg():
     return get_cfg()['reposervers'].copy()
 
-class RepoServer(object):
 
+class RepoServer(object):
     class Repo(object):
 
         def __init__(self, name, id, giturl):
-
             self.id = id
             self.name = name
             self.giturl = giturl
@@ -165,8 +164,8 @@ class Bonobo(RepoServer):
         self.login_info = {}
         self.repo_info = {}
 
-        self.repo_info.update(kwargs.get('newrepo',{}))
-        self.login_info.update(kwargs.get('login',{}))
+        self.repo_info.update(kwargs.get('newrepo', {}))
+        self.login_info.update(kwargs.get('login', {}))
 
         self.username = self.login_info['Username']
         self.password = self.login_info['Password']
@@ -181,7 +180,7 @@ class Bonobo(RepoServer):
         adminlist = repo_info.pop('Administrators')
         repo_info['PostedSelectedAdministrators'] = []
 
-        assert len(adminlist)>0
+        assert len(adminlist) > 0
 
         # create the git repo with push requests
         log.info("create GIT repository on {}...".format(self.name))
@@ -226,7 +225,7 @@ class Bonobo(RepoServer):
             tag = bs.find("div", {"class": "summary-success"})
             repo_detail_link = tag.find('a').attrs['href']
 
-            r = s.get("{}{}".format(self.url.geturl(),repo_detail_link))
+            r = s.get("{}{}".format(self.url.geturl(), repo_detail_link))
 
             # get the personal git url
             bs = bs4.BeautifulSoup(r.content, "html.parser")

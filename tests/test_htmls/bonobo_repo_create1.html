@@ -1,181 +1,518 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <link rel="shortcut icon" href="/favicon.ico?v=2" type="image/x-icon" />
+    <meta charset="utf-8"/>
+    <link href="/favicon.ico?v=2" rel="shortcut icon" type="image/x-icon"/>
     <title>Create New Repository :: Swit GIT Server (new)</title>
     <link href="/Content/components/pure/pure-min.css" rel="stylesheet"/>
-<link href="/Content/components/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="/Content/components/highlight/styles/github.css" rel="stylesheet"/>
-<link href="/Content/fonts.css" rel="stylesheet"/>
-<link href="/Content/site.css" rel="stylesheet"/>
+    <link href="/Content/components/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/Content/components/highlight/styles/github.css" rel="stylesheet"/>
+    <link href="/Content/fonts.css" rel="stylesheet"/>
+    <link href="/Content/site.css" rel="stylesheet"/>
 
-    </head>
+</head>
 <body class="Repository Create">
-    <div class="main">
-        <div class="header">
-            <div class="navigation pure-menu pure-menu-open pure-menu-horizontal">
-                <a class="pure-menu-heading" href="/">Swit GIT Server (new)</a>
+<div class="main">
+    <div class="header">
+        <div class="navigation pure-menu pure-menu-open pure-menu-horizontal">
+            <a class="pure-menu-heading" href="/">Swit GIT Server (new)</a>
 
+            <ul>
+                <select class="repositories" id="Repositories" name="Repositories"
+                        onChange="javascript:location.href=this.options[this.selectedIndex].value;">
+                    <option value="">Go to repository</option>
+                    <optgroup label="Android Apps">
+                        <option value="/Repository/Detail/7cf0ecc7-7190-484b-8b9a-c7c20a1f9bf8">android-respirator
+                        </option>
+                    </optgroup>
+                    <optgroup label="TechCamp2016">
+                        <option value="/Repository/Detail/d4c700c8-bfcd-47aa-9b1b-fec1bbed10d5">
+                            AnomalyDetectionInVideoStreams
+                        </option>
+                    </optgroup>
+                    <optgroup label="No Group">
+                        <option value="/Repository/Detail/6bef17f1-d6e7-41c4-af6a-0432af7bf7fd">ArmaSuisse-KdoRekr02
+                        </option>
+                    </optgroup>
+                    <optgroup label="DataScience">
+                        <option value="/Repository/Detail/d7aab399-bfd5-4e2d-8dda-ae213b4f6904">DataAnalysisTemplate
+                        </option>
+                        <option value="/Repository/Detail/5ef04593-2686-4380-a014-38594ae1583b">helbling-rfl</option>
+                        <option value="/Repository/Detail/c1b95dfe-fe52-43cf-84e4-dfb22cf17dc0">MeatOrientation</option>
+                        <option value="/Repository/Detail/89a0ed3c-06d1-41c1-8a37-e8b2ce87236f">Strokedetection</option>
+                    </optgroup>
+                    <optgroup label="PythonPackages">
+                        <option value="/Repository/Detail/9e13f306-e1b3-4db7-95fe-554f5615390a">doit-xtended</option>
+                        <option value="/Repository/Detail/48abb599-217c-44df-bbe7-ac0fe48149a1">python-facerec</option>
+                        <option value="/Repository/Detail/9271d6dd-13ef-4813-8fb5-2f466acb58d6">python-gittools</option>
+                        <option value="/Repository/Detail/d48607b2-918c-4657-9033-b5135466754f">python-mqttcpuload
+                        </option>
+                        <option value="/Repository/Detail/31d25c1c-1c84-45b6-824b-958506712f90">PythonPackageTemplate
+                        </option>
+                        <option value="/Repository/Detail/d2493cd7-3e43-4458-9636-fbdab28c1af5">python-tostools</option>
+                    </optgroup>
+                    <optgroup label="Kistler">
+                        <option value="/Repository/Detail/1fc0c573-d59e-4878-82a6-da574282aee2">mrs-ui</option>
+                        <option value="/Repository/Detail/a7469899-049c-4316-91b4-40b9f3cb9306">MUService</option>
+                    </optgroup>
+                    <optgroup label="TechCamp2018">
+                        <option value="/Repository/Detail/e5e14222-432f-4bf7-a397-6711223c39c2">
+                            nodered-threadimageflow
+                        </option>
+                        <option value="/Repository/Detail/e49fe61e-3ad9-4e3c-b0a8-505939d5e99d">
+                            python-threadimageprocessor
+                        </option>
+                        <option value="/Repository/Detail/405ecf75-e705-4aa9-8dd3-e7683f7f968c">
+                            ThreadImage_RobotControl
+                        </option>
+                        <option value="/Repository/Detail/dc1a41e1-d078-43a7-b672-8032118e2526">ThreadImageProcessor
+                        </option>
+                    </optgroup>
+                    <optgroup label="FootLevelers">
+                        <option value="/Repository/Detail/286ece0a-9028-4262-8fa1-593e0bae2bd6">
+                            QScannerCalibrationAndVerification
+                        </option>
+                        <option value="/Repository/Detail/d7940a0a-9aee-45e5-a0fb-db8d94b60df7">
+                            ScannerCalibrationAndVerification
+                        </option>
+                        <option value="/Repository/Detail/44e00bd5-4e4f-4eb3-a48e-fe250381792e">ScannerTray</option>
+                    </optgroup>
+                    <optgroup label="Techcamp2017">
+                        <option value="/Repository/Detail/7fc2fcab-845c-41d8-b99d-66579ff04e08">
+                            Techcamp17-deeplearning-imageclassification
+                        </option>
+                        <option value="/Repository/Detail/594c9b13-34b0-4f6b-a9cd-157eb2b16ede">
+                            TechCamp17-gestures_app
+                        </option>
+                        <option value="/Repository/Detail/4ae78256-d6f0-4484-b2ab-0bbb48c45e50">
+                            TechCamp17-gestures_model
+                        </option>
+                        <option value="/Repository/Detail/e530fc8d-2e8e-4af0-8b03-e62160018587">
+                            Techcamp17-Visualisierung
+                        </option>
+                    </optgroup>
+                </select>
+                <li><a class="repository" href="/Repository/Index"><i class="fa fa-hdd-o"></i> Repositories</a></li>
+                <li class="separator"><a href="/Account/Edit/2ff5fc2a-df05-4a76-b58a-cf3140c93b00"><i
+                        class="fa fa-male"></i> Tobias Schoch</a></li>
+                <li><a href="/Home/LogOff"><i class="fa fa-sign-out"></i> Sign Out</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <h1>Create New Repository</h1>
+
+        <form action="/Repository/Create" class="pure-form pure-form-aligned" enctype="multipart/form-data"
+              method="post"><input name="__RequestVerificationToken" type="hidden"
+                                   value="cnWeJnlhWkU83pVG2CpOQ8fmgDxk-7jcfLLwnteRFcrOfEo2OmPFcKuvlD6VWDeLDqv5tyS7A51J2Lxz_wXPkENm20G0IWek5HrKN527i22UHFwCPDhnvJNbhrE4TSzXzR9_DWc4OoMXp7pGw2iQ6A2"/>
+            <div class="validation-summary-valid" data-valmsg-summary="true"><span>Repository creation was unsuccessful. Please correct the errors and try again.</span>
                 <ul>
-<select class="repositories" id="Repositories" name="Repositories" onChange="javascript:location.href=this.options[this.selectedIndex].value;"><option value="">Go to repository</option>
-<optgroup label="Android Apps">
-<option value="/Repository/Detail/7cf0ecc7-7190-484b-8b9a-c7c20a1f9bf8">android-respirator</option>
-</optgroup>
-<optgroup label="TechCamp2016">
-<option value="/Repository/Detail/d4c700c8-bfcd-47aa-9b1b-fec1bbed10d5">AnomalyDetectionInVideoStreams</option>
-</optgroup>
-<optgroup label="No Group">
-<option value="/Repository/Detail/6bef17f1-d6e7-41c4-af6a-0432af7bf7fd">ArmaSuisse-KdoRekr02</option>
-</optgroup>
-<optgroup label="DataScience">
-<option value="/Repository/Detail/d7aab399-bfd5-4e2d-8dda-ae213b4f6904">DataAnalysisTemplate</option>
-<option value="/Repository/Detail/5ef04593-2686-4380-a014-38594ae1583b">helbling-rfl</option>
-<option value="/Repository/Detail/c1b95dfe-fe52-43cf-84e4-dfb22cf17dc0">MeatOrientation</option>
-<option value="/Repository/Detail/89a0ed3c-06d1-41c1-8a37-e8b2ce87236f">Strokedetection</option>
-</optgroup>
-<optgroup label="PythonPackages">
-<option value="/Repository/Detail/9e13f306-e1b3-4db7-95fe-554f5615390a">doit-xtended</option>
-<option value="/Repository/Detail/48abb599-217c-44df-bbe7-ac0fe48149a1">python-facerec</option>
-<option value="/Repository/Detail/9271d6dd-13ef-4813-8fb5-2f466acb58d6">python-gittools</option>
-<option value="/Repository/Detail/d48607b2-918c-4657-9033-b5135466754f">python-mqttcpuload</option>
-<option value="/Repository/Detail/31d25c1c-1c84-45b6-824b-958506712f90">PythonPackageTemplate</option>
-<option value="/Repository/Detail/d2493cd7-3e43-4458-9636-fbdab28c1af5">python-tostools</option>
-</optgroup>
-<optgroup label="Kistler">
-<option value="/Repository/Detail/1fc0c573-d59e-4878-82a6-da574282aee2">mrs-ui</option>
-<option value="/Repository/Detail/a7469899-049c-4316-91b4-40b9f3cb9306">MUService</option>
-</optgroup>
-<optgroup label="TechCamp2018">
-<option value="/Repository/Detail/e5e14222-432f-4bf7-a397-6711223c39c2">nodered-threadimageflow</option>
-<option value="/Repository/Detail/e49fe61e-3ad9-4e3c-b0a8-505939d5e99d">python-threadimageprocessor</option>
-<option value="/Repository/Detail/405ecf75-e705-4aa9-8dd3-e7683f7f968c">ThreadImage_RobotControl</option>
-<option value="/Repository/Detail/dc1a41e1-d078-43a7-b672-8032118e2526">ThreadImageProcessor</option>
-</optgroup>
-<optgroup label="FootLevelers">
-<option value="/Repository/Detail/286ece0a-9028-4262-8fa1-593e0bae2bd6">QScannerCalibrationAndVerification</option>
-<option value="/Repository/Detail/d7940a0a-9aee-45e5-a0fb-db8d94b60df7">ScannerCalibrationAndVerification</option>
-<option value="/Repository/Detail/44e00bd5-4e4f-4eb3-a48e-fe250381792e">ScannerTray</option>
-</optgroup>
-<optgroup label="Techcamp2017">
-<option value="/Repository/Detail/7fc2fcab-845c-41d8-b99d-66579ff04e08">Techcamp17-deeplearning-imageclassification</option>
-<option value="/Repository/Detail/594c9b13-34b0-4f6b-a9cd-157eb2b16ede">TechCamp17-gestures_app</option>
-<option value="/Repository/Detail/4ae78256-d6f0-4484-b2ab-0bbb48c45e50">TechCamp17-gestures_model</option>
-<option value="/Repository/Detail/e530fc8d-2e8e-4af0-8b03-e62160018587">Techcamp17-Visualisierung</option>
-</optgroup>
-</select>                        <li><a href="/Repository/Index" class="repository"><i class="fa fa-hdd-o"></i> Repositories</a></li>
-                                                                <li class="separator"><a href="/Account/Edit/2ff5fc2a-df05-4a76-b58a-cf3140c93b00"><i class="fa fa-male"></i> Tobias Schoch</a></li>
-                            <li><a href="/Home/LogOff"><i class="fa fa-sign-out"></i> Sign Out</a></li>
+                    <li style="display:none"></li>
                 </ul>
             </div>
-        </div>
-
-        <div class="content">
-            
-<h1>Create New Repository</h1>
-
-<form action="/Repository/Create" class="pure-form pure-form-aligned" enctype="multipart/form-data" method="post"><input name="__RequestVerificationToken" type="hidden" value="cnWeJnlhWkU83pVG2CpOQ8fmgDxk-7jcfLLwnteRFcrOfEo2OmPFcKuvlD6VWDeLDqv5tyS7A51J2Lxz_wXPkENm20G0IWek5HrKN527i22UHFwCPDhnvJNbhrE4TSzXzR9_DWc4OoMXp7pGw2iQ6A2" /><div class="validation-summary-valid" data-valmsg-summary="true"><span>Repository creation was unsuccessful. Please correct the errors and try again.</span>
-<ul><li style="display:none"></li>
-</ul></div>    <fieldset>
-        <div class="pure-control-group">
-            <label for="Name">Name</label>
-            <input autofocus="" data-val="true" data-val-length="&quot;Name&quot; should be shorter than 50 characters." data-val-length-max="50" data-val-regex="Only characters, numbers, dots, minus and underscore are allowed for &quot;Name&quot;." data-val-regex-pattern="([\w\.-])*([\w])$" data-val-remote="This name has already been taken." data-val-remote-additionalfields="*.Name,*.Id" data-val-remote-url="/Validation/UniqueNameRepo" id="Name" name="Name" type="text" value="" /><em>*</em>
-            <span class="field-validation-valid" data-valmsg-for="Name" data-valmsg-replace="true"></span>
-        </div>
-        <div class="pure-control-group">
-            <label for="Group">Group</label>
-            <input class="medium" data-val="true" data-val-length="&quot;Group&quot; should be shorter than 255 characters." data-val-length-max="255" id="Group" name="Group" type="text" value="" />
-        </div>
-        <div class="pure-control-group">
-            <label for="Description">Description</label>
-            <textarea class="medium" cols="20" data-val="true" data-val-length="&quot;Description&quot; should be shorter than 255 characters." data-val-length-max="255" id="Description" name="Description" rows="2">
+            <fieldset>
+                <div class="pure-control-group">
+                    <label for="Name">Name</label>
+                    <input autofocus="" data-val="true"
+                           data-val-length="&quot;Name&quot; should be shorter than 50 characters."
+                           data-val-length-max="50"
+                           data-val-regex="Only characters, numbers, dots, minus and underscore are allowed for &quot;Name&quot;."
+                           data-val-regex-pattern="([\w\.-])*([\w])$"
+                           data-val-remote="This name has already been taken."
+                           data-val-remote-additionalfields="*.Name,*.Id"
+                           data-val-remote-url="/Validation/UniqueNameRepo" id="Name" name="Name" type="text" value=""/><em>*</em>
+                    <span class="field-validation-valid" data-valmsg-for="Name" data-valmsg-replace="true"></span>
+                </div>
+                <div class="pure-control-group">
+                    <label for="Group">Group</label>
+                    <input class="medium" data-val="true"
+                           data-val-length="&quot;Group&quot; should be shorter than 255 characters."
+                           data-val-length-max="255" id="Group" name="Group" type="text" value=""/>
+                </div>
+                <div class="pure-control-group">
+                    <label for="Description">Description</label>
+                    <textarea class="medium" cols="20" data-val="true"
+                              data-val-length="&quot;Description&quot; should be shorter than 255 characters."
+                              data-val-length-max="255" id="Description" name="Description" rows="2">
 </textarea>
-        </div>
-        <div class="pure-control-group">
-            <label for="Logo_PostedFile">Logo (36x36)</label>
-            <input type="file" name="Logo.PostedFile" id="Logo_PostedFile" />
-            <sup>.png, .jpg, .jpeg, .gif</sup>
-        </div>
+                </div>
+                <div class="pure-control-group">
+                    <label for="Logo_PostedFile">Logo (36x36)</label>
+                    <input id="Logo_PostedFile" name="Logo.PostedFile" type="file"/>
+                    <sup>.png, .jpg, .jpeg, .gif</sup>
+                </div>
 
-            <div class="pure-control-group">
-                <label for="AllowAnonymous">Anonymous</label>
-                <input data-val="true" data-val-required="The Anonymous field is required." id="AllowAnonymous" name="AllowAnonymous" onClick="document.getElementById(&#39;AllowAnonymousPush&#39;).disabled = !this.checked" type="checkbox" value="true" /><input name="AllowAnonymous" type="hidden" value="false" />
-                <i class="fa fa-info-circle" title="If anonymous access is allowed, everyone can pull or clone the repository and view repository metadata. Push is available only if set in Global Settings."></i>
-            </div>
+                <div class="pure-control-group">
+                    <label for="AllowAnonymous">Anonymous</label>
+                    <input data-val="true" data-val-required="The Anonymous field is required." id="AllowAnonymous"
+                           name="AllowAnonymous"
+                           onClick="document.getElementById(&#39;AllowAnonymousPush&#39;).disabled = !this.checked"
+                           type="checkbox" value="true"/><input name="AllowAnonymous" type="hidden" value="false"/>
+                    <i class="fa fa-info-circle"
+                       title="If anonymous access is allowed, everyone can pull or clone the repository and view repository metadata. Push is available only if set in Global Settings."></i>
+                </div>
 
-            <div class="pure-control-group">
-                <label for="AllowAnonymousPush">Anonymous push</label>
+                <div class="pure-control-group">
+                    <label for="AllowAnonymousPush">Anonymous push</label>
 
-                <select data-val="true" data-val-required="The Anonymous push field is required." disabled="" id="AllowAnonymousPush" name="AllowAnonymousPush"><option value="0">No</option>
-<option value="1">Yes</option>
-<option selected="selected" value="2">Global</option>
-</select>
-                <i class="fa fa-info-circle" title="Allows anonymous users to push to this repository if anonymous access is granted. If &quot;Global&quot; is selected the option set under your global settings is used."></i>
-            </div>
-        <div class="pure-control-group">
-            <label for="LinksUseGlobal">Use global linkify settings</label>
-            <input checked="checked" data-val="true" data-val-required="The Use global linkify settings field is required." id="LinksUseGlobal" name="LinksUseGlobal" onClick="document.getElementById(&#39;LinksRegex&#39;).disabled = this.checked; document.getElementById(&#39;LinksUrl&#39;).disabled = this.checked" type="checkbox" value="true" /><input name="LinksUseGlobal" type="hidden" value="false" />
-        </div>
-        <div class="pure-control-group">
-            <label for="LinksRegex">Link Regex</label>
-<input class="medium" data-val="true" data-val-remote="&#39;Link Regex&#39; is invalid." data-val-remote-additionalfields="*.LinksRegex" data-val-remote-url="/Validation/IsValidRegex" disabled="" id="LinksRegex" name="LinksRegex" type="text" value="" /><span class="field-validation-valid" data-valmsg-for="LinksRegex" data-valmsg-replace="true"></span>
-        </div>
-        <div class="pure-control-group">
-            <label for="LinksUrl">Link Url</label>
-            <input class="medium" disabled="" id="LinksUrl" name="LinksUrl" type="text" value="" />
-            <i class="fa fa-info-circle" title="This uses the C# regex library to parse the provided regex. Capturing groups are supported.
+                    <select data-val="true" data-val-required="The Anonymous push field is required." disabled=""
+                            id="AllowAnonymousPush" name="AllowAnonymousPush">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                        <option selected="selected" value="2">Global</option>
+                    </select>
+                    <i class="fa fa-info-circle"
+                       title="Allows anonymous users to push to this repository if anonymous access is granted. If &quot;Global&quot; is selected the option set under your global settings is used."></i>
+                </div>
+                <div class="pure-control-group">
+                    <label for="LinksUseGlobal">Use global linkify settings</label>
+                    <input checked="checked" data-val="true"
+                           data-val-required="The Use global linkify settings field is required." id="LinksUseGlobal"
+                           name="LinksUseGlobal"
+                           onClick="document.getElementById(&#39;LinksRegex&#39;).disabled = this.checked; document.getElementById(&#39;LinksUrl&#39;).disabled = this.checked"
+                           type="checkbox" value="true"/><input name="LinksUseGlobal" type="hidden" value="false"/>
+                </div>
+                <div class="pure-control-group">
+                    <label for="LinksRegex">Link Regex</label>
+                    <input class="medium" data-val="true" data-val-remote="&#39;Link Regex&#39; is invalid."
+                           data-val-remote-additionalfields="*.LinksRegex"
+                           data-val-remote-url="/Validation/IsValidRegex" disabled="" id="LinksRegex" name="LinksRegex"
+                           type="text" value=""/><span class="field-validation-valid" data-valmsg-for="LinksRegex"
+                                                       data-valmsg-replace="true"></span>
+                </div>
+                <div class="pure-control-group">
+                    <label for="LinksUrl">Link Url</label>
+                    <input class="medium" disabled="" id="LinksUrl" name="LinksUrl" type="text" value=""/>
+                    <i class="fa fa-info-circle" title="This uses the C# regex library to parse the provided regex. Capturing groups are supported.
 
 The pattern is {0} for the whole regex match.
 {1} onwards is each capturing group.
 
 The regular C# string formatting rules apply: To get {} in your link you need to write {{}}."></i>
-        </div>
-            <div class="pure-control-group checkboxlist">
-                <label for="Users">Contributors</label>
-                <span>
-                    <input id="PostedSelectedUsers0" name="PostedSelectedUsers" type="checkbox" value="059ec0e5-26a3-43fe-b4b2-b4a3bb676c56" /><label for="PostedSelectedUsers0">Wyss Peter</label><br/><input id="PostedSelectedUsers1" name="PostedSelectedUsers" type="checkbox" value="0bc06d56-550c-49d2-959b-20a83ca83381" /><label for="PostedSelectedUsers1">tec tec</label><br/><input id="PostedSelectedUsers2" name="PostedSelectedUsers" type="checkbox" value="1c797e17-a14b-429a-880a-2fb267d130af" /><label for="PostedSelectedUsers2">csa csa</label><br/><input id="PostedSelectedUsers3" name="PostedSelectedUsers" type="checkbox" value="20f9ce5f-a398-4df2-9589-8caef23d2956" /><label for="PostedSelectedUsers3">Meyer Kuno</label><br/><input id="PostedSelectedUsers4" name="PostedSelectedUsers" type="checkbox" value="29b3e38c-6df4-4177-b795-cfe97b5cd5a5" /><label for="PostedSelectedUsers4">Simon Kurmann</label><br/><input id="PostedSelectedUsers5" name="PostedSelectedUsers" type="checkbox" value="2ff5fc2a-df05-4a76-b58a-cf3140c93b00" /><label for="PostedSelectedUsers5">Tobias Schoch</label><br/><input id="PostedSelectedUsers6" name="PostedSelectedUsers" type="checkbox" value="38a0f5a1-069d-4534-a334-f735a9bf2784" /><label for="PostedSelectedUsers6">srs srs</label><br/><input id="PostedSelectedUsers7" name="PostedSelectedUsers" type="checkbox" value="3eb9995e-99e3-425a-b978-1409bdd61fb6" /><label for="PostedSelectedUsers7">admin admin</label><br/><input id="PostedSelectedUsers8" name="PostedSelectedUsers" type="checkbox" value="4907c972-71ca-49b6-b355-e063320446b4" /><label for="PostedSelectedUsers8">Jonas Eichenberger</label><br/><input id="PostedSelectedUsers9" name="PostedSelectedUsers" type="checkbox" value="4d0286b8-4d38-4fa4-82be-ade7aecd68b4" /><label for="PostedSelectedUsers9">kam kam</label><br/><input id="PostedSelectedUsers10" name="PostedSelectedUsers" type="checkbox" value="4fdf678d-3f67-48ed-82b9-a804f178a2bb" /><label for="PostedSelectedUsers10">bsi bsi</label><br/><input id="PostedSelectedUsers11" name="PostedSelectedUsers" type="checkbox" value="57395c45-96ce-4993-a042-8c2e20040046" /><label for="PostedSelectedUsers11">rad rad</label><br/><input id="PostedSelectedUsers12" name="PostedSelectedUsers" type="checkbox" value="5c1afffb-d269-469d-afc1-f509505fe48b" /><label for="PostedSelectedUsers12">Schibli Christian</label><br/><input id="PostedSelectedUsers13" name="PostedSelectedUsers" type="checkbox" value="65ad5c6f-a074-45a2-bfcb-13f9fd8b0b8c" /><label for="PostedSelectedUsers13">Denise Wuest</label><br/><input id="PostedSelectedUsers14" name="PostedSelectedUsers" type="checkbox" value="663d6a7d-1453-44da-b2ca-9849db2d5912" /><label for="PostedSelectedUsers14">and and</label><br/><input id="PostedSelectedUsers15" name="PostedSelectedUsers" type="checkbox" value="6814e0c9-0077-42cb-949b-d73b6c6e4082" /><label for="PostedSelectedUsers15">Andreas Glauser</label><br/><input id="PostedSelectedUsers16" name="PostedSelectedUsers" type="checkbox" value="68720d01-036c-4410-9c8b-d01fbf34c4b8" /><label for="PostedSelectedUsers16">Build Server</label><br/><input id="PostedSelectedUsers17" name="PostedSelectedUsers" type="checkbox" value="6ee366ea-8f71-41cb-ac98-4430fcc04529" /><label for="PostedSelectedUsers17">tom tom</label><br/><input id="PostedSelectedUsers18" name="PostedSelectedUsers" type="checkbox" value="71fd7c40-0b75-4a74-93d9-ce4b5f1560c0" /><label for="PostedSelectedUsers18">Michael Zurmuehle</label><br/><input id="PostedSelectedUsers19" name="PostedSelectedUsers" type="checkbox" value="73bdfdd3-c563-4670-875e-ba034a359f2d" /><label for="PostedSelectedUsers19">Wangler André</label><br/><input id="PostedSelectedUsers20" name="PostedSelectedUsers" type="checkbox" value="750658ae-90a8-4617-97ee-81d1d7eab388" /><label for="PostedSelectedUsers20">Manuel Brun</label><br/><input id="PostedSelectedUsers21" name="PostedSelectedUsers" type="checkbox" value="79024c38-5d02-4f32-903c-5050e47c2875" /><label for="PostedSelectedUsers21">urm urm</label><br/><input id="PostedSelectedUsers22" name="PostedSelectedUsers" type="checkbox" value="7aff3796-8cf9-4243-9027-c1de0d131647" /><label for="PostedSelectedUsers22">Pirrotta Walter</label><br/><input id="PostedSelectedUsers23" name="PostedSelectedUsers" type="checkbox" value="7cf35197-eca7-4498-8916-791aba69372d" /><label for="PostedSelectedUsers23">Hoffmann  Marco</label><br/><input id="PostedSelectedUsers24" name="PostedSelectedUsers" type="checkbox" value="801dbf86-07c7-4135-b2bd-866889b9ff75" /><label for="PostedSelectedUsers24">mbu mbu</label><br/><input id="PostedSelectedUsers25" name="PostedSelectedUsers" type="checkbox" value="88e664b9-86b2-41d4-b922-79f82dd55715" /><label for="PostedSelectedUsers25">bni bni</label><br/><input id="PostedSelectedUsers26" name="PostedSelectedUsers" type="checkbox" value="8a21ec17-f441-4ed3-b3ab-4eab38715dcd" /><label for="PostedSelectedUsers26">aif aif</label><br/><input id="PostedSelectedUsers27" name="PostedSelectedUsers" type="checkbox" value="8a7fbe06-6856-4ea2-8348-54d843e3f401" /><label for="PostedSelectedUsers27">sfr sfr</label><br/><input id="PostedSelectedUsers28" name="PostedSelectedUsers" type="checkbox" value="979c4a74-b7fe-4f50-871c-4edda8a78e34" /><label for="PostedSelectedUsers28">Praveenth Sanmugarajah</label><br/><input id="PostedSelectedUsers29" name="PostedSelectedUsers" type="checkbox" value="97cb2810-42ad-4216-8f66-9e08ef8950c7" /><label for="PostedSelectedUsers29">srm srm</label><br/><input id="PostedSelectedUsers30" name="PostedSelectedUsers" type="checkbox" value="9b1b1dcb-79f7-40ad-a131-92562fc26d62" /><label for="PostedSelectedUsers30">Gregory Wyss</label><br/><input id="PostedSelectedUsers31" name="PostedSelectedUsers" type="checkbox" value="9f49eb86-cdc3-4b89-80f6-6491bc6a41e5" /><label for="PostedSelectedUsers31">Wyder Stephan</label><br/><input id="PostedSelectedUsers32" name="PostedSelectedUsers" type="checkbox" value="bac87e91-9194-487d-947d-a15177f1d55c" /><label for="PostedSelectedUsers32">scs scs</label><br/><input id="PostedSelectedUsers33" name="PostedSelectedUsers" type="checkbox" value="c0faca6a-c304-498e-af3a-9be4de6630a8" /><label for="PostedSelectedUsers33">asu asu</label><br/><input id="PostedSelectedUsers34" name="PostedSelectedUsers" type="checkbox" value="c772fb2a-0af7-416e-a1d0-3b35b11248e3" /><label for="PostedSelectedUsers34">fda fda</label><br/><input id="PostedSelectedUsers35" name="PostedSelectedUsers" type="checkbox" value="c8e4a8b3-127e-4fcb-bccf-03841e71085c" /><label for="PostedSelectedUsers35">phu phu</label><br/><input id="PostedSelectedUsers36" name="PostedSelectedUsers" type="checkbox" value="c97511a9-f6b3-430c-af70-925105929025" /><label for="PostedSelectedUsers36">had had</label><br/><input id="PostedSelectedUsers37" name="PostedSelectedUsers" type="checkbox" value="d60dc903-0ae7-4a8e-b36e-b42958176aca" /><label for="PostedSelectedUsers37">mju mju</label><br/><input id="PostedSelectedUsers38" name="PostedSelectedUsers" type="checkbox" value="d74fc5a0-f538-41c3-b20e-520d1d04f1c9" /><label for="PostedSelectedUsers38">lem lem</label><br/>
+                </div>
+                <div class="pure-control-group checkboxlist">
+                    <label for="Users">Contributors</label>
+                    <span>
+                    <input id="PostedSelectedUsers0" name="PostedSelectedUsers" type="checkbox"
+                           value="059ec0e5-26a3-43fe-b4b2-b4a3bb676c56"/><label
+                            for="PostedSelectedUsers0">Wyss Peter</label><br/><input id="PostedSelectedUsers1"
+                                                                                     name="PostedSelectedUsers"
+                                                                                     type="checkbox"
+                                                                                     value="0bc06d56-550c-49d2-959b-20a83ca83381"/><label
+                            for="PostedSelectedUsers1">tec tec</label><br/><input id="PostedSelectedUsers2"
+                                                                                  name="PostedSelectedUsers"
+                                                                                  type="checkbox"
+                                                                                  value="1c797e17-a14b-429a-880a-2fb267d130af"/><label
+                            for="PostedSelectedUsers2">csa csa</label><br/><input id="PostedSelectedUsers3"
+                                                                                  name="PostedSelectedUsers"
+                                                                                  type="checkbox"
+                                                                                  value="20f9ce5f-a398-4df2-9589-8caef23d2956"/><label
+                            for="PostedSelectedUsers3">Meyer Kuno</label><br/><input id="PostedSelectedUsers4"
+                                                                                     name="PostedSelectedUsers"
+                                                                                     type="checkbox"
+                                                                                     value="29b3e38c-6df4-4177-b795-cfe97b5cd5a5"/><label
+                            for="PostedSelectedUsers4">Simon Kurmann</label><br/><input id="PostedSelectedUsers5"
+                                                                                        name="PostedSelectedUsers"
+                                                                                        type="checkbox"
+                                                                                        value="2ff5fc2a-df05-4a76-b58a-cf3140c93b00"/><label
+                            for="PostedSelectedUsers5">Tobias Schoch</label><br/><input id="PostedSelectedUsers6"
+                                                                                        name="PostedSelectedUsers"
+                                                                                        type="checkbox"
+                                                                                        value="38a0f5a1-069d-4534-a334-f735a9bf2784"/><label
+                            for="PostedSelectedUsers6">srs srs</label><br/><input id="PostedSelectedUsers7"
+                                                                                  name="PostedSelectedUsers"
+                                                                                  type="checkbox"
+                                                                                  value="3eb9995e-99e3-425a-b978-1409bdd61fb6"/><label
+                            for="PostedSelectedUsers7">admin admin</label><br/><input id="PostedSelectedUsers8"
+                                                                                      name="PostedSelectedUsers"
+                                                                                      type="checkbox"
+                                                                                      value="4907c972-71ca-49b6-b355-e063320446b4"/><label
+                            for="PostedSelectedUsers8">Jonas Eichenberger</label><br/><input id="PostedSelectedUsers9"
+                                                                                             name="PostedSelectedUsers"
+                                                                                             type="checkbox"
+                                                                                             value="4d0286b8-4d38-4fa4-82be-ade7aecd68b4"/><label
+                            for="PostedSelectedUsers9">kam kam</label><br/><input id="PostedSelectedUsers10"
+                                                                                  name="PostedSelectedUsers"
+                                                                                  type="checkbox"
+                                                                                  value="4fdf678d-3f67-48ed-82b9-a804f178a2bb"/><label
+                            for="PostedSelectedUsers10">bsi bsi</label><br/><input id="PostedSelectedUsers11"
+                                                                                   name="PostedSelectedUsers"
+                                                                                   type="checkbox"
+                                                                                   value="57395c45-96ce-4993-a042-8c2e20040046"/><label
+                            for="PostedSelectedUsers11">rad rad</label><br/><input id="PostedSelectedUsers12"
+                                                                                   name="PostedSelectedUsers"
+                                                                                   type="checkbox"
+                                                                                   value="5c1afffb-d269-469d-afc1-f509505fe48b"/><label
+                            for="PostedSelectedUsers12">Schibli Christian</label><br/><input id="PostedSelectedUsers13"
+                                                                                             name="PostedSelectedUsers"
+                                                                                             type="checkbox"
+                                                                                             value="65ad5c6f-a074-45a2-bfcb-13f9fd8b0b8c"/><label
+                            for="PostedSelectedUsers13">Denise Wuest</label><br/><input id="PostedSelectedUsers14"
+                                                                                        name="PostedSelectedUsers"
+                                                                                        type="checkbox"
+                                                                                        value="663d6a7d-1453-44da-b2ca-9849db2d5912"/><label
+                            for="PostedSelectedUsers14">and and</label><br/><input id="PostedSelectedUsers15"
+                                                                                   name="PostedSelectedUsers"
+                                                                                   type="checkbox"
+                                                                                   value="6814e0c9-0077-42cb-949b-d73b6c6e4082"/><label
+                            for="PostedSelectedUsers15">Andreas Glauser</label><br/><input id="PostedSelectedUsers16"
+                                                                                           name="PostedSelectedUsers"
+                                                                                           type="checkbox"
+                                                                                           value="68720d01-036c-4410-9c8b-d01fbf34c4b8"/><label
+                            for="PostedSelectedUsers16">Build Server</label><br/><input id="PostedSelectedUsers17"
+                                                                                        name="PostedSelectedUsers"
+                                                                                        type="checkbox"
+                                                                                        value="6ee366ea-8f71-41cb-ac98-4430fcc04529"/><label
+                            for="PostedSelectedUsers17">tom tom</label><br/><input id="PostedSelectedUsers18"
+                                                                                   name="PostedSelectedUsers"
+                                                                                   type="checkbox"
+                                                                                   value="71fd7c40-0b75-4a74-93d9-ce4b5f1560c0"/><label
+                            for="PostedSelectedUsers18">Michael Zurmuehle</label><br/><input id="PostedSelectedUsers19"
+                                                                                             name="PostedSelectedUsers"
+                                                                                             type="checkbox"
+                                                                                             value="73bdfdd3-c563-4670-875e-ba034a359f2d"/><label
+                            for="PostedSelectedUsers19">Wangler André</label><br/><input id="PostedSelectedUsers20"
+                                                                                         name="PostedSelectedUsers"
+                                                                                         type="checkbox"
+                                                                                         value="750658ae-90a8-4617-97ee-81d1d7eab388"/><label
+                            for="PostedSelectedUsers20">Manuel Brun</label><br/><input id="PostedSelectedUsers21"
+                                                                                       name="PostedSelectedUsers"
+                                                                                       type="checkbox"
+                                                                                       value="79024c38-5d02-4f32-903c-5050e47c2875"/><label
+                            for="PostedSelectedUsers21">urm urm</label><br/><input id="PostedSelectedUsers22"
+                                                                                   name="PostedSelectedUsers"
+                                                                                   type="checkbox"
+                                                                                   value="7aff3796-8cf9-4243-9027-c1de0d131647"/><label
+                            for="PostedSelectedUsers22">Pirrotta Walter</label><br/><input id="PostedSelectedUsers23"
+                                                                                           name="PostedSelectedUsers"
+                                                                                           type="checkbox"
+                                                                                           value="7cf35197-eca7-4498-8916-791aba69372d"/><label
+                            for="PostedSelectedUsers23">Hoffmann  Marco</label><br/><input id="PostedSelectedUsers24"
+                                                                                           name="PostedSelectedUsers"
+                                                                                           type="checkbox"
+                                                                                           value="801dbf86-07c7-4135-b2bd-866889b9ff75"/><label
+                            for="PostedSelectedUsers24">mbu mbu</label><br/><input id="PostedSelectedUsers25"
+                                                                                   name="PostedSelectedUsers"
+                                                                                   type="checkbox"
+                                                                                   value="88e664b9-86b2-41d4-b922-79f82dd55715"/><label
+                            for="PostedSelectedUsers25">bni bni</label><br/><input id="PostedSelectedUsers26"
+                                                                                   name="PostedSelectedUsers"
+                                                                                   type="checkbox"
+                                                                                   value="8a21ec17-f441-4ed3-b3ab-4eab38715dcd"/><label
+                            for="PostedSelectedUsers26">aif aif</label><br/><input id="PostedSelectedUsers27"
+                                                                                   name="PostedSelectedUsers"
+                                                                                   type="checkbox"
+                                                                                   value="8a7fbe06-6856-4ea2-8348-54d843e3f401"/><label
+                            for="PostedSelectedUsers27">sfr sfr</label><br/><input id="PostedSelectedUsers28"
+                                                                                   name="PostedSelectedUsers"
+                                                                                   type="checkbox"
+                                                                                   value="979c4a74-b7fe-4f50-871c-4edda8a78e34"/><label
+                            for="PostedSelectedUsers28">Praveenth Sanmugarajah</label><br/><input
+                            id="PostedSelectedUsers29" name="PostedSelectedUsers" type="checkbox"
+                            value="97cb2810-42ad-4216-8f66-9e08ef8950c7"/><label
+                            for="PostedSelectedUsers29">srm srm</label><br/><input id="PostedSelectedUsers30"
+                                                                                   name="PostedSelectedUsers"
+                                                                                   type="checkbox"
+                                                                                   value="9b1b1dcb-79f7-40ad-a131-92562fc26d62"/><label
+                            for="PostedSelectedUsers30">Gregory Wyss</label><br/><input id="PostedSelectedUsers31"
+                                                                                        name="PostedSelectedUsers"
+                                                                                        type="checkbox"
+                                                                                        value="9f49eb86-cdc3-4b89-80f6-6491bc6a41e5"/><label
+                            for="PostedSelectedUsers31">Wyder Stephan</label><br/><input id="PostedSelectedUsers32"
+                                                                                         name="PostedSelectedUsers"
+                                                                                         type="checkbox"
+                                                                                         value="bac87e91-9194-487d-947d-a15177f1d55c"/><label
+                            for="PostedSelectedUsers32">scs scs</label><br/><input id="PostedSelectedUsers33"
+                                                                                   name="PostedSelectedUsers"
+                                                                                   type="checkbox"
+                                                                                   value="c0faca6a-c304-498e-af3a-9be4de6630a8"/><label
+                            for="PostedSelectedUsers33">asu asu</label><br/><input id="PostedSelectedUsers34"
+                                                                                   name="PostedSelectedUsers"
+                                                                                   type="checkbox"
+                                                                                   value="c772fb2a-0af7-416e-a1d0-3b35b11248e3"/><label
+                            for="PostedSelectedUsers34">fda fda</label><br/><input id="PostedSelectedUsers35"
+                                                                                   name="PostedSelectedUsers"
+                                                                                   type="checkbox"
+                                                                                   value="c8e4a8b3-127e-4fcb-bccf-03841e71085c"/><label
+                            for="PostedSelectedUsers35">phu phu</label><br/><input id="PostedSelectedUsers36"
+                                                                                   name="PostedSelectedUsers"
+                                                                                   type="checkbox"
+                                                                                   value="c97511a9-f6b3-430c-af70-925105929025"/><label
+                            for="PostedSelectedUsers36">had had</label><br/><input id="PostedSelectedUsers37"
+                                                                                   name="PostedSelectedUsers"
+                                                                                   type="checkbox"
+                                                                                   value="d60dc903-0ae7-4a8e-b36e-b42958176aca"/><label
+                            for="PostedSelectedUsers37">mju mju</label><br/><input id="PostedSelectedUsers38"
+                                                                                   name="PostedSelectedUsers"
+                                                                                   type="checkbox"
+                                                                                   value="d74fc5a0-f538-41c3-b20e-520d1d04f1c9"/><label
+                            for="PostedSelectedUsers38">lem lem</label><br/>
                 </span>
-                <i class="fa fa-info-circle" title="Users have access to the repository. They can clone, push or pull and view repository metadata."></i>
-            </div>
+                    <i class="fa fa-info-circle"
+                       title="Users have access to the repository. They can clone, push or pull and view repository metadata."></i>
+                </div>
 
-            <div class="pure-control-group checkboxlist">
-                <label for="Administrators">Administrators</label>
-                <span>
-                    <input id="PostedSelectedAdministrators39" name="PostedSelectedAdministrators" type="checkbox" value="059ec0e5-26a3-43fe-b4b2-b4a3bb676c56" /><label for="PostedSelectedAdministrators39">Wyss Peter</label><br/><input id="PostedSelectedAdministrators40" name="PostedSelectedAdministrators" type="checkbox" value="0bc06d56-550c-49d2-959b-20a83ca83381" /><label for="PostedSelectedAdministrators40">tec tec</label><br/><input id="PostedSelectedAdministrators41" name="PostedSelectedAdministrators" type="checkbox" value="1c797e17-a14b-429a-880a-2fb267d130af" /><label for="PostedSelectedAdministrators41">csa csa</label><br/><input id="PostedSelectedAdministrators42" name="PostedSelectedAdministrators" type="checkbox" value="20f9ce5f-a398-4df2-9589-8caef23d2956" /><label for="PostedSelectedAdministrators42">Meyer Kuno</label><br/><input id="PostedSelectedAdministrators43" name="PostedSelectedAdministrators" type="checkbox" value="29b3e38c-6df4-4177-b795-cfe97b5cd5a5" /><label for="PostedSelectedAdministrators43">Simon Kurmann</label><br/><input checked="checked" id="PostedSelectedAdministrators44" name="PostedSelectedAdministrators" type="checkbox" value="2ff5fc2a-df05-4a76-b58a-cf3140c93b00" /><label for="PostedSelectedAdministrators44">Tobias Schoch</label><br/><input id="PostedSelectedAdministrators45" name="PostedSelectedAdministrators" type="checkbox" value="38a0f5a1-069d-4534-a334-f735a9bf2784" /><label for="PostedSelectedAdministrators45">srs srs</label><br/><input id="PostedSelectedAdministrators46" name="PostedSelectedAdministrators" type="checkbox" value="3eb9995e-99e3-425a-b978-1409bdd61fb6" /><label for="PostedSelectedAdministrators46">admin admin</label><br/><input id="PostedSelectedAdministrators47" name="PostedSelectedAdministrators" type="checkbox" value="4907c972-71ca-49b6-b355-e063320446b4" /><label for="PostedSelectedAdministrators47">Jonas Eichenberger</label><br/><input id="PostedSelectedAdministrators48" name="PostedSelectedAdministrators" type="checkbox" value="4d0286b8-4d38-4fa4-82be-ade7aecd68b4" /><label for="PostedSelectedAdministrators48">kam kam</label><br/><input id="PostedSelectedAdministrators49" name="PostedSelectedAdministrators" type="checkbox" value="4fdf678d-3f67-48ed-82b9-a804f178a2bb" /><label for="PostedSelectedAdministrators49">bsi bsi</label><br/><input id="PostedSelectedAdministrators50" name="PostedSelectedAdministrators" type="checkbox" value="57395c45-96ce-4993-a042-8c2e20040046" /><label for="PostedSelectedAdministrators50">rad rad</label><br/><input id="PostedSelectedAdministrators51" name="PostedSelectedAdministrators" type="checkbox" value="5c1afffb-d269-469d-afc1-f509505fe48b" /><label for="PostedSelectedAdministrators51">Schibli Christian</label><br/><input id="PostedSelectedAdministrators52" name="PostedSelectedAdministrators" type="checkbox" value="65ad5c6f-a074-45a2-bfcb-13f9fd8b0b8c" /><label for="PostedSelectedAdministrators52">Denise Wuest</label><br/><input id="PostedSelectedAdministrators53" name="PostedSelectedAdministrators" type="checkbox" value="663d6a7d-1453-44da-b2ca-9849db2d5912" /><label for="PostedSelectedAdministrators53">and and</label><br/><input id="PostedSelectedAdministrators54" name="PostedSelectedAdministrators" type="checkbox" value="6814e0c9-0077-42cb-949b-d73b6c6e4082" /><label for="PostedSelectedAdministrators54">Andreas Glauser</label><br/><input id="PostedSelectedAdministrators55" name="PostedSelectedAdministrators" type="checkbox" value="68720d01-036c-4410-9c8b-d01fbf34c4b8" /><label for="PostedSelectedAdministrators55">Build Server</label><br/><input id="PostedSelectedAdministrators56" name="PostedSelectedAdministrators" type="checkbox" value="6ee366ea-8f71-41cb-ac98-4430fcc04529" /><label for="PostedSelectedAdministrators56">tom tom</label><br/><input id="PostedSelectedAdministrators57" name="PostedSelectedAdministrators" type="checkbox" value="71fd7c40-0b75-4a74-93d9-ce4b5f1560c0" /><label for="PostedSelectedAdministrators57">Michael Zurmuehle</label><br/><input id="PostedSelectedAdministrators58" name="PostedSelectedAdministrators" type="checkbox" value="73bdfdd3-c563-4670-875e-ba034a359f2d" /><label for="PostedSelectedAdministrators58">Wangler André</label><br/><input id="PostedSelectedAdministrators59" name="PostedSelectedAdministrators" type="checkbox" value="750658ae-90a8-4617-97ee-81d1d7eab388" /><label for="PostedSelectedAdministrators59">Manuel Brun</label><br/><input id="PostedSelectedAdministrators60" name="PostedSelectedAdministrators" type="checkbox" value="79024c38-5d02-4f32-903c-5050e47c2875" /><label for="PostedSelectedAdministrators60">urm urm</label><br/><input id="PostedSelectedAdministrators61" name="PostedSelectedAdministrators" type="checkbox" value="7aff3796-8cf9-4243-9027-c1de0d131647" /><label for="PostedSelectedAdministrators61">Pirrotta Walter</label><br/><input id="PostedSelectedAdministrators62" name="PostedSelectedAdministrators" type="checkbox" value="7cf35197-eca7-4498-8916-791aba69372d" /><label for="PostedSelectedAdministrators62">Hoffmann  Marco</label><br/><input id="PostedSelectedAdministrators63" name="PostedSelectedAdministrators" type="checkbox" value="801dbf86-07c7-4135-b2bd-866889b9ff75" /><label for="PostedSelectedAdministrators63">mbu mbu</label><br/><input id="PostedSelectedAdministrators64" name="PostedSelectedAdministrators" type="checkbox" value="88e664b9-86b2-41d4-b922-79f82dd55715" /><label for="PostedSelectedAdministrators64">bni bni</label><br/><input id="PostedSelectedAdministrators65" name="PostedSelectedAdministrators" type="checkbox" value="8a21ec17-f441-4ed3-b3ab-4eab38715dcd" /><label for="PostedSelectedAdministrators65">aif aif</label><br/><input id="PostedSelectedAdministrators66" name="PostedSelectedAdministrators" type="checkbox" value="8a7fbe06-6856-4ea2-8348-54d843e3f401" /><label for="PostedSelectedAdministrators66">sfr sfr</label><br/><input id="PostedSelectedAdministrators67" name="PostedSelectedAdministrators" type="checkbox" value="979c4a74-b7fe-4f50-871c-4edda8a78e34" /><label for="PostedSelectedAdministrators67">Praveenth Sanmugarajah</label><br/><input id="PostedSelectedAdministrators68" name="PostedSelectedAdministrators" type="checkbox" value="97cb2810-42ad-4216-8f66-9e08ef8950c7" /><label for="PostedSelectedAdministrators68">srm srm</label><br/><input id="PostedSelectedAdministrators69" name="PostedSelectedAdministrators" type="checkbox" value="9b1b1dcb-79f7-40ad-a131-92562fc26d62" /><label for="PostedSelectedAdministrators69">Gregory Wyss</label><br/><input id="PostedSelectedAdministrators70" name="PostedSelectedAdministrators" type="checkbox" value="9f49eb86-cdc3-4b89-80f6-6491bc6a41e5" /><label for="PostedSelectedAdministrators70">Wyder Stephan</label><br/><input id="PostedSelectedAdministrators71" name="PostedSelectedAdministrators" type="checkbox" value="bac87e91-9194-487d-947d-a15177f1d55c" /><label for="PostedSelectedAdministrators71">scs scs</label><br/><input id="PostedSelectedAdministrators72" name="PostedSelectedAdministrators" type="checkbox" value="c0faca6a-c304-498e-af3a-9be4de6630a8" /><label for="PostedSelectedAdministrators72">asu asu</label><br/><input id="PostedSelectedAdministrators73" name="PostedSelectedAdministrators" type="checkbox" value="c772fb2a-0af7-416e-a1d0-3b35b11248e3" /><label for="PostedSelectedAdministrators73">fda fda</label><br/><input id="PostedSelectedAdministrators74" name="PostedSelectedAdministrators" type="checkbox" value="c8e4a8b3-127e-4fcb-bccf-03841e71085c" /><label for="PostedSelectedAdministrators74">phu phu</label><br/><input id="PostedSelectedAdministrators75" name="PostedSelectedAdministrators" type="checkbox" value="c97511a9-f6b3-430c-af70-925105929025" /><label for="PostedSelectedAdministrators75">had had</label><br/><input id="PostedSelectedAdministrators76" name="PostedSelectedAdministrators" type="checkbox" value="d60dc903-0ae7-4a8e-b36e-b42958176aca" /><label for="PostedSelectedAdministrators76">mju mju</label><br/><input id="PostedSelectedAdministrators77" name="PostedSelectedAdministrators" type="checkbox" value="d74fc5a0-f538-41c3-b20e-520d1d04f1c9" /><label for="PostedSelectedAdministrators77">lem lem</label><br/>
+                <div class="pure-control-group checkboxlist">
+                    <label for="Administrators">Administrators</label>
+                    <span>
+                    <input id="PostedSelectedAdministrators39" name="PostedSelectedAdministrators" type="checkbox"
+                           value="059ec0e5-26a3-43fe-b4b2-b4a3bb676c56"/><label for="PostedSelectedAdministrators39">Wyss Peter</label><br/><input
+                            id="PostedSelectedAdministrators40" name="PostedSelectedAdministrators" type="checkbox"
+                            value="0bc06d56-550c-49d2-959b-20a83ca83381"/><label for="PostedSelectedAdministrators40">tec tec</label><br/><input
+                            id="PostedSelectedAdministrators41" name="PostedSelectedAdministrators" type="checkbox"
+                            value="1c797e17-a14b-429a-880a-2fb267d130af"/><label for="PostedSelectedAdministrators41">csa csa</label><br/><input
+                            id="PostedSelectedAdministrators42" name="PostedSelectedAdministrators" type="checkbox"
+                            value="20f9ce5f-a398-4df2-9589-8caef23d2956"/><label for="PostedSelectedAdministrators42">Meyer Kuno</label><br/><input
+                            id="PostedSelectedAdministrators43" name="PostedSelectedAdministrators" type="checkbox"
+                            value="29b3e38c-6df4-4177-b795-cfe97b5cd5a5"/><label for="PostedSelectedAdministrators43">Simon Kurmann</label><br/><input
+                            checked="checked" id="PostedSelectedAdministrators44" name="PostedSelectedAdministrators"
+                            type="checkbox" value="2ff5fc2a-df05-4a76-b58a-cf3140c93b00"/><label
+                            for="PostedSelectedAdministrators44">Tobias Schoch</label><br/><input
+                            id="PostedSelectedAdministrators45" name="PostedSelectedAdministrators" type="checkbox"
+                            value="38a0f5a1-069d-4534-a334-f735a9bf2784"/><label for="PostedSelectedAdministrators45">srs srs</label><br/><input
+                            id="PostedSelectedAdministrators46" name="PostedSelectedAdministrators" type="checkbox"
+                            value="3eb9995e-99e3-425a-b978-1409bdd61fb6"/><label for="PostedSelectedAdministrators46">admin admin</label><br/><input
+                            id="PostedSelectedAdministrators47" name="PostedSelectedAdministrators" type="checkbox"
+                            value="4907c972-71ca-49b6-b355-e063320446b4"/><label for="PostedSelectedAdministrators47">Jonas Eichenberger</label><br/><input
+                            id="PostedSelectedAdministrators48" name="PostedSelectedAdministrators" type="checkbox"
+                            value="4d0286b8-4d38-4fa4-82be-ade7aecd68b4"/><label for="PostedSelectedAdministrators48">kam kam</label><br/><input
+                            id="PostedSelectedAdministrators49" name="PostedSelectedAdministrators" type="checkbox"
+                            value="4fdf678d-3f67-48ed-82b9-a804f178a2bb"/><label for="PostedSelectedAdministrators49">bsi bsi</label><br/><input
+                            id="PostedSelectedAdministrators50" name="PostedSelectedAdministrators" type="checkbox"
+                            value="57395c45-96ce-4993-a042-8c2e20040046"/><label for="PostedSelectedAdministrators50">rad rad</label><br/><input
+                            id="PostedSelectedAdministrators51" name="PostedSelectedAdministrators" type="checkbox"
+                            value="5c1afffb-d269-469d-afc1-f509505fe48b"/><label for="PostedSelectedAdministrators51">Schibli Christian</label><br/><input
+                            id="PostedSelectedAdministrators52" name="PostedSelectedAdministrators" type="checkbox"
+                            value="65ad5c6f-a074-45a2-bfcb-13f9fd8b0b8c"/><label for="PostedSelectedAdministrators52">Denise Wuest</label><br/><input
+                            id="PostedSelectedAdministrators53" name="PostedSelectedAdministrators" type="checkbox"
+                            value="663d6a7d-1453-44da-b2ca-9849db2d5912"/><label for="PostedSelectedAdministrators53">and and</label><br/><input
+                            id="PostedSelectedAdministrators54" name="PostedSelectedAdministrators" type="checkbox"
+                            value="6814e0c9-0077-42cb-949b-d73b6c6e4082"/><label for="PostedSelectedAdministrators54">Andreas Glauser</label><br/><input
+                            id="PostedSelectedAdministrators55" name="PostedSelectedAdministrators" type="checkbox"
+                            value="68720d01-036c-4410-9c8b-d01fbf34c4b8"/><label for="PostedSelectedAdministrators55">Build Server</label><br/><input
+                            id="PostedSelectedAdministrators56" name="PostedSelectedAdministrators" type="checkbox"
+                            value="6ee366ea-8f71-41cb-ac98-4430fcc04529"/><label for="PostedSelectedAdministrators56">tom tom</label><br/><input
+                            id="PostedSelectedAdministrators57" name="PostedSelectedAdministrators" type="checkbox"
+                            value="71fd7c40-0b75-4a74-93d9-ce4b5f1560c0"/><label for="PostedSelectedAdministrators57">Michael Zurmuehle</label><br/><input
+                            id="PostedSelectedAdministrators58" name="PostedSelectedAdministrators" type="checkbox"
+                            value="73bdfdd3-c563-4670-875e-ba034a359f2d"/><label for="PostedSelectedAdministrators58">Wangler André</label><br/><input
+                            id="PostedSelectedAdministrators59" name="PostedSelectedAdministrators" type="checkbox"
+                            value="750658ae-90a8-4617-97ee-81d1d7eab388"/><label for="PostedSelectedAdministrators59">Manuel Brun</label><br/><input
+                            id="PostedSelectedAdministrators60" name="PostedSelectedAdministrators" type="checkbox"
+                            value="79024c38-5d02-4f32-903c-5050e47c2875"/><label for="PostedSelectedAdministrators60">urm urm</label><br/><input
+                            id="PostedSelectedAdministrators61" name="PostedSelectedAdministrators" type="checkbox"
+                            value="7aff3796-8cf9-4243-9027-c1de0d131647"/><label for="PostedSelectedAdministrators61">Pirrotta Walter</label><br/><input
+                            id="PostedSelectedAdministrators62" name="PostedSelectedAdministrators" type="checkbox"
+                            value="7cf35197-eca7-4498-8916-791aba69372d"/><label for="PostedSelectedAdministrators62">Hoffmann  Marco</label><br/><input
+                            id="PostedSelectedAdministrators63" name="PostedSelectedAdministrators" type="checkbox"
+                            value="801dbf86-07c7-4135-b2bd-866889b9ff75"/><label for="PostedSelectedAdministrators63">mbu mbu</label><br/><input
+                            id="PostedSelectedAdministrators64" name="PostedSelectedAdministrators" type="checkbox"
+                            value="88e664b9-86b2-41d4-b922-79f82dd55715"/><label for="PostedSelectedAdministrators64">bni bni</label><br/><input
+                            id="PostedSelectedAdministrators65" name="PostedSelectedAdministrators" type="checkbox"
+                            value="8a21ec17-f441-4ed3-b3ab-4eab38715dcd"/><label for="PostedSelectedAdministrators65">aif aif</label><br/><input
+                            id="PostedSelectedAdministrators66" name="PostedSelectedAdministrators" type="checkbox"
+                            value="8a7fbe06-6856-4ea2-8348-54d843e3f401"/><label for="PostedSelectedAdministrators66">sfr sfr</label><br/><input
+                            id="PostedSelectedAdministrators67" name="PostedSelectedAdministrators" type="checkbox"
+                            value="979c4a74-b7fe-4f50-871c-4edda8a78e34"/><label for="PostedSelectedAdministrators67">Praveenth Sanmugarajah</label><br/><input
+                            id="PostedSelectedAdministrators68" name="PostedSelectedAdministrators" type="checkbox"
+                            value="97cb2810-42ad-4216-8f66-9e08ef8950c7"/><label for="PostedSelectedAdministrators68">srm srm</label><br/><input
+                            id="PostedSelectedAdministrators69" name="PostedSelectedAdministrators" type="checkbox"
+                            value="9b1b1dcb-79f7-40ad-a131-92562fc26d62"/><label for="PostedSelectedAdministrators69">Gregory Wyss</label><br/><input
+                            id="PostedSelectedAdministrators70" name="PostedSelectedAdministrators" type="checkbox"
+                            value="9f49eb86-cdc3-4b89-80f6-6491bc6a41e5"/><label for="PostedSelectedAdministrators70">Wyder Stephan</label><br/><input
+                            id="PostedSelectedAdministrators71" name="PostedSelectedAdministrators" type="checkbox"
+                            value="bac87e91-9194-487d-947d-a15177f1d55c"/><label for="PostedSelectedAdministrators71">scs scs</label><br/><input
+                            id="PostedSelectedAdministrators72" name="PostedSelectedAdministrators" type="checkbox"
+                            value="c0faca6a-c304-498e-af3a-9be4de6630a8"/><label for="PostedSelectedAdministrators72">asu asu</label><br/><input
+                            id="PostedSelectedAdministrators73" name="PostedSelectedAdministrators" type="checkbox"
+                            value="c772fb2a-0af7-416e-a1d0-3b35b11248e3"/><label for="PostedSelectedAdministrators73">fda fda</label><br/><input
+                            id="PostedSelectedAdministrators74" name="PostedSelectedAdministrators" type="checkbox"
+                            value="c8e4a8b3-127e-4fcb-bccf-03841e71085c"/><label for="PostedSelectedAdministrators74">phu phu</label><br/><input
+                            id="PostedSelectedAdministrators75" name="PostedSelectedAdministrators" type="checkbox"
+                            value="c97511a9-f6b3-430c-af70-925105929025"/><label for="PostedSelectedAdministrators75">had had</label><br/><input
+                            id="PostedSelectedAdministrators76" name="PostedSelectedAdministrators" type="checkbox"
+                            value="d60dc903-0ae7-4a8e-b36e-b42958176aca"/><label for="PostedSelectedAdministrators76">mju mju</label><br/><input
+                            id="PostedSelectedAdministrators77" name="PostedSelectedAdministrators" type="checkbox"
+                            value="d74fc5a0-f538-41c3-b20e-520d1d04f1c9"/><label for="PostedSelectedAdministrators77">lem lem</label><br/>
                 </span>
-                <span class="field-validation-valid" data-valmsg-for="Administrators" data-valmsg-replace="true"></span>
-                <i class="fa fa-info-circle" title="Administrators have full access to the repository. They can modify repository metadata or delete the repository."></i>
-            </div>
+                    <span class="field-validation-valid" data-valmsg-for="Administrators"
+                          data-valmsg-replace="true"></span>
+                    <i class="fa fa-info-circle"
+                       title="Administrators have full access to the repository. They can modify repository metadata or delete the repository."></i>
+                </div>
 
-            <div class="pure-control-group checkboxlist">
-                <label for="Teams">Teams</label>
-                <span>
-                    <input id="PostedSelectedTeams78" name="PostedSelectedTeams" type="checkbox" value="065d5f42-b1c8-4594-9bcc-107f8a6fe011" /><label for="PostedSelectedTeams78">01_AmazonCloud</label><br/><input id="PostedSelectedTeams79" name="PostedSelectedTeams" type="checkbox" value="06a54bbf-b477-4a70-8f28-2b27bd9348e7" /><label for="PostedSelectedTeams79">06_ComProt</label><br/><input id="PostedSelectedTeams80" name="PostedSelectedTeams" type="checkbox" value="35a981ce-5307-48f2-8f53-e8209055cfdc" /><label for="PostedSelectedTeams80">07_HiPerfDb</label><br/><input id="PostedSelectedTeams81" name="PostedSelectedTeams" type="checkbox" value="501ad51e-fc19-4c5e-9989-c6f1f40191de" /><label for="PostedSelectedTeams81">04_MobileApp</label><br/><input id="PostedSelectedTeams82" name="PostedSelectedTeams" type="checkbox" value="5bf07061-7af7-4865-b93f-60d83b371f45" /><label for="PostedSelectedTeams82">T1163</label><br/><input id="PostedSelectedTeams83" name="PostedSelectedTeams" type="checkbox" value="5dceba68-6166-465d-9003-481e721d2492" /><label for="PostedSelectedTeams83">T1162</label><br/><input id="PostedSelectedTeams84" name="PostedSelectedTeams" type="checkbox" value="637c8069-9da4-44ea-8afe-72cf237e5679" /><label for="PostedSelectedTeams84">T1164</label><br/><input id="PostedSelectedTeams85" name="PostedSelectedTeams" type="checkbox" value="655ff394-6cad-4d31-a996-e1cbc00acdd6" /><label for="PostedSelectedTeams85">T1161</label><br/><input id="PostedSelectedTeams86" name="PostedSelectedTeams" type="checkbox" value="9a178a63-2da9-4148-b8a6-ab1032b0958b" /><label for="PostedSelectedTeams86">03_Win10UnivApp</label><br/><input id="PostedSelectedTeams87" name="PostedSelectedTeams" type="checkbox" value="b301a9f5-890d-4584-832c-dd49ee957962" /><label for="PostedSelectedTeams87">02_AzureCloud</label><br/><input id="PostedSelectedTeams88" name="PostedSelectedTeams" type="checkbox" value="d239999a-1782-46c1-a2d0-d22d28645039" /><label for="PostedSelectedTeams88">05_SensorGateway</label><br/>
+                <div class="pure-control-group checkboxlist">
+                    <label for="Teams">Teams</label>
+                    <span>
+                    <input id="PostedSelectedTeams78" name="PostedSelectedTeams" type="checkbox"
+                           value="065d5f42-b1c8-4594-9bcc-107f8a6fe011"/><label for="PostedSelectedTeams78">01_AmazonCloud</label><br/><input
+                            id="PostedSelectedTeams79" name="PostedSelectedTeams" type="checkbox"
+                            value="06a54bbf-b477-4a70-8f28-2b27bd9348e7"/><label
+                            for="PostedSelectedTeams79">06_ComProt</label><br/><input id="PostedSelectedTeams80"
+                                                                                      name="PostedSelectedTeams"
+                                                                                      type="checkbox"
+                                                                                      value="35a981ce-5307-48f2-8f53-e8209055cfdc"/><label
+                            for="PostedSelectedTeams80">07_HiPerfDb</label><br/><input id="PostedSelectedTeams81"
+                                                                                       name="PostedSelectedTeams"
+                                                                                       type="checkbox"
+                                                                                       value="501ad51e-fc19-4c5e-9989-c6f1f40191de"/><label
+                            for="PostedSelectedTeams81">04_MobileApp</label><br/><input id="PostedSelectedTeams82"
+                                                                                        name="PostedSelectedTeams"
+                                                                                        type="checkbox"
+                                                                                        value="5bf07061-7af7-4865-b93f-60d83b371f45"/><label
+                            for="PostedSelectedTeams82">T1163</label><br/><input id="PostedSelectedTeams83"
+                                                                                 name="PostedSelectedTeams"
+                                                                                 type="checkbox"
+                                                                                 value="5dceba68-6166-465d-9003-481e721d2492"/><label
+                            for="PostedSelectedTeams83">T1162</label><br/><input id="PostedSelectedTeams84"
+                                                                                 name="PostedSelectedTeams"
+                                                                                 type="checkbox"
+                                                                                 value="637c8069-9da4-44ea-8afe-72cf237e5679"/><label
+                            for="PostedSelectedTeams84">T1164</label><br/><input id="PostedSelectedTeams85"
+                                                                                 name="PostedSelectedTeams"
+                                                                                 type="checkbox"
+                                                                                 value="655ff394-6cad-4d31-a996-e1cbc00acdd6"/><label
+                            for="PostedSelectedTeams85">T1161</label><br/><input id="PostedSelectedTeams86"
+                                                                                 name="PostedSelectedTeams"
+                                                                                 type="checkbox"
+                                                                                 value="9a178a63-2da9-4148-b8a6-ab1032b0958b"/><label
+                            for="PostedSelectedTeams86">03_Win10UnivApp</label><br/><input id="PostedSelectedTeams87"
+                                                                                           name="PostedSelectedTeams"
+                                                                                           type="checkbox"
+                                                                                           value="b301a9f5-890d-4584-832c-dd49ee957962"/><label
+                            for="PostedSelectedTeams87">02_AzureCloud</label><br/><input id="PostedSelectedTeams88"
+                                                                                         name="PostedSelectedTeams"
+                                                                                         type="checkbox"
+                                                                                         value="d239999a-1782-46c1-a2d0-d22d28645039"/><label
+                            for="PostedSelectedTeams88">05_SensorGateway</label><br/>
                 </span>
-                <i class="fa fa-info-circle" title="Teams have access to the repository. They can clone, push or pull and view repository metadata. All users in the team can access this repository."></i>
-            </div>
+                    <i class="fa fa-info-circle"
+                       title="Teams have access to the repository. They can clone, push or pull and view repository metadata. All users in the team can access this repository."></i>
+                </div>
 
 
-
-            <div class="pure-controls">
-                <a class="pure-button" href="/Repository/Index"><i class="fa fa-long-arrow-left"></i> Back</a>
-                <button type="submit" class="pure-button pure-button-primary"><i class="fa fa-save"></i> Create</button>
-            </div>
-</fieldset>
-</form>
-        </div>
-
-        <div class="footer">
-            <p>
-HTKA SWIT                    &middot;
-                Bonobo Git Server (6.3.0.632) &copy; 2015 <a href="http://www.chodounsky.net">Jakub Chodounský</a>
-                &middot; <a href="http://bonobogitserver.com/">Official Page</a> 
-                &middot; <a href="https://github.com/jakubgarfield/Bonobo-Git-Server">Github</a>
-            </p>
-        </div>
+                <div class="pure-controls">
+                    <a class="pure-button" href="/Repository/Index"><i class="fa fa-long-arrow-left"></i> Back</a>
+                    <button class="pure-button pure-button-primary" type="submit"><i class="fa fa-save"></i> Create
+                    </button>
+                </div>
+            </fieldset>
+        </form>
     </div>
 
-    <script src="/Scripts/jquery-1.12.4.js"></script>
+    <div class="footer">
+        <p>
+            HTKA SWIT &middot;
+            Bonobo Git Server (6.3.0.632) &copy; 2015 <a href="http://www.chodounsky.net">Jakub Chodounský</a>
+            &middot; <a href="http://bonobogitserver.com/">Official Page</a>
+            &middot; <a href="https://github.com/jakubgarfield/Bonobo-Git-Server">Github</a>
+        </p>
+    </div>
+</div>
+
+<script src="/Scripts/jquery-1.12.4.js"></script>
 <script src="/Scripts/jquery.validate.js"></script>
 <script src="/Scripts/jquery.validate.unobtrusive.js"></script>
 <script src="/Scripts/MicrosoftAjax.debug.js"></script>
@@ -183,6 +520,6 @@ HTKA SWIT                    &middot;
 <script src="/Scripts/highlight.pack.js"></script>
 <script src="/Scripts/clipboard.min.js"></script>
 
-    
+
 </body>
 </html>

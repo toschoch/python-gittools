@@ -1,10 +1,11 @@
-import requests, bs4
 import contextlib
+import pathlib
+from unittest.mock import MagicMock, Mock
+
+import pytest
+
 import gittools.config as config
 import gittools.reposerver
-import pathlib
-import pytest
-from unittest.mock import MagicMock, Mock
 
 
 @contextlib.contextmanager
@@ -18,7 +19,6 @@ def change_config(newname):
 
 
 def test_reposerver_cfg(tmpdir):
-
     tmp_cfg_file = tmpdir.join('.gittools')
 
     assert not tmp_cfg_file.exists()
@@ -26,16 +26,16 @@ def test_reposerver_cfg(tmpdir):
         cfg = gittools.reposerver.repository_servers_cfg()
         assert tmp_cfg_file.exists()
 
-    for name in ['bonobo','github','gogs']:
+    for name in ['bonobo', 'github', 'gogs']:
         assert 'url' in cfg[name]
         if name == 'bonobo':
             assert cfg[name]['url'] == '<url>'
         assert cfg[name]['login']['Username'] == '<username>'
         assert cfg[name]['login']['Password'] == '<password>'
 
+
 # Sample Test passing with nose and pytest
 def test_bonobo_create(request):
-
     here = pathlib.Path(request.module.__file__).parent
     htmls = here.joinpath('test_htmls')
 
@@ -48,18 +48,17 @@ def test_bonobo_create(request):
         }
     }
 
-
     session = MagicMock()
 
-    files = ['bonobo_login1.html','bonobo_repo_create1.html','bonobo_repo_create3.html']
+    files = ['bonobo_login1.html', 'bonobo_repo_create1.html', 'bonobo_repo_create3.html']
     gets = []
     for fn in files:
-        with open(htmls.joinpath(fn),'rb') as fp:
+        with open(htmls.joinpath(fn), 'rb') as fp:
             r = Mock()
             r.content = fp.read()
             gets.append(r)
 
-    files = ['bonobo_login2.html','bonobo_repo_create2.html']
+    files = ['bonobo_login2.html', 'bonobo_repo_create2.html']
     posts = []
     for fn in files:
         with open(htmls.joinpath(fn), 'rb') as fp:
@@ -72,7 +71,7 @@ def test_bonobo_create(request):
     session.post = Mock(side_effect=posts)
 
     session_ctx = MagicMock()
-    session_ctx.__enter__  = Mock(return_value=session)
+    session_ctx.__enter__ = Mock(return_value=session)
     session_ctx_factory = Mock(return_value=session_ctx)
 
     import requests
@@ -81,16 +80,14 @@ def test_bonobo_create(request):
     srv = gittools.reposerver.Bonobo(**srv_cfg)
 
     with pytest.raises(KeyError):
-        srv.create_repository('testrepo4','this is a test repo')
-
+        srv.create_repository('testrepo4', 'this is a test repo')
 
     with pytest.raises(AssertionError):
-        srv.create_repository('testrepo4','this is a test repo', Administrators=[])
+        srv.create_repository('testrepo4', 'this is a test repo', Administrators=[])
 
-    repo = srv.create_repository('testrepo4','this is a test repo', Administrators=['Tobias Schoch'])
+    repo = srv.create_repository('testrepo4', 'this is a test repo', Administrators=['Tobias Schoch'])
 
     assert repo != None
-
 
 # def test_gogs():
 #

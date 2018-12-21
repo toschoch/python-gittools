@@ -3,17 +3,19 @@
 # created: 05.03.2018
 # author:  TOS
 
-import click
+import os
 import pathlib
 import subprocess
-import os
 from contextlib import contextmanager
 
-from .reposerver import get_repo_server, repository_servers_cfg
+import click
+
 from .readme import set_placeholder, readme_filename as readme, description
 from .reposerver import RepoServer
+from .reposerver import get_repo_server, repository_servers_cfg
 
 git_exception = EnvironmentError('gittools need Git to be installed on your machine! Install Git first...')
+
 
 @contextmanager
 def git_commit_only(pattern, message):
@@ -24,7 +26,7 @@ def git_commit_only(pattern, message):
     yield
     subprocess.call(['git', 'add', pattern], stdout=null)
     subprocess.call(['git', 'commit', '-m', message], stdout=null)
-    subprocess.call(['git', 'stash','pop'], stdout=null)
+    subprocess.call(['git', 'stash', 'pop'], stdout=null)
     null.close()
 
 
@@ -47,7 +49,8 @@ def track(remote):
         branch = subprocess.check_output(['git', 'branch']).decode('utf-8').lstrip('* ').rstrip('\n ')
     except FileNotFoundError:
         raise git_exception
-    subprocess.check_output(['git','branch','-u','{}/{}'.format(remote, branch)])
+    subprocess.check_output(['git', 'branch', '-u', '{}/{}'.format(remote, branch)])
+
 
 def update_readme(url):
     # update readme
@@ -71,11 +74,12 @@ def add(ctx, remote, url, main_remote=True):
     if main_remote:
         update_readme(url)
 
+
 def push(srv: RepoServer, main_remote=True):
     """ pushes to the repository server """
 
-    #TODO: find a solution to call and pass username and pw
-    click.echo("if prompted, use user: {}, pw: {}".format(srv.username,srv.password))
+    # TODO: find a solution to call and pass username and pw
+    click.echo("if prompted, use user: {}, pw: {}".format(srv.username, srv.password))
     if main_remote:
         if subprocess.call(['git', 'push', '--set-upstream', srv.name, "master"]) != 0:
             raise git_exception
@@ -85,9 +89,11 @@ def push(srv: RepoServer, main_remote=True):
             raise git_exception
         subprocess.call(['git', 'push', '--tags', srv.name])
 
+
 @click.group()
 def remote():
     """ create and setup remote repositories """
+
 
 @remote.command()
 def list():
@@ -96,7 +102,8 @@ def list():
     if len(remotes) > 0:
         click.echo("following remote repository servers are configured:")
     for name, cfg in remotes.items():
-        click.echo("{}\t{}".format(name, cfg.get('url','...')))
+        click.echo("{}\t{}".format(name, cfg.get('url', '...')))
+
 
 @remote.command()
 @click.argument('remote')

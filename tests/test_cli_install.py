@@ -3,15 +3,18 @@
 # created: 13.03.2018
 # author:  TOS
 
-import gittools.cli_install as cli_install
-from gittools import config
-from unittest.mock import MagicMock
-import pathlib
 import contextlib
 import os
-import shutil
-import pytest
+import pathlib
 import platform
+import shutil
+from unittest.mock import MagicMock
+
+import pytest
+
+import gittools.cli_install as cli_install
+from gittools import config
+
 
 @contextlib.contextmanager
 def change_cwd(path):
@@ -22,6 +25,7 @@ def change_cwd(path):
     finally:
         os.chdir(cwd)
 
+
 @pytest.fixture(scope='function')
 def gitdir(tmpdir, request):
     tmpdir = pathlib.Path(tmpdir)
@@ -31,17 +35,17 @@ def gitdir(tmpdir, request):
     shutil.copytree(gitrepo, tmpdir.joinpath('.git'))
     return tmpdir
 
+
 from click.testing import CliRunner
 
 
 def test_install_script(tmpdir):
-
     import subprocess
 
     subprocess.check_output = MagicMock(side_effect=FileNotFoundError)
     subprocess.check_call = MagicMock(side_effect=FileNotFoundError)
 
-    config.set_cfg({'reposervers':{'myserver':{'type':'Github','url':'www.github.com'}}})
+    config.set_cfg({'reposervers': {'myserver': {'type': 'Github', 'url': 'www.github.com'}}})
     runner = CliRunner()
     result = runner.invoke(cli_install.script, args=['python'])
     assert result.exit_code != 0
@@ -58,7 +62,7 @@ root                     C:\ProgramData\Miniconda2
     config.set_cfg({'reposervers': {'myserver': {'type': 'Github', 'url': 'www.github.com'}}})
     runner = CliRunner()
     result = runner.invoke(cli_install.script, args=['python'])
-    assert result.exit_code==2
+    assert result.exit_code == 2
     assert str(result.output) == """Usage: script [OPTIONS] CMD
 
 Error: configuration has no 'scripts' section! Specify with --dst option
@@ -76,23 +80,24 @@ root                  *  C:\ProgramData\Miniconda2
     runner = CliRunner()
     result = runner.invoke(cli_install.script, args=['pip'])
     assert result.exit_code == 0
-    assert result.output.splitlines()[-1] == "now you can use 'pip' in your console without activating the environment..."
+    assert result.output.splitlines()[
+               -1] == "now you can use 'pip' in your console without activating the environment..."
 
-    if platform.system().lower() == 'linux':
+    if platform.system().lower().startswith('linux'):
         script_path = pathlib.Path(tmpdir).joinpath('pip')
         assert script_path.exists()
     elif platform.system().lower() == 'windows':
         script_path = pathlib.Path(tmpdir).joinpath('pip.bat')
         assert script_path.exists()
 
-def test_install_hook(gitdir):
 
+def test_install_hook(gitdir):
     import subprocess
 
     subprocess.check_output = MagicMock(side_effect=FileNotFoundError)
     subprocess.check_call = MagicMock(side_effect=FileNotFoundError)
 
-    config.set_cfg({'reposervers':{'myserver':{'type':'Github','url':'www.github.com'}}})
+    config.set_cfg({'reposervers': {'myserver': {'type': 'Github', 'url': 'www.github.com'}}})
     runner = CliRunner()
     result = runner.invoke(cli_install.script, args=['python'])
     assert result.exit_code != 0
@@ -111,16 +116,20 @@ root                  *  C:\ProgramData\Miniconda2
     with change_cwd(gitdir):
         result = runner.invoke(cli_install.hook)
 
-    if platform.system().lower() == 'linux':
+    if platform.system().lower().startswith('linux'):
 
-        assert result.exit_code != 0
-        assert str(result.exception) == "Not yet implemented for UNIX systems!\n"
+        assert result.exit_code == 0
+        assert result.output == """UNIX git hooks successfully installed for environment 'root'!
+now before every commit the requirements files are updated with 'root' package status...
+"""
 
 
     elif platform.system().lower() == 'windows':
 
         assert result.exit_code == 0
-        assert result.output == "WINDOWS git hooks successfully installed for environment 'root'!\nnow before every commit the requirements files are updated with 'root' package status...\n"
+        assert result.output == """WINDOWS git hooks successfully installed for environment 'root'!
+now before every commit the requirements files are updated with 'root' package status...
+"""
         commit_hook = gitdir.joinpath('.git/hooks/pre-commit')
         assert commit_hook.exists() and commit_hook.is_file()
         commit_hook_win = gitdir.joinpath('.git/hooks/pre-commit.cmd')

@@ -2,21 +2,24 @@
 # -*- coding: UTF-8 -*-
 # created: 08.03.2018
 # author:  TOS
+import pathlib
+from unittest.mock import MagicMock, call
+
+from test_readme import change_changelog_file, change_readme_file, \
+    readmedir, readmedir_nochangelog
+
 import gittools.cli as cli
 import gittools.cli_remote as cli_remote
 import gittools.readme as rm
 from gittools import config
-from unittest.mock import MagicMock, call
-import pathlib
-from test_readme import readmedir, readmedir_nochangelog, change_changelog_file, change_readme_file
 
 here = pathlib.Path(__file__).parent
 
 from click.testing import CliRunner
 
-def test_remote_list():
 
-    config.set_cfg({'reposervers':{'myserver':{'type':'Github','url':'www.github.com'}}})
+def test_remote_list():
+    config.set_cfg({'reposervers': {'myserver': {'type': 'Github', 'url': 'www.github.com'}}})
     runner = CliRunner()
     result = runner.invoke(cli_remote.list)
     assert result.exit_code == 0
@@ -24,7 +27,7 @@ def test_remote_list():
 
 
 def test_package_name():
-    assert cli_remote.package_name(here)=='tests'
+    assert cli_remote.package_name(here) == 'tests'
 
 
 def test_get_git_tags():
@@ -36,12 +39,11 @@ def test_get_git_tags():
 
     cli.get_tags()
 
-    mocked_checked_output.assert_called_with(['git', 'describe', '--tags', '--abbrev=0', '@^'], stderr=subprocess.STDOUT)
+    mocked_checked_output.assert_called_with(['git', 'describe', '--tags', '--abbrev=0', '@^'],
+                                             stderr=subprocess.STDOUT)
 
 
 def test_init():
-
-
     import subprocess
     subprocess.call = MagicMock(return_value=-1)
     subprocess.check_output = MagicMock(side_effect=FileNotFoundError)
@@ -64,6 +66,7 @@ def test_init():
                                       call(['git', 'commit', '-m', '"initial commit"']),
                                       call(['git', 'tag', 'v0.0.1'])])
 
+
 def test_tag(readmedir):
     import subprocess
     subprocess.call = MagicMock(return_value=-1)
@@ -75,7 +78,7 @@ def test_tag(readmedir):
 
     config.set_cfg({'reposervers': {'myserver': {'type': 'Github', 'url': 'www.github.com'}}})
     runner = CliRunner()
-    result = runner.invoke(cli.tag,args=['v0.0.8'])
+    result = runner.invoke(cli.tag, args=['v0.0.8'])
     assert result.exit_code != 0
     assert str(result.exception) == "gittools need Git to be installed on your machine! Install Git first..."
 
@@ -98,6 +101,7 @@ dc2e120 last test
 ##### 0.0.1
 * initial version"""
 
+
 def test_tag_readme(readmedir_nochangelog):
     import subprocess
     subprocess.call = MagicMock(return_value=-1)
@@ -109,7 +113,7 @@ def test_tag_readme(readmedir_nochangelog):
 
     config.set_cfg({'reposervers': {'myserver': {'type': 'Github', 'url': 'www.github.com'}}})
     runner = CliRunner()
-    result = runner.invoke(cli.tag,args=['v0.0.8'])
+    result = runner.invoke(cli.tag, args=['v0.0.8'])
     assert result.exit_code != 0
     assert str(result.exception) == "gittools need Git to be installed on your machine! Install Git first..."
 

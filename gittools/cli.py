@@ -3,11 +3,13 @@
 # created: 05.03.2018
 # author:  TOS
 
-import click
 import subprocess
-from .readme import add_changelog_version, changelog_filename as changelog, versions
+
+import click
+
 from .cli_install import install
 from .cli_remote import remote, git_commit_only, git_exception
+from .readme import add_changelog_version, changelog_filename as changelog, versions
 
 
 def get_tags():
@@ -39,6 +41,7 @@ def version():
     ver = pkg_resources.get_distribution('gittools').version
     click.echo(ver)
 
+
 @gittool.command()
 def init():
     """ initialize local git repo and creates an initial version. """
@@ -46,14 +49,14 @@ def init():
     if subprocess.call(['git', 'init']) != 0:
         raise git_exception
     subprocess.call(['git', 'add', '.gitignore'])
-    subprocess.call(['git','commit', '-m','"initial commit"'])
+    subprocess.call(['git', 'commit', '-m', '"initial commit"'])
 
     # get tags
     readme_tags = versions()
 
     if len(readme_tags) > 0:
         # create a tag with the last version defined in readme
-        subprocess.call(['git','tag',readme_tags[0]])
+        subprocess.call(['git', 'tag', readme_tags[0]])
 
 
 @gittool.command()
@@ -66,7 +69,7 @@ def tag(tagname, message):
     lasttag = tags[0]
 
     # commit messages
-    msgs = subprocess.check_output(['git','log','--oneline','{}..@'.format(lasttag)]).decode('utf-8').splitlines()
+    msgs = subprocess.check_output(['git', 'log', '--oneline', '{}..@'.format(lasttag)]).decode('utf-8').splitlines()
     msgs = [' '.join(m.split(' ')[1:]) for m in msgs]
 
     # insert into readme
@@ -78,6 +81,7 @@ def tag(tagname, message):
         subprocess.call(['git', 'tag', tagname])
     else:
         subprocess.call(['git', 'tag', tagname, '-m', '{}'.format("\n".join(message))])
+
 
 # try to add command group
 gittool.add_command(install)

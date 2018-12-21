@@ -13,18 +13,18 @@ reposervers:
     type: Gogs
     url:  https://try.gogs.io/
     newrepo:
-           private:  False
+      private:  False
     login:
       Username: <username>
       Password: <password>
 
   github:
-      type: Github
-      url:  https://github.com/
-      login:
-          Username: <username>
-          Password: <password>
-      ssh:  False
+    type: Github
+    url:  https://github.com/
+    login:
+      Username: <username>
+      Password: <password>
+    ssh:  False
 
 scripts:
-   directory: ~/bin
+  directory: ~/bin

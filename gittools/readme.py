@@ -3,9 +3,9 @@
 # created: 06.03.2018
 # author:  TOS
 
+import fileinput
 import logging
 import pathlib
-import fileinput
 import re
 
 log = logging.getLogger(__name__)
@@ -13,8 +13,8 @@ log = logging.getLogger(__name__)
 readme_filename = 'README.md'
 changelog_filename = 'CHANGELOG.md'
 
-def getlines(path='.'):
 
+def getlines(path='.'):
     path = pathlib.Path(path)
     if path.exists() and path.is_file():
         readmefile = path
@@ -42,13 +42,16 @@ def project_name(path='.'):
 
     return name
 
+
 def versions(path='.'):
     vs = [l.strip('# ') for l in changelog(path).splitlines() if l.strip().startswith('#')]
     vs = list(map(lambda v: "v{}".format(v) if not v.startswith('v') else v, vs))
     return vs
 
+
 def package_name(path='.'):
     return project_name(path).lower().replace(' ', '')
+
 
 def description(path='.'):
     lines = getlines(path)
@@ -56,7 +59,7 @@ def description(path='.'):
     descr = []
     for i, line in enumerate(lines):
         if line.strip().startswith('---'):
-            for j, line in enumerate(lines[i+1:]):
+            for j, line in enumerate(lines[i + 1:]):
                 descr.append(line)
                 if line.strip().startswith('---'):
                     # drop the following title
@@ -67,41 +70,42 @@ def description(path='.'):
     descr = ''.join(descr).strip(' \n')
     return descr
 
+
 def _changelog_indices(lines):
-
     for i, line in enumerate(lines):
-        j = i+1
+        j = i + 1
 
-        if line.strip().lstrip("#").replace('-','').lower()=='changelog':
-            if line.strip().startswith('# '): continue # level 0 header changelog in separate file
-            for j, line in enumerate(lines[i+2:]):
-                if line.strip().startswith('####'): continue # version entry e.g. ####(#) 0.0.3
-                if line.strip().startswith('#'): # next section
-                    j = j+1
+        if line.strip().lstrip("#").replace('-', '').lower() == 'changelog':
+            if line.strip().startswith('# '): continue  # level 0 header changelog in separate file
+            for j, line in enumerate(lines[i + 2:]):
+                if line.strip().startswith('####'): continue  # version entry e.g. ####(#) 0.0.3
+                if line.strip().startswith('#'):  # next section
+                    j = j + 1
                     break
-                if line.strip().startswith('---'): # next section
+                if line.strip().startswith('---'):  # next section
                     break
                 if line.strip().startswith('['):
-                    j = j+1
+                    j = j + 1
                     break
             break
 
         # for changelog in separate file file with versions
-        if line.strip().lstrip("#").replace('-','').replace(' ','').lower()=='versions':
-            for j, line in enumerate(lines[i+1:]):
-                if line.strip().startswith('####'): continue # version entry e.g. ####(#) 0.0.3
-                if line.strip().startswith('#'): # next section
-                    j = j+1
+        if line.strip().lstrip("#").replace('-', '').replace(' ', '').lower() == 'versions':
+            for j, line in enumerate(lines[i + 1:]):
+                if line.strip().startswith('####'): continue  # version entry e.g. ####(#) 0.0.3
+                if line.strip().startswith('#'):  # next section
+                    j = j + 1
                     break
-                if line.strip().startswith('---'): # next section
+                if line.strip().startswith('---'):  # next section
                     break
                 if line.strip().startswith('['):
-                    j = j+1
+                    j = j + 1
                     break
-            i = i-1
+            i = i - 1
             break
 
-    return i+2,i+1+j
+    return i + 2, i + 1 + j
+
 
 def _get_changelog_file(path):
     changelog_file = pathlib.Path(path).joinpath(changelog_filename)
@@ -109,12 +113,13 @@ def _get_changelog_file(path):
         return changelog_file
     return pathlib.Path(path).joinpath(readme_filename)
 
+
 def _get_changelog_lines(path):
     changelog_file = _get_changelog_file(path)
     return getlines(changelog_file)
 
-def changelog(path='.'):
 
+def changelog(path='.'):
     lines = _get_changelog_lines(path)
     i, j = _changelog_indices(lines)
     changlog = lines[i:j]
@@ -123,7 +128,6 @@ def changelog(path='.'):
 
 
 def add_changelog_version(version, points=[], path='.'):
-
     changelogfile = _get_changelog_file(path)
     lines = getlines(changelogfile)
     I, J = _changelog_indices(lines)
@@ -140,14 +144,14 @@ def add_changelog_version(version, points=[], path='.'):
         if i == I:
             line = "{}{}".format(text, line)
         i += 1
-        print(line,end='')
+        print(line, end='')
+
 
 def set_placeholder(pattern, replace, path='.'):
-
     readmefile = pathlib.Path(path).joinpath(readme_filename)
 
     pattern = re.compile(pattern)
     for line in fileinput.FileInput(str(readmefile), inplace=1):
         if re.search(pattern, line):
             line = re.sub(pattern, replace, line)
-        print(line,end='')
+        print(line, end='')
