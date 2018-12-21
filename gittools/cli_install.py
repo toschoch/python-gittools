@@ -57,7 +57,7 @@ def create_script(cmd, dst, env_name, env_path, template, suffix=True):
 
     return dst
 
-def create_hook(dst, env_name, env_path, template, suffix, script_suffix=''):
+def create_hook(dst, env_name, env_path, template, suffix, script_suffix):
     hook = pkg_resources.resource_filename('gittools','git_hooks/{}_{}'.format(template, suffix))
 
     dst_dir = pathlib.Path(dst)

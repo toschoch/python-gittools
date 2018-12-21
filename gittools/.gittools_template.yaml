@@ -1,20 +1,30 @@
-#reposervers:
-#  aarau:
-#    type: Bonobo
-#    url:  http://scmserver:8080
-#    newrepo:
-#      Group: PythonPackages
-#      Administrators: ["Tobias Schoch"]
-#    login:
-#      Username: <username>
-#      Password: <password>
-#  gogs:
-#    type: Gogs
-#    url:  https://try.gogs.io/
-#    newrepo:
-#           private:  False
-#    login:
-#      Username: <username>
-#      Password: <password>
-#scripts:
-#   directory: ~/bin
+reposervers:
+  bonobo:
+    type: Bonobo
+    url:  <url>
+    newrepo:
+      Group: <group>
+      Administrators: [<user>]
+    login:
+      Username: <username>
+      Password: <password>
+
+  gogs:
+    type: Gogs
+    url:  https://try.gogs.io/
+    newrepo:
+           private:  False
+    login:
+      Username: <username>
+      Password: <password>
+
+  github:
+      type: Github
+      url:  https://github.com/
+      login:
+          Username: <username>
+          Password: <password>
+      ssh:  False
+
+scripts:
+   directory: ~/bin
