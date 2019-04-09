@@ -10,6 +10,9 @@ A collection of tools to connect to predefined git remote servers and create rem
 
 Change-Log
 ----------
+##### 0.1.5
+* fixed bug with missing password member
+
 ##### 0.1.4
 * fixed bug in getting correct remote server
 
