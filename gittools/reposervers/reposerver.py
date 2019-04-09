@@ -23,7 +23,7 @@ class RepoServer(object):
             self.name = name
             self.giturl = giturl
 
-    def __init__(self, name, url, **kwargs):
+    def __init__(self, **kwargs):
         self.username = None
         self.password = None
         self.name = None
@@ -48,8 +48,8 @@ def get_repo_server(name) -> RepoServer:
     srv_cfg = cfg[name].copy()
     srv_cfg['name'] = name
     repo_type = srv_cfg.pop('type')
-    importlib.import_module(repo_type.lower())
-    srv_type = globals().get(repo_type)
+    m = importlib.import_module(repo_type.lower())
+    srv_type = getattr(m, repo_type)
 
     srv = srv_type(**srv_cfg)
     return srv

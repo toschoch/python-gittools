@@ -1,12 +1,16 @@
 import contextlib
 import pathlib
 from unittest.mock import MagicMock, Mock
+import importlib
+import logging
 
 import pytest
 
 import gittools.config as config
-import gittools.reposerver
+import gittools.reposervers.reposerver
+import gittools.reposervers.bonobo
 
+log = logging.getLogger(__name__)
 
 @contextlib.contextmanager
 def change_config(newname):
@@ -23,7 +27,7 @@ def test_reposerver_cfg(tmpdir):
 
     assert not tmp_cfg_file.exists()
     with change_config(tmp_cfg_file):
-        cfg = gittools.reposerver.repository_servers_cfg()
+        cfg = gittools.reposervers.reposerver.repository_servers_cfg()
         assert tmp_cfg_file.exists()
 
     for name in ['bonobo', 'github', 'gogs']:
@@ -75,9 +79,10 @@ def test_bonobo_create(request):
     session_ctx_factory = Mock(return_value=session_ctx)
 
     import requests
+    _session_bckup = requests.Session
     requests.Session = session_ctx_factory
 
-    srv = gittools.reposerver.Bonobo(**srv_cfg)
+    srv = gittools.reposervers.bonobo.Bonobo(**srv_cfg)
 
     with pytest.raises(KeyError):
         srv.create_repository('testrepo4', 'this is a test repo')
@@ -88,6 +93,8 @@ def test_bonobo_create(request):
     repo = srv.create_repository('testrepo4', 'this is a test repo', Administrators=['Tobias Schoch'])
 
     assert repo != None
+
+    requests.Session = _session_bckup
 
 # def test_gogs():
 #
@@ -107,24 +114,29 @@ def test_bonobo_create(request):
 #     print(repo.giturl)
 #
 #     srv.delete_repository('testrepo')
-#
-#
-# def test_github():
-#
-#     cfg = gittools.reposerver.repository_servers_cfg()
-#
-#     srv_cfg = cfg['github'].copy()
-#     srv_cfg['name'] = 'github'
-#     srv_type = getattr(gittools.reposerver, srv_cfg.pop('type'))
-#
-#     srv = srv_type(**srv_cfg)
-#
-#     print(srv.ssh)
-#
-#     if not srv.repository_exists('testrepo'):
-#         repo = srv.create_repository('testrepo', 'this is a test repo')
-#     else:
-#         repo = srv.get_repository('testrepo')
-#     print(repo.giturl)
-#
-#     srv.delete_repository('testrepo')
+
+
+def test_github():
+
+    cfg = gittools.reposervers.reposerver.repository_servers_cfg()
+
+    srv_cfg = cfg['github'].copy()
+    srv_cfg['name'] = 'github'
+    repo_type = srv_cfg.pop('type')
+    m = importlib.import_module('gittools.reposervers.{}'.format(repo_type.lower()))
+    from gittools.reposervers.github import Github
+    srv_type = getattr(m, repo_type)
+
+    log.info("type: {}: {}".format(srv_type, srv_cfg))
+
+    srv = srv_type(**srv_cfg)
+
+    log.info("ssh: {}".format(srv.ssh))
+
+    if not srv.repository_exists('testrepo'):
+        repo = srv.create_repository('testrepo', 'this is a test repo')
+    else:
+        repo = srv.get_repository('testrepo')
+    log.info("repo: {}".format(repo.giturl))
+
+    srv.delete_repository('testrepo')

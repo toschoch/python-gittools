@@ -11,8 +11,8 @@ from contextlib import contextmanager
 import click
 
 from .readme import set_placeholder, readme_filename as readme, description
-from .reposerver import RepoServer
-from .reposerver import get_repo_server, repository_servers_cfg
+from .reposervers.reposerver import RepoServer
+from .reposervers.reposerver import get_repo_server, repository_servers_cfg
 
 git_exception = EnvironmentError('gittools need Git to be installed on your machine! Install Git first...')
 
