@@ -10,6 +10,9 @@ A collection of tools to connect to predefined git remote servers and create rem
 
 Change-Log
 ----------
+##### 0.1.4
+* fixed bug in getting correct remote server
+
 ##### 0.1.3
 * fixed commit only changelog or readme
 * included gitlab support
