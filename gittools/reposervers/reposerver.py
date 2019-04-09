@@ -48,7 +48,7 @@ def get_repo_server(name) -> RepoServer:
     srv_cfg = cfg[name].copy()
     srv_cfg['name'] = name
     repo_type = srv_cfg.pop('type')
-    m = importlib.import_module(repo_type.lower())
+    m = importlib.import_module('gittools.reposervers.{}'.format(repo_type.lower()))
     srv_type = getattr(m, repo_type)
 
     srv = srv_type(**srv_cfg)
