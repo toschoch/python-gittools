@@ -5,3 +5,4 @@ bs4
 pyyaml
 gogs_client
 pygithub
+python-gitlab

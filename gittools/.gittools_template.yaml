@@ -15,16 +15,27 @@ reposervers:
     newrepo:
       private:  False
     login:
+      Token: xxxxxxxx
       Username: <username>
-      Password: <password>
 
   github:
     type: Github
     url:  https://github.com/
     login:
+      Token: xxxxxxxx
       Username: <username>
-      Password: <password>
     ssh:  False
+
+
+  gitlab:
+    type: Gitlab
+    url:  https://gitlab.com/
+    login:
+      Token: xxxxxxxx
+      Username: <username>
+    ssh:  False
+    newrepo:
+        group: <groupname>
 
 scripts:
   directory: ~/bin

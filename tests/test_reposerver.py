@@ -9,6 +9,7 @@ import pytest
 import gittools.config as config
 import gittools.reposervers.reposerver
 import gittools.reposervers.bonobo
+import gittools.reposervers.gogs
 
 log = logging.getLogger(__name__)
 
@@ -98,45 +99,75 @@ def test_bonobo_create(request):
 
 # def test_gogs():
 #
-#     srv_cfg = {'type': 'Gogs', 'url': 'https://try.gogs.io/', 'newrepo': {'private': False}, 'login': {
-#         'Username': '<username>',
-#         'Password': '<password>'}, 'name': 'gogs'}
-#     srv_type = gittools.reposerver.Gogs(**srv_cfg)
+#
+#     cfg = gittools.reposervers.reposerver.repository_servers_cfg()
+#
+#     srv_cfg = cfg['gogs'].copy()
+#     srv_cfg['name'] = 'gogs'
+#     repo_type = srv_cfg.pop('type')
+#     m = importlib.import_module('gittools.reposervers.{}'.format(repo_type.lower()))
+#     srv_type = getattr(m, repo_type)
+#
+#     log.info("type: {}: {}".format(srv_type, srv_cfg))
 #
 #     srv = srv_type(**srv_cfg)
 #
-#     print(srv.ssh)
+#     log.info("ssh: {}".format(srv.ssh))
 #
-#     if not srv.api.repo_exists(srv.auth, srv.username, "testrepo"):
+#     if not srv.repository_exists("testrepo"):
 #         repo = srv.create_repository('testrepo', 'this is a test repo')
 #     else:
-#         repo = srv.api.get_repo(srv.auth, srv.username, 'testrepo')
-#     print(repo.giturl)
+#         repo = srv.get_repository('testrepo')
+#     log.info("repo: {}".format(repo.giturl))
 #
 #     srv.delete_repository('testrepo')
 
 
-def test_github():
+# def test_github():
+#
+#     cfg = gittools.reposervers.reposerver.repository_servers_cfg()
+#
+#     srv_cfg = cfg['github'].copy()
+#     srv_cfg['name'] = 'github'
+#     repo_type = srv_cfg.pop('type')
+#     m = importlib.import_module('gittools.reposervers.{}'.format(repo_type.lower()))
+#     srv_type = getattr(m, repo_type)
+#
+#     log.info("type: {}: {}".format(srv_type, srv_cfg))
+#
+#     srv = srv_type(**srv_cfg)
+#
+#     log.info("ssh: {}".format(srv.ssh))
+#
+#     if not srv.repository_exists('testrepo'):
+#         repo = srv.create_repository('testrepo', 'this is a test repo')
+#     else:
+#         repo = srv.get_repository('testrepo')
+#     log.info("repo: {}".format(repo.giturl))
+#
+#     srv.delete_repository('testrepo')
 
-    cfg = gittools.reposervers.reposerver.repository_servers_cfg()
 
-    srv_cfg = cfg['github'].copy()
-    srv_cfg['name'] = 'github'
-    repo_type = srv_cfg.pop('type')
-    m = importlib.import_module('gittools.reposervers.{}'.format(repo_type.lower()))
-    from gittools.reposervers.github import Github
-    srv_type = getattr(m, repo_type)
-
-    log.info("type: {}: {}".format(srv_type, srv_cfg))
-
-    srv = srv_type(**srv_cfg)
-
-    log.info("ssh: {}".format(srv.ssh))
-
-    if not srv.repository_exists('testrepo'):
-        repo = srv.create_repository('testrepo', 'this is a test repo')
-    else:
-        repo = srv.get_repository('testrepo')
-    log.info("repo: {}".format(repo.giturl))
-
-    srv.delete_repository('testrepo')
+# def test_gitlab():
+#
+#     cfg = gittools.reposervers.reposerver.repository_servers_cfg()
+#
+#     srv_cfg = cfg['gitlab'].copy()
+#     srv_cfg['name'] = 'gitlab'
+#     repo_type = srv_cfg.pop('type')
+#     m = importlib.import_module('gittools.reposervers.{}'.format(repo_type.lower()))
+#     srv_type = getattr(m, repo_type)
+#
+#     log.info("type: {}: {}".format(srv_type, srv_cfg))
+#
+#     srv = srv_type(**srv_cfg)
+#
+#     log.info("ssh: {}".format(srv.ssh))
+#
+#     if not srv.repository_exists('testrepo'):
+#         repo = srv.create_repository('testrepo', 'this is a test repo')
+#     else:
+#         repo = srv.get_repository('testrepo')
+#     log.info("repo: {}".format(repo.giturl))
+#
+#     srv.delete_repository('testrepo')
