@@ -29,6 +29,7 @@ class Gitlab(RepoServer):
 
         self.api = gitlab.Gitlab(self.url.geturl(), private_token=self.token)
         self.username = self.login_info['Username']
+        self.password = '<hidden>'
 
         self.group = None
         all_groups = self.api.groups.list(all=True, as_list=False)

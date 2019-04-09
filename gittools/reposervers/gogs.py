@@ -29,6 +29,7 @@ class Gogs(RepoServer):
         self.api = gogs_client.GogsApi(self.url.geturl())
 
         self.username = self.login_info['Username']
+        self.password = '<hidden>'
         if not 'Token' in self.login_info:
             self.password = self.login_info['Password']
 

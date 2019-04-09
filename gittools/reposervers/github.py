@@ -27,8 +27,9 @@ class Github(RepoServer):
         self.login_info.update(kwargs.get('login', {}))
 
         # First create a Github instance:
+        self.username = self.login_info['Username']
+        self.password = '<hidden>'
         if not 'Token' in self.login_info:
-            self.username = self.login_info['Username']
             self.password = self.login_info['Password']
 
             # using username and password
