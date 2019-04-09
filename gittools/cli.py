@@ -6,10 +6,11 @@
 import subprocess
 
 import click
+import pathlib
 
 from .cli_install import install
 from .cli_remote import remote, git_commit_only, git_exception
-from .readme import add_changelog_version, changelog_filename as changelog, versions
+from .readme import add_changelog_version, changelog_filename as changelog, readme_filename as readme, versions
 
 
 def get_tags():
@@ -73,7 +74,8 @@ def tag(tagname, message):
     msgs = [' '.join(m.split(' ')[1:]) for m in msgs]
 
     # insert into readme
-    with git_commit_only(changelog, 'update {} for tag {}'.format(changelog, tagname)):
+    files = [fn for fn in [changelog, readme] if pathlib.Path(fn).exists()]
+    with git_commit_only(" ".join(files), 'update {} for tag {}'.format(changelog, tagname)):
         add_changelog_version(tagname.lstrip('v'), points=msgs)
 
     # create the tag
