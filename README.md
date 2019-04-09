@@ -10,6 +10,12 @@ A collection of tools to connect to predefined git remote servers and create rem
 
 Change-Log
 ----------
+##### 0.1.3
+* fixed commit only changelog or readme
+* included gitlab support
+* working for github with token
+* created a separate module per repo server
+
 ##### 0.1.2
 * reformat code
 * added git hook install implementation for UNIX
