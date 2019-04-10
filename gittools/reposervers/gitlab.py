@@ -12,6 +12,7 @@ log = logging.getLogger(__name__)
 class Gitlab(RepoServer):
 
     def __init__(self, name, url, **kwargs):
+        RepoServer.__init__(self)
 
         import gitlab
 
@@ -28,11 +29,10 @@ class Gitlab(RepoServer):
         self.token = self.login_info['Token']
 
         self.api = gitlab.Gitlab(self.url.geturl(), private_token=self.token)
-        self.username = self.login_info['Username']
-        self.password = '<hidden>'
 
         self.group = None
         all_groups = self.api.groups.list(all=True, as_list=False)
+        log.debug("Following groups have been found: {}".format([g.name for g in all_groups]))
         for group in all_groups:
             if group.name == self.repo_info['group']:
                 self.group = group

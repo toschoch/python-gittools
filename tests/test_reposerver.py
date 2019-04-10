@@ -31,12 +31,16 @@ def test_reposerver_cfg(tmpdir):
         cfg = gittools.reposervers.reposerver.repository_servers_cfg()
         assert tmp_cfg_file.exists()
 
-    for name in ['bonobo', 'github', 'gogs']:
+    for name in ['bonobo', 'github', 'gogs', 'gitlab']:
         assert 'url' in cfg[name]
         if name == 'bonobo':
             assert cfg[name]['url'] == '<url>'
-        assert cfg[name]['login']['Username'] == '<username>'
-        assert cfg[name]['login']['Password'] == '<password>'
+
+        if 'Token' in cfg[name]['login']:
+            assert cfg[name]['login']['Token'] == '<token>'
+        else:
+            assert cfg[name]['login']['Password'] == '<password>'
+            assert cfg[name]['login']['Username'] == '<username>'
 
 
 # Sample Test passing with nose and pytest
@@ -99,18 +103,11 @@ def test_bonobo_create(request):
 
 # def test_gogs():
 #
-#
 #     cfg = gittools.reposervers.reposerver.repository_servers_cfg()
 #
-#     srv_cfg = cfg['gogs'].copy()
-#     srv_cfg['name'] = 'gogs'
-#     repo_type = srv_cfg.pop('type')
-#     m = importlib.import_module('gittools.reposervers.{}'.format(repo_type.lower()))
-#     srv_type = getattr(m, repo_type)
+#     srv = gittools.reposervers.reposerver.get_repo_server('gogs')
 #
-#     log.info("type: {}: {}".format(srv_type, srv_cfg))
-#
-#     srv = srv_type(**srv_cfg)
+#     log.info("type: {}: {}".format(srv.__class__, cfg['gogs']))
 #
 #     log.info("ssh: {}".format(srv.ssh))
 #
@@ -127,15 +124,9 @@ def test_bonobo_create(request):
 #
 #     cfg = gittools.reposervers.reposerver.repository_servers_cfg()
 #
-#     srv_cfg = cfg['github'].copy()
-#     srv_cfg['name'] = 'github'
-#     repo_type = srv_cfg.pop('type')
-#     m = importlib.import_module('gittools.reposervers.{}'.format(repo_type.lower()))
-#     srv_type = getattr(m, repo_type)
+#     srv = gittools.reposervers.reposerver.get_repo_server('github')
 #
-#     log.info("type: {}: {}".format(srv_type, srv_cfg))
-#
-#     srv = srv_type(**srv_cfg)
+#     log.info("type: {}: {}".format(srv.__class__, cfg['github']))
 #
 #     log.info("ssh: {}".format(srv.ssh))
 #
@@ -146,24 +137,17 @@ def test_bonobo_create(request):
 #     log.info("repo: {}".format(repo.giturl))
 #
 #     srv.delete_repository('testrepo')
-
-
+#
+#
 # def test_gitlab():
 #
 #     cfg = gittools.reposervers.reposerver.repository_servers_cfg()
 #
-#     srv_cfg = cfg['gitlab'].copy()
-#     srv_cfg['name'] = 'gitlab'
-#     repo_type = srv_cfg.pop('type')
-#     m = importlib.import_module('gittools.reposervers.{}'.format(repo_type.lower()))
-#     srv_type = getattr(m, repo_type)
+#     srv = gittools.reposervers.reposerver.get_repo_server('gitlab')
 #
-#     log.info("type: {}: {}".format(srv_type, srv_cfg))
-#
-#     srv = srv_type(**srv_cfg)
+#     log.info("type: {}: {}".format(srv.__class__, cfg['gitlab']))
 #
 #     log.info("ssh: {}".format(srv.ssh))
-#
 #     if not srv.repository_exists('testrepo'):
 #         repo = srv.create_repository('testrepo', 'this is a test repo')
 #     else:

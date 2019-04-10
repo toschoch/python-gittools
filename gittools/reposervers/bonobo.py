@@ -15,6 +15,7 @@ log = logging.getLogger(__name__)
 class Bonobo(RepoServer):
 
     def __init__(self, name, url, **kwargs):
+        RepoServer.__init__(self)
         self.name = name
         self.url = urllib.parse.urlparse(url)
 

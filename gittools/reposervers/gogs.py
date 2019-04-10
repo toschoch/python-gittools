@@ -13,6 +13,7 @@ log = logging.getLogger(__name__)
 class Gogs(RepoServer):
 
     def __init__(self, name, url, **kwargs):
+        RepoServer.__init__(self)
 
         import gogs_client
 
@@ -28,9 +29,8 @@ class Gogs(RepoServer):
 
         self.api = gogs_client.GogsApi(self.url.geturl())
 
-        self.username = self.login_info['Username']
-        self.password = '<hidden>'
         if not 'Token' in self.login_info:
+            self.username = self.login_info['Username']
             self.password = self.login_info['Password']
 
             self.auth = gogs_client.UsernamePassword(self.username, self.password)

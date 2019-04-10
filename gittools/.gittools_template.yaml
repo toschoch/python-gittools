@@ -12,27 +12,31 @@ reposervers:
   gogs:
     type: Gogs
     url:  https://try.gogs.io/
+    ssh:  True
+    login:
+      Token: <token>
+      # Username: <username>
+      # Password: <password>
     newrepo:
       private:  False
-    login:
-      Token: xxxxxxxx
-      Username: <username>
 
   github:
     type: Github
     url:  https://github.com/
     login:
-      Token: xxxxxxxx
-      Username: <username>
-    ssh:  False
+      Token: <token>
+      # Username: <username>
+      # Password: <password>
 
+    ssh:  False
 
   gitlab:
     type: Gitlab
     url:  https://gitlab.com/
     login:
-      Token: xxxxxxxx
-      Username: <username>
+      Token: <token>
+      # Username: <username>
+      # Password: <password>
     ssh:  False
     newrepo:
         group: <groupname>

@@ -23,7 +23,7 @@ def assert_cfg():
 def load_cfg():
     if config_file.exists() and config_file.is_file():
         with open(config_file, 'r') as fp:
-            config = yaml.load(fp)
+            config = yaml.load(fp, Loader=yaml.Loader)
         if config is None:
             config = {}
     else:

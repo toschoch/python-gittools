@@ -27,7 +27,6 @@ class RepoServer(object):
         self.username = None
         self.password = None
         self.name = None
-        raise NotImplementedError()
 
     def create_repository(self, name, description, **info):
         raise NotImplementedError()
